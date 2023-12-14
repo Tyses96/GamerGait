@@ -38,7 +38,7 @@ public class GameController {
                 .map(gameMapper::mapTo)
                 .collect(Collectors.toList());
     }
-    @CrossOrigin(origins = "http://localhost:63343/")
+    @CrossOrigin(origins = "http://localhost:63342/")
     @GetMapping(path = "/games/search={text}")
     public Page<GameDto> listGamesFilteredByName(@PathVariable("text") String text, Pageable pageable) {
         Page<GameEntity> games = gameService.findGameThroughNameSearch(text, pageable);

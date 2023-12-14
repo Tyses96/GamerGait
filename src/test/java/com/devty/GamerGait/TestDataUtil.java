@@ -8,16 +8,16 @@ import com.devty.GamerGait.domain.entities.ReviewEntity;
 public class TestDataUtil {
 
     public static GameEntity createTestGameA(){
-        return GameEntity.builder().id(1L).name("Game A").build();
+        return GameEntity.builder().id(1L).name("Shelf life 1").build();
     }
     public static GameEntity createTestGameB(){
-        return GameEntity.builder().id(2L).name("Game B").build();
+        return GameEntity.builder().id(2L).name("Shelf life 2").build();
     }
     public static GameEntity createTestGameC(){
-        return GameEntity.builder().id(3L).name("Game C").build();
+        return GameEntity.builder().id(3L).name("Hands down under").build();
     }
     public static GameEntity createTestGameD(){
-        return GameEntity.builder().id(4L).name("Game D").build();
+        return GameEntity.builder().id(4L).name("Shallow halls").build();
     }
     public static GameDto createTestGameDtoA(){
         return GameDto.builder().id(4L).name("Game D").build();
