@@ -1,5 +1,7 @@
 // JavaScript code
 const gridContainer = document.querySelector("#grid-container");
+const steamGameDataUrl = "http://localhost:8080/gameDetails/"
+
 
 function searchGames(){
 	x = document.getElementById("searchbar");
@@ -8,14 +10,29 @@ function searchGames(){
         .then(data => createCards(data))
 }
 
-function createCards(page_of_games){
+ function createCards(page_of_games){
     removeCards(gridContainer);
-    page_of_games.content.forEach((item) => {
+    page_of_games.content.forEach(async(item) => {
         const itemCard = document.createElement("div");
         itemCard.classList.add("item-card");
-        const itemName = document.createElement("div");
-        itemName.textContent = item.name;
+        itemCard.classList.add("centre");
+        const itemName = document.createElement("h1");
+        const itemPicture = document.createElement("img");
+
+        itemPicture.classList.add("card-image");
+
+        fetch(steamGameDataUrl + item.appid)
+        .then((response) => {
+            return response.json()
+        }).then(
+            (value) => {
+                itemPicture.src = value.data.capsule_image;
+            }
+        )
+        itemPicture.alt = item.name
+        itemName.textContent = item.name
         itemCard.appendChild(itemName)
+        itemCard.appendChild(itemPicture)
         gridContainer.appendChild(itemCard)
     });
 }

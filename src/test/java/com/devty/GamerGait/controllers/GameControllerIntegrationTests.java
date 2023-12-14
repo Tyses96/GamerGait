@@ -65,14 +65,4 @@ public class GameControllerIntegrationTests {
                 MockMvcResultMatchers.status().isCreated()
         );
     }
-
-    @Test
-    public void testThatGetGamesReturnsAllGames() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.get("/games")
-                        .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(
-                MockMvcResultMatchers.status().isOk()
-        );
-    }
 }

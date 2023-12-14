@@ -27,3 +27,12 @@
 .container{
     display: flex;
 }
+.item-card{
+  font-size: x-large;
+  width: 460px;
+  border-bottom: 1px solid;
+}
+.card-image{
+  width: 230px;
+  height: 112px;
+}
