@@ -1,0 +1,29 @@
+
+  #searchbar{ 
+     margin-left: 15%; 
+     padding:15px; 
+     border-radius: 10px; 
+   } 
+ 
+   input[type=search] {
+      width: 75%;
+   }
+
+  img{
+  width: 100px;
+  height: 100px;
+  }
+  .centre {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h4{
+    font-family: Verdana, Geneva, sans-serif;
+    color: green;
+    text-align: center;
+  }
+
+.container{
+    display: flex;
+}
