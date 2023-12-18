@@ -1,4 +1,6 @@
-package com.devty.GamerGait.controllers;
+package com.devty.GamerGait.util;
+
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 
+@Component
 public class SteamHttpRequest {
 
     public String getGameDetails(Long id) throws IOException {

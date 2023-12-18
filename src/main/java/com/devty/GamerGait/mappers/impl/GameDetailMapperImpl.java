@@ -5,7 +5,9 @@ import com.devty.GamerGait.domain.dto.gamedetails.GameDetailDto;
 import com.devty.GamerGait.domain.entities.GameDetailEntity;
 import com.devty.GamerGait.domain.entities.GameEntity;
 import com.devty.GamerGait.mappers.Mapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class GameDetailMapperImpl implements Mapper<GameDetailEntity, GameDetailDto> {
     @Override
     public GameDetailDto mapTo(GameDetailEntity gameDetailEntity) {

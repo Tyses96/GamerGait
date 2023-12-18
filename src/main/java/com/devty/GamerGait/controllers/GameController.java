@@ -2,8 +2,11 @@ package com.devty.GamerGait.controllers;
 
 import com.devty.GamerGait.domain.dto.GameDto;
 import com.devty.GamerGait.domain.dto.gamedetails.GameDetailDto;
+import com.devty.GamerGait.domain.entities.GameDetailEntity;
 import com.devty.GamerGait.domain.entities.GameEntity;
+import com.devty.GamerGait.services.GameDetailService;
 import com.devty.GamerGait.util.JsonUtil;
+import com.devty.GamerGait.util.SteamHttpRequest;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.domain.Page;
@@ -14,11 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,14 +25,19 @@ import java.util.stream.Collectors;
 @RestController
 public class GameController {
     private GameService gameService;
+    private GameDetailService gameDetailService;
     private Mapper<GameEntity, GameDto> gameMapper;
+    private Mapper<GameDetailEntity, GameDetailDto> gameDetailMapper;
 
 
 
 
-    public GameController(GameService gameService, Mapper<GameEntity, GameDto> gameMapper) {
+    public GameController(GameService gameService, Mapper<GameEntity, GameDto> gameMapper,
+    Mapper<GameDetailEntity, GameDetailDto> gameDetailMapper, GameDetailService gameDetailService) {
         this.gameService = gameService;
         this.gameMapper = gameMapper;
+        this.gameDetailMapper = gameDetailMapper;
+        this.gameDetailService = gameDetailService;
     }
     @PostMapping(path = "/games")
     public ResponseEntity<GameDto> createGame(@RequestBody GameDto game) {
@@ -56,12 +60,13 @@ public class GameController {
         SteamHttpRequest req = new SteamHttpRequest();
         //Custom removing of data that is not used
         String response = JsonUtil.reWrapToGameReadyJson(req.getGameDetails(id));
-
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
         GameDetailDto gameDetailsDto = objectMapper.readValue(response, GameDetailDto.class);
-        return new ResponseEntity<>(gameDetailsDto, HttpStatus.OK);
+        GameDetailEntity gameDetailEntity = gameDetailMapper.mapFrom(gameDetailsDto);
+        gameDetailEntity.setId(id);
+        GameDetailEntity savedGameDetailEntity = gameDetailService.findOne(id);
+        return new ResponseEntity<>(gameDetailMapper.mapTo(savedGameDetailEntity), HttpStatus.OK);
     }
 
 
