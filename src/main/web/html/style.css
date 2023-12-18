@@ -36,3 +36,37 @@
   width: 230px;
   height: 112px;
 }
+
+.buttons{
+  margin-top:100;
+  display:flex;
+  justify-content:center;
+  gap:2rem;
+}
+.buttons button{
+  border:none;
+  padding:0.4rem 1.2rem;
+  background-color:green;
+  color:white;
+  border-radius:5px;
+  cursor:pointer
+}
+
+#page-number{
+  border: 1px, solid;
+  text-align:center;
+  width:3rem;
+  border-radius:5px;
+}
+#page-number:focus{
+  outline:none;
+  background-color: green;
+}
+
+.list-container{
+  display:flex;
+  justify-content:center;
+}
+.list-container{
+  height:700px;
+}
