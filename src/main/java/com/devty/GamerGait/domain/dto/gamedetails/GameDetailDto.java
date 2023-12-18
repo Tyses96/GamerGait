@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GameDetailsDto {
+public class GameDetailDto {
+    Long id;
     @JsonProperty("data")
     DataDto dataDto;
 }
