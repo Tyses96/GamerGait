@@ -13,14 +13,21 @@
 <img src="res/GamerGait.png" alt="Logo" class="centre">
 
 <!-- input tag -->
-<input id="searchbar" onkeyup="searchGames()" type="search"
+<input id="searchbar" onsearch="searchGames()" type="search"
        name="search" placeholder="Find a game..">
-<h4>Some slogan here</h4>
+<h4>Game on. Know More.</h4>
 
 <div id="grid-container">
 
 </div>
 
+
+<div class="buttons">
+    <button id="prev" onclick="decrementPageNumber()">Prev</button>
+    <button id="next" onclick="incrementPageNumber()">Next</button>
+  </div>
+
+  
 <!-- linking javascript -->
 <script src="./index.js"></script>
 </body>

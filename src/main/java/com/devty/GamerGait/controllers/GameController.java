@@ -1,7 +1,11 @@
 package com.devty.GamerGait.controllers;
 
 import com.devty.GamerGait.domain.dto.GameDto;
+import com.devty.GamerGait.domain.dto.gamedetails.DataDto;
+import com.devty.GamerGait.domain.dto.gamedetails.GameDetailsDto;
 import com.devty.GamerGait.domain.entities.GameEntity;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.devty.GamerGait.mappers.Mapper;
@@ -10,6 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,6 +27,8 @@ import java.util.stream.Collectors;
 public class GameController {
     private GameService gameService;
     private Mapper<GameEntity, GameDto> gameMapper;
+
+
 
 
     public GameController(GameService gameService, Mapper<GameEntity, GameDto> gameMapper) {
@@ -38,7 +49,34 @@ public class GameController {
                 .map(gameMapper::mapTo)
                 .collect(Collectors.toList());
     }
-    @CrossOrigin(origins = "http://localhost:63343/")
+
+    @GetMapping(path= "/gameDetails/{id}")
+    @CrossOrigin(origins = "http://localhost:63342/")
+    public ResponseEntity<GameDetailsDto> passThroughMethodForSteamApiCall(@PathVariable("id") Long id) throws IOException {
+        URL url = new URL("https://store.steampowered.com/api/appdetails?appids=" + id);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer content = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+        //Custom removing of data that is not used
+        String response = content.toString();
+        response = response.substring(response.indexOf("d") - 1, response.length() -2 );
+        //Rewrapping Json
+        response = ("{" + response + "}");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        GameDetailsDto gameDetailsDto = objectMapper.readValue(response, GameDetailsDto.class);
+        return new ResponseEntity<>(gameDetailsDto, HttpStatus.OK);
+    }
+
+
+    @CrossOrigin(origins = "http://localhost:63342/")
     @GetMapping(path = "/games/search={text}")
     public Page<GameDto> listGamesFilteredByName(@PathVariable("text") String text, Pageable pageable) {
         Page<GameEntity> games = gameService.findGameThroughNameSearch(text, pageable);
