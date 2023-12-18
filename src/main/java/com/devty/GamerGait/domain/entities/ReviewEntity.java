@@ -24,6 +24,7 @@ public class ReviewEntity {
     private Integer gamePlayRating;
     private Integer storyRating;
     private Integer valueForMoneyRating;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "game_id")
     private GameEntity gameEntity;
