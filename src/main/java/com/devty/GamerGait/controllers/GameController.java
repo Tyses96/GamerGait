@@ -1,6 +1,8 @@
 package com.devty.GamerGait.controllers;
 
+import com.devty.GamerGait.GamerGaitApplication;
 import com.devty.GamerGait.domain.dto.GameDto;
+import com.devty.GamerGait.domain.dto.gamedetails.DataDto;
 import com.devty.GamerGait.domain.dto.gamedetails.GameDetailDto;
 import com.devty.GamerGait.domain.entities.GameDetailEntity;
 import com.devty.GamerGait.domain.entities.GameEntity;
@@ -63,9 +65,8 @@ public class GameController {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         GameDetailDto gameDetailsDto = objectMapper.readValue(response, GameDetailDto.class);
-        GameDetailEntity gameDetailEntity = gameDetailMapper.mapFrom(gameDetailsDto);
-        gameDetailEntity.setId(id);
-        GameDetailEntity savedGameDetailEntity = gameDetailService.findOne(id);
+        gameDetailsDto.setId(id);
+        GameDetailEntity savedGameDetailEntity = gameDetailService.findOne(gameDetailsDto);
         return new ResponseEntity<>(gameDetailMapper.mapTo(savedGameDetailEntity), HttpStatus.OK);
     }
 

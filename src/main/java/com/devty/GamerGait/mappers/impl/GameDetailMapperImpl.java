@@ -12,7 +12,7 @@ public class GameDetailMapperImpl implements Mapper<GameDetailEntity, GameDetail
     @Override
     public GameDetailDto mapTo(GameDetailEntity gameDetailEntity) {
         DataDto data = new DataDto(gameDetailEntity.getUrlToPicture());
-        return new GameDetailDto(gameDetailEntity.getId(), data);
+        return new GameDetailDto(gameDetailEntity.getId(), true, data);
     }
 
     @Override
