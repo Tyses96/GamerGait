@@ -23,9 +23,7 @@ function searchGames(){
         itemCard.classList.add("centre");
         const itemName = document.createElement("h4");
         const itemPicture = document.createElement("img");
-
         maxPages = page_of_games.totalPages;
-
         itemPicture.classList.add("card-image");
 
         fetch(steamGameDataUrl + item.appid)
@@ -38,10 +36,16 @@ function searchGames(){
         )
         itemPicture.alt = item.name
         itemName.textContent = item.name
+
         itemCard.appendChild(itemName)
         itemCard.appendChild(itemPicture)
         gridContainer.appendChild(itemCard)
     });
+    const clickableCards = document.querySelectorAll(".item-card");
+    clickableCards.forEach(async(item) => {
+    item.addEventListener('click', function(){itemCardClicked()});
+    })
+
 }
 
 function incrementPageNumber(){
@@ -74,5 +78,9 @@ function removeCards(parent){
 
 function resetPageNumber(){
     pageNumber = 0;
+}
+
+function itemCardClicked(){
+    window.location.href = "gamePage.html"
 }
 
