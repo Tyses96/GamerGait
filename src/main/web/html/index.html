@@ -13,7 +13,7 @@
 <img src="res/GamerGait.png" alt="Logo" class="centre">
 
 <!-- input tag -->
-<input id="searchbar" onsearch="searchGames()" type="search"
+<input id="searchbar" onsearch="resetPageNumber(); searchGames();" type="search"
        name="search" placeholder="Find a game..">
 <h4>Game on. Know More.</h4>
 
@@ -27,7 +27,6 @@
     <button id="next" onclick="incrementPageNumber()">Next</button>
   </div>
 
-  
 <!-- linking javascript -->
 <script src="./index.js"></script>
 </body>

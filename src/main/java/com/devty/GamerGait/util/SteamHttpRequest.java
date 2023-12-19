@@ -1,5 +1,7 @@
 package com.devty.GamerGait.util;
 
+import com.devty.GamerGait.GamerGaitApplication;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -13,11 +15,13 @@ import java.net.URL;
 @Component
 public class SteamHttpRequest {
 
+    @Value("${gamerGait.icon-url}")
+    String ggIconUrl;
     String dummyJsonWithNestedUrl =
             "    \"{\"2389880\": {\n" +
             "        \"success\": true,\n" +
             "        \"data\": {\n" +
-            "            \"capsule_image\": \"res/GamerGait.png\"\n" +
+            "            \"capsule_image\": \"" + ggIconUrl + "\"\n" +
             "            }\n" +
             "        }\n" +
             "    }\"";
@@ -27,17 +31,18 @@ public class SteamHttpRequest {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 
-        if(con.getResponseCode() != HttpStatus.OK.value()){
+        if(con.getResponseCode() != 200){
             return dummyJsonWithNestedUrl;
         }
-
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer content = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
+        else{
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            return content.toString();
         }
-        return content.toString();
     }
 }

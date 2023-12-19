@@ -1,5 +1,6 @@
 package com.devty.GamerGait.services;
 
+import com.devty.GamerGait.domain.dto.gamedetails.GameDetailDto;
 import com.devty.GamerGait.domain.entities.GameDetailEntity;
 import com.devty.GamerGait.domain.entities.GameEntity;
 import com.devty.GamerGait.domain.entities.ReviewEntity;
@@ -10,7 +11,7 @@ import java.util.Optional;
 public interface GameDetailService {
     GameDetailEntity save(GameDetailEntity gameDetailEntity);
 
-    GameDetailEntity findOne(Long appId) throws IOException;
+    GameDetailEntity findOne(GameDetailDto gameDetailDto) throws IOException;
 
     boolean isExists(Long id);
 
