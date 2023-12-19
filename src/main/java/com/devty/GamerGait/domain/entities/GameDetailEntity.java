@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "game details")
 public class GameDetailEntity {
     @Id
-    @JoinColumn(name = "game_id")
     Long id;
     String urlToPicture;
 }

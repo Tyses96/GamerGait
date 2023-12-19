@@ -46,7 +46,7 @@ function searchGames(){
 
 function incrementPageNumber(){
     window.scrollTo({ top: 0, behavior: 'smooth' })
-    if(pageNumber >= maxPages){
+    if(pageNumber == maxPages){
         pageNumber = maxPages;
     }
     else{
