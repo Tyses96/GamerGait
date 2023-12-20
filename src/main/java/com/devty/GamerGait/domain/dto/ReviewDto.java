@@ -19,5 +19,6 @@ public class ReviewDto {
     private int gamePlayRating;
     private int storyRating;
     private int valueForMoneyRating;
+
     private GameDto gameDto;
 }

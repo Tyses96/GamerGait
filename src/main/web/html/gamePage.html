@@ -1,1 +1,42 @@
-<p>Well done</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gamer Gait</title>
+    <link rel="icon" href="res/GamerGait.png">
+    <!-- linking the stylesheet(CSS) -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+  </head>
+  <body>
+    <div id="header"><img src="res/GamerGait.png" alt="Logo" class="centre">
+
+        <!-- input tag -->
+        <input id="searchbar" onsearch="resetPageNumber(); searchGames();" type="search"
+               name="search" placeholder="Find a game..">
+      </div>
+      <h4>Game on. Know More.</h4>
+
+    <div id="gamepage-container">
+        <div id="gamepage-gamedetails-container">
+            <div id="imgdiv"></div>
+            <div id="gamedetail-text">
+                <div id="gametitle"></div>
+                <div id="description"></div>
+            </div>
+            <div id="overall rating"></div>
+        </div>
+    </div>
+
+
+    <div id="gamepage-reviews-container">
+    </div>
+
+
+
+
+
+	<script src="gamePage.js"></script>
+  </body>
+</html>

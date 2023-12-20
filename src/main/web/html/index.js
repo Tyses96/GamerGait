@@ -12,7 +12,6 @@ searchGames();
 
 function searchGames(){
 	x = document.getElementById("searchbar");
-    let pageDetails;
         fetch('http://localhost:8080/games/search=' + x.value.toString() + "?page=" + pageNumber)
         .then(response => response.json())
         .then(data => {createCards(data)})
@@ -29,9 +28,11 @@ function searchGames(){
         itemCard.classList.add("centre");
         const itemName = document.createElement("h4");
         const itemPicture = document.createElement("img");
+        const itemId = document.createElement("p")
         maxPages = page_of_games.totalPages;
         itemPicture.classList.add("card-image");
         itemName.classList.add("item-name");
+        itemId.classList.add("item-id")
         fetch(steamGameDataUrl + item.appid)
         .then((response) => {
             return response.json()
@@ -42,15 +43,13 @@ function searchGames(){
         )
         itemPicture.alt = item.name
         itemName.textContent = item.name
-
+        itemId.textContent = item.appid
         itemCard.appendChild(itemName)
         itemCard.appendChild(itemPicture)
+        itemCard.appendChild(itemId)
+        itemCard.addEventListener('click', function(){itemCardClicked(item.name, item.appid)});
         gridContainer.appendChild(itemCard)
     });
-    const clickableCards = document.querySelectorAll(".item-card");
-    clickableCards.forEach(async(item) => {
-    item.addEventListener('click', function(){itemCardClicked()});
-    })
 
 }
 
@@ -86,8 +85,8 @@ function resetPageNumber(){
     pageNumber = 0;
 }
 
-function itemCardClicked(){
-    window.location.href = "gamePage.html"
+function itemCardClicked(name, id){
+    window.location.href = "gamePage.html?name=" + name + "&id=" + id
 }
 
 function scrollStick() {
