@@ -19,5 +19,7 @@ import lombok.NoArgsConstructor;
 public class GameDetailEntity {
     @Id
     Long id;
-    String urlToPicture;
+    String capsuleImage;
+    String headerImage;
+    String shortDescription;
 }

@@ -82,10 +82,39 @@
   top: 0;
   width: 99%;
 }
+.item-id{
+  visibility: hidden;
+  display: none;
+}
+
 
 #header{
   background-color: #9999cc;
   padding-bottom: 5px;
   border-radius: 10px;
   box-shadow: 0 0 10px #9999cc;
+}
+
+#gamepage-gamedetails-container{
+  border: 2px solid #1EBB39 ;
+  border-radius: 5px;
+  float: left;
+  max-width: 470px;
+  background-color: #F3FCF2;
+}
+
+#gamepage-reviews-container{
+  border: 2px solid #9999cc;
+  float: right;
+  width: 70%;
+}
+.main-image{
+  padding: 5px;
+  width: 460px;
+  height: 215px;
+}
+.description-class{
+  color: #789974;
+  font-family: "Quantico";
+  padding-left: 2px;
 }

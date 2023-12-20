@@ -47,7 +47,7 @@ public class GameDetailServiceImpl implements GameDetailService {
         }
         else if(gameDetail.isEmpty() && !gameDetailDto.getSuccess()){
             String test = ggIconUrl;
-            gameDetailDto.setDataDto(new DataDto(ggIconUrl));
+            gameDetailDto.setDataDto(new DataDto(ggIconUrl , ggIconUrl, "No description available"));
             GameDetailEntity gameDetailEntity = gameDetailMapper.mapFrom(gameDetailDto);
             return gameDetailEntity;
         }

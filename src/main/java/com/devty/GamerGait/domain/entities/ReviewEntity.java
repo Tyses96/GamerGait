@@ -28,4 +28,8 @@ public class ReviewEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "game_id")
     private GameEntity gameEntity;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "game_detail_id")
+    GameDetailEntity gameDetailEntity;
 }

@@ -12,5 +12,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class DataDto {
     @JsonProperty("capsule_image")
-    String urlToImage;
+    String capsuleImage;
+    @JsonProperty("header_image")
+    String headerImage;
+    @JsonProperty("short_description")
+    String shortDescription;
 }
