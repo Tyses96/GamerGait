@@ -96,3 +96,7 @@ function scrollStick() {
       header.classList.remove("sticky");
     }
   }
+
+function register(){
+    window.location.href = "register.html"
+}

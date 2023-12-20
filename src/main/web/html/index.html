@@ -10,7 +10,16 @@
 </head>
 
 <body>
-<div id="header"><img src="res/GamerGait.png" alt="Logo" class="centre">
+
+<div id="header">
+  <div id="header-components" class="centre">
+    <img src="res/GamerGait.png" alt="GamerGaitLogo" class="centre">
+    <h1 class="centre title-word">Gamer Gait</h1>
+  </div>
+  <div id="button-holder" class="left-header">
+    <button id="register" onclick="register()">Register</button>
+  </div>
+
 
   <!-- input tag -->
   <input id="searchbar" onsearch="resetPageNumber(); searchGames();" type="search"
@@ -29,5 +38,4 @@
 <!-- linking javascript -->
 <script src="./index.js"></script>
 </body>
-
 </html>
