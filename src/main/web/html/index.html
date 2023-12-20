@@ -2,25 +2,24 @@
 <html>
 
 <head>
-    <title></title>
+    <title>Gamer Gait</title>
+    <link rel="icon" href="res/GamerGait.png">
 
     <!-- linking the stylesheet(CSS) -->
     <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 
 <body>
+<div id="header"><img src="res/GamerGait.png" alt="Logo" class="centre">
 
-<img src="res/GamerGait.png" alt="Logo" class="centre">
-
-<!-- input tag -->
-<input id="searchbar" onsearch="resetPageNumber(); searchGames();" type="search"
-       name="search" placeholder="Find a game..">
+  <!-- input tag -->
+  <input id="searchbar" onsearch="resetPageNumber(); searchGames();" type="search"
+         name="search" placeholder="Find a game..">
+</div>
 <h4>Game on. Know More.</h4>
 
 <div id="grid-container">
-
 </div>
-
 
 <div class="buttons">
     <button id="prev" onclick="decrementPageNumber()">Prev</button>

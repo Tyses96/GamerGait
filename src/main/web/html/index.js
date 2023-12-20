@@ -4,6 +4,12 @@ const steamGameDataUrl = "http://localhost:8080/gameDetails/"
 let pageNumber = 0;
 let maxPages = 0;
 
+window.onscroll = function() {scrollStick()};
+let header = document.getElementById("header");
+let sticky = header.offsetTop;
+
+searchGames();
+
 function searchGames(){
 	x = document.getElementById("searchbar");
     let pageDetails;
@@ -25,7 +31,7 @@ function searchGames(){
         const itemPicture = document.createElement("img");
         maxPages = page_of_games.totalPages;
         itemPicture.classList.add("card-image");
-
+        itemName.classList.add("item-name");
         fetch(steamGameDataUrl + item.appid)
         .then((response) => {
             return response.json()
@@ -84,3 +90,10 @@ function itemCardClicked(){
     window.location.href = "gamePage.html"
 }
 
+function scrollStick() {
+    if (window.scrollY > sticky) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  }
