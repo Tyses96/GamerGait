@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 public interface GameDetailService {
-    GameDetailEntity save(GameDetailEntity gameDetailEntity);
-
     GameDetailEntity findOne(GameDetailDto gameDetailDto) throws IOException;
 
     boolean isExists(Long id);

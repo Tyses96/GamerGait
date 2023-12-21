@@ -10,24 +10,30 @@
 </head>
 
 <body>
-<div id="header"><img src="res/GamerGait.png" alt="Logo" class="centre">
+
+<div id="header">
+  <div id="header-components" class="centre">
+    <img src="res/GamerGait.png" alt="GamerGaitLogo" class="centre">
+    <h1 class="centre title-word">Gamer Gait</h1>
+  </div>
+  <div id="button-holder" class="left-header">
+    <button id="register" class="header-button" onclick="register()">Register</button>
+  </div>
+
 
   <!-- input tag -->
   <input id="searchbar" onsearch="resetPageNumber(); searchGames();" type="search"
          name="search" placeholder="Find a game..">
 </div>
-<h4>Game on. Know More.</h4>
+<h4>It's the way you game.</h4>
 
 <div id="grid-container">
 </div>
 
 <div class="buttons">
-    <button id="prev" onclick="decrementPageNumber()">Prev</button>
-    <button id="next" onclick="incrementPageNumber()">Next</button>
   </div>
 
 <!-- linking javascript -->
 <script src="./index.js"></script>
 </body>
-
 </html>

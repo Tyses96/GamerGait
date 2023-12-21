@@ -6,7 +6,7 @@
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/quantico/v17/rax-HiSdp9cPL3KIF7xrJD0.woff2) format('woff2');
 }
-  #searchbar{ 
+  #searchbar{
      margin-left: 15%; 
      padding:10px;
      border-radius: 10px; 
@@ -39,6 +39,11 @@
   width: 460px;
   border-bottom: solid 2px #9999cc;
 }
+.item-card-none{
+  font-size: x-large;
+  width: 460px;
+  border-bottom: solid 2px #9999cc;
+}
 .card-image{
   width: 230px;
   height: 112px;
@@ -47,6 +52,7 @@
 }
 .item-card:hover{
   background-color: rgb(207, 206, 206);
+  cursor: pointer;
 }
 .item-card:hover .item-name{
   color: #469954;
@@ -75,7 +81,7 @@
 }
 #page-number:focus{
   outline:none;
-  background-color: green;
+  background-color: #1EBB39;
 }
 .sticky {
   position: fixed;
@@ -89,14 +95,17 @@
 
 
 #header{
-  background-color: #9999cc;
+  background-image: linear-gradient(to left,#9999cc,#F3FCF2);
   padding-bottom: 5px;
   border-radius: 10px;
   box-shadow: 0 0 10px #9999cc;
 }
+#header-components{
+  margin: auto;
+}
 
 #gamepage-gamedetails-container{
-  border: 2px solid #1EBB39 ;
+  border: 2px solid #1EBB39;
   border-radius: 5px;
   float: left;
   max-width: 470px;
@@ -117,4 +126,39 @@
   color: #789974;
   font-family: "Quantico";
   padding-left: 2px;
+}
+.title-word{
+  color: black;
+  font-family: "Quantico";
+  font-size: xx-large;
+  margin: auto;
+  text-align: center;
+  width: 20%;
+}
+#header-components{
+  display: inline;
+  width: 20%;
+}
+#button-holder{
+  margin-left: 15%;
+  border-radius: 10px;
+  width: 20%;
+  margin-bottom: 10px;
+}
+.left-header{
+  size: 10%;
+}
+.header-button{
+  border: solid 2px black;
+  padding:0.4rem 1.2rem;
+  background-color:#1EBB39;
+  color:white;
+  border-radius:5px;
+  cursor:pointer
+}
+.header-button:hover{
+  background-color: #9999cc;
+}
+.header-button:disabled{
+  background-color: #789974;
 }

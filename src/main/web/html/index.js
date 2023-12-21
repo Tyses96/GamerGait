@@ -9,7 +9,6 @@ let header = document.getElementById("header");
 let sticky = header.offsetTop;
 
 searchGames();
-
 function searchGames(){
 	x = document.getElementById("searchbar");
         fetch('http://localhost:8080/games/search=' + x.value.toString() + "?page=" + pageNumber)
@@ -21,8 +20,14 @@ function searchGames(){
 
  function createCards(page_of_games){
     removeCards(gridContainer);
-
-    page_of_games.content.forEach(async(item) => {
+    if(page_of_games.totalPages > 0){
+        if(page_of_games.totalPages < 2 ){
+            setButtonsToBack();
+        }
+        else{
+            setButtonsToPages(pageNumber);
+        }
+        page_of_games.content.forEach(async(item) => {
         const itemCard = document.createElement("div");
         itemCard.classList.add("item-card");
         itemCard.classList.add("centre");
@@ -50,21 +55,34 @@ function searchGames(){
         itemCard.addEventListener('click', function(){itemCardClicked(item.name, item.appid)});
         gridContainer.appendChild(itemCard)
     });
-
+}else{
+    const itemCard = document.createElement("div")
+    itemCard.classList.add("item-card-none")
+    itemCard.classList.add("centre")
+    const itemName = document.createElement("h4")
+    itemName.textContent = "No results found!"
+    itemCard.appendChild(itemName)
+    gridContainer.appendChild(itemCard)
+    setButtonsToBack();
+}
 }
 
 function incrementPageNumber(){
+    enableButton("prev")
+    enableButton("next")
     if(pageNumber == maxPages-1){
         pageNumber = maxPages-1;
-    }
-    else{
+    }else{
          pageNumber += 1;
          window.scrollTo({ top: 0, behavior: 'smooth' });
          searchGames();
     }
+
 }
 
 function decrementPageNumber(){
+    enableButton("prev")
+    enableButton("next")
     if(pageNumber <= 0){
         pageNumber = 0;
     }
@@ -96,3 +114,35 @@ function scrollStick() {
       header.classList.remove("sticky");
     }
   }
+
+function goBack(){
+    document.getElementById("searchbar").value = ""
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function register(){
+    window.location.href = "register.html"
+}
+
+function setButtonsToPages(pageNumber){
+    let buttons = document.querySelector(".buttons");
+    buttons.innerHTML = "<button id=\"prev\" class= \"header-button\" onclick=\"decrementPageNumber()\">Prev</button><button id=\"next\" class= \"header-button\" onclick=\"incrementPageNumber()\">Next</button>"
+    if(pageNumber == 0){
+        disableButton("prev")
+    }
+    if(pageNumber == maxPages -2){
+        disableButton("next")
+    }
+}
+
+function setButtonsToBack(){
+    let buttons = document.querySelector(".buttons");
+    buttons.innerHTML = "<button id=\"next\" class= \"header-button\" onclick=\"goBack(); searchGames();\">Back</button>";
+}
+function disableButton(buttonId){
+    document.getElementById(buttonId).disabled = true;
+}
+
+function enableButton(buttonId){
+    document.getElementById(buttonId).disabled = false;
+}

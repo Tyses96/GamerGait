@@ -13,8 +13,6 @@ public interface GameService {
 
     List<GameEntity> findAll();
 
-    Page<GameEntity> findAll(Pageable pageable);
-
     Optional<GameEntity> findOne(Long appId);
 
     boolean isExists(Long appId);
