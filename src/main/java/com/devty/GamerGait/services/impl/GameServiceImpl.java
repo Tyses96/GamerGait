@@ -32,11 +32,6 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Page<GameEntity> findAll(Pageable pageable) {
-        return gameRepository.findAll(pageable);
-    }
-
-    @Override
     public Optional<GameEntity> findOne(Long appId) {
         return gameRepository.findById(appId);
     }

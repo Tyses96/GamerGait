@@ -39,6 +39,11 @@
   width: 460px;
   border-bottom: solid 2px #9999cc;
 }
+.item-card-none{
+  font-size: x-large;
+  width: 460px;
+  border-bottom: solid 2px #9999cc;
+}
 .card-image{
   width: 230px;
   height: 112px;
@@ -143,11 +148,17 @@
 .left-header{
   size: 10%;
 }
-#register{
+.header-button{
   border: solid 2px black;
   padding:0.4rem 1.2rem;
   background-color:#1EBB39;
   color:white;
   border-radius:5px;
   cursor:pointer
+}
+.header-button:hover{
+  background-color: #9999cc;
+}
+.header-button:disabled{
+  background-color: #789974;
 }

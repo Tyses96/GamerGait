@@ -1,27 +1,35 @@
 <Html>  
     <head>
     <title>
-    Registration Page  
+    Register for a Gamer Gait account
     </title>
     <link rel="stylesheet" type="text/css" href="register.css">
+    <link rel="icon" href="res/GamerGait.png">
     </head>
     <body>
-        <div class="container">  
-            <center>  <h1> Gamer Gait Registration</h1> </center>  
-            <hr>  
-            <label> Username </label>   
-          <input type="text" name="firstname" placeholder= "Firstname" size="15" required />    
-          <div>  
-          </div>  
+        <div class="container center">  
+            <center>  <h1> Gamer Gait Registration</h1> </center>
+            <p id="error-server" class="errormsg"></p>
+        <hr>
+          <div id = "form-container">  
+ 
+          <label><b>Username</b></label>
+          <p id="error-username" class="errormsg"></p>
+          <input type="text" id="username" placeholder= "Username" onkeydown="resetFormErrors()" size="15" required />    
            <label for="email"><b>Email</b></label>  
-           <input type="text" placeholder="Enter Email" name="email" required>  
+           <p id="error-email" class="errormsg"></p>
+           <input type="text" placeholder="Enter Email" id="email" onkeydown="resetFormErrors()" required>  
             
-              <label for="psw"><b>Password</b></label>  
-              <input type="password" placeholder="Enter Password" name="psw" required>  
+              <label for="psw"><b>Password</b></label>
+              <p id="error-password" class="errormsg"></p>  
+              <input type="password" placeholder="Enter Password" id="psw" onkeydown="resetFormErrors()" required>  
             
               <label for="psw-repeat"><b>Re-type Password</b></label>  
-              <input type="password" placeholder="Retype Password" name="psw-repeat" required>  
-              <button type="submit" class="registerbtn">Register</button>    
-          </form>  
+              <input type="password" placeholder="Retype Password" id="psw-repeat" onkeypress="resetFormErrors()" required>  
+              <button type="submit" class="registerbtn" onclick="registerUser()">Register</button>
+              <button type="submit" class="backbtn" onclick="goBack()">Back</button>        
+          </form> 
+        </div> 
+          <script src="register.js"></script>
     </body>  
     </html>  

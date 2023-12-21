@@ -33,19 +33,16 @@ public class GameDetailServiceImpl implements GameDetailService {
         this.steamHttpRequest = steamHttpRequest;
         this.gameDetailMapper = gameDetailMapper;
     }
-    @Override
-    public GameDetailEntity save(GameDetailEntity gameDetailEntity){
-        return gameDetailRepository.save(gameDetailEntity);
-    }
 
     @Override
     public GameDetailEntity findOne(GameDetailDto gameDetailDto) throws IOException {
         Optional<GameDetailEntity> gameDetail = gameDetailRepository.findById(gameDetailDto.getId());
 
-        if(gameDetail.isEmpty() && gameDetailDto.getSuccess()){
+        if(gameDetail.isEmpty() && gameDetailDto.getSuccess() && shouldSaveGameDetail(gameDetailDto)){
             return gameDetailRepository.save(gameDetailMapper.mapFrom(gameDetailDto));
         }
-        else if(gameDetail.isEmpty() && !gameDetailDto.getSuccess()){
+        else if(gameDetail.isEmpty() && !gameDetailDto.getSuccess() ||
+                gameDetail.isEmpty() && !shouldSaveGameDetail(gameDetailDto)){
             String test = ggIconUrl;
             gameDetailDto.setDataDto(new DataDto(ggIconUrl , ggIconUrl, "No description available"));
             GameDetailEntity gameDetailEntity = gameDetailMapper.mapFrom(gameDetailDto);
@@ -56,6 +53,10 @@ public class GameDetailServiceImpl implements GameDetailService {
         }
     }
 
+    private boolean shouldSaveGameDetail(GameDetailDto gameDetailDto){
+        return(gameDetailDto.getDataDto().getCapsuleImage() != null &&
+                gameDetailDto.getDataDto().getHeaderImage() != null);
+    }
     @Override
     public boolean isExists(Long id) {
         return gameDetailRepository.existsById(id);
