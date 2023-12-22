@@ -115,7 +115,7 @@
 #gamepage-reviews-container{
   border: 2px solid #9999cc;
   float: right;
-  width: 70%;
+  max-width: 70%;
 }
 .main-image{
   padding: 5px;

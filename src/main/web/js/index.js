@@ -3,15 +3,19 @@ const gridContainer = document.querySelector("#grid-container");
 const steamGameDataUrl = "http://localhost:8080/gameDetails/"
 let pageNumber = 0;
 let maxPages = 0;
-
+const urlParams = new URLSearchParams(window.location.search);
 window.onscroll = function() {scrollStick()};
 let header = document.getElementById("header");
 let sticky = header.offsetTop;
+let searched = urlParams.get("search")
 
-searchGames();
-function searchGames(){
+searchGames(searched);
+function searchGames(text){
+    if(text == null){
+        text = ""
+    }
 	x = document.getElementById("searchbar");
-        fetch('http://localhost:8080/games/search=' + x.value.toString() + "?page=" + pageNumber)
+        fetch('http://localhost:8080/games/search=' + x.value.toString() + text +  "?page=" + pageNumber)
         .then(response => response.json())
         .then(data => {createCards(data)})
 }

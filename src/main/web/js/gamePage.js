@@ -10,7 +10,10 @@ fetch('http://localhost:8080/gameDetails/' + id)
 .then(response => response.json())
 .then(data => {createGameDetailsSection(data)})
 
-
+function goHome(){
+  x = document.getElementById("searchbar");
+  window.location.href = "index.html?search=" + x.value.toString();
+}
 
 function createGameDetailsSection(gameDetails){
     // Image created from API call and displayed
@@ -31,7 +34,8 @@ function createGameDetailsSection(gameDetails){
     let mainPageDescDiv = document.getElementById("description")
     let mainPageDescTextArea = document.createElement("p")
     mainPageDescTextArea.classList.add("description-class")
-    mainPageDescTextArea.textContent = gameDetails.data.short_description;
+    let text = gameDetails.data.short_description.replace(/&quot;/g, '"');
+    mainPageDescTextArea.textContent = text;
     mainPageDescDiv.appendChild(mainPageDescTextArea);
 }
 
@@ -43,3 +47,7 @@ function scrollStick() {
       header.classList.remove("sticky");
     }
   }
+  function register(){
+    window.location.href = "register.html"
+}
+

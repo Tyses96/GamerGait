@@ -7,7 +7,7 @@
     <title>Gamer Gait</title>
     <link rel="icon" href="res/GamerGait.png">
     <!-- linking the stylesheet(CSS) -->
-    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
   </head>
   <body>
     <div id="header"><img src="res/GamerGait.png" alt="Logo" class="centre">
@@ -15,7 +15,7 @@
             <button id="register" class="header-button" onclick="register()">Register</button>
           </div>
         <!-- input tag -->
-        <input id="searchbar" onsearch="resetPageNumber(); searchGames();" type="search"
+        <input id="searchbar" onsearch="goHome()" type="search"
                name="search" placeholder="Find a game..">
       </div>
       <h4>Game on. Know More.</h4>
@@ -36,9 +36,7 @@
     </div>
 
 
+  <script src="../js/gamePage.js"></script>
 
-
-
-	<script src="gamePage.js"></script>
   </body>
 </html>
