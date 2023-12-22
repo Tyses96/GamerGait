@@ -2,6 +2,8 @@ package com.devty.GamerGait.domain.dto;
 
 import com.devty.GamerGait.domain.UserRole;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +21,8 @@ public class UserDto {
     private UUID id;
     private String username;
     private String email;
+    @NotNull
+    @Size(min=6, max=32)
     private String password;
-    private Long gaits;
-    private UserRole userRole;
+    private String userRole;
 }

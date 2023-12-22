@@ -140,13 +140,9 @@
   width: 20%;
 }
 #button-holder{
-  margin-left: 15%;
   border-radius: 10px;
   width: 20%;
   margin-bottom: 10px;
-}
-.left-header{
-  size: 10%;
 }
 .header-button{
   border: solid 2px black;
@@ -154,11 +150,16 @@
   background-color:#1EBB39;
   color:white;
   border-radius:5px;
-  cursor:pointer
+  cursor:pointer;
+  width: 150px;
 }
 .header-button:hover{
   background-color: #9999cc;
 }
 .header-button:disabled{
   background-color: #789974;
+}
+
+#login{
+  float: right;
 }

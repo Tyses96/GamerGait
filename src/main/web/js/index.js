@@ -127,6 +127,9 @@ function goBack(){
 function register(){
     window.location.href = "register.html"
 }
+function login(){
+    window.location.href = "login.html"
+}
 
 function setButtonsToPages(pageNumber){
     let buttons = document.querySelector(".buttons");
