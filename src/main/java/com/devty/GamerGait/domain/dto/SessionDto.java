@@ -1,4 +1,4 @@
-package com.devty.GamerGait.services.sessions;
+package com.devty.GamerGait.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +10,9 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Session {
+public class SessionDto {
 
     private UUID id;
-    private String token;
+    private UUID token;
     private LocalDateTime expiry;
 }

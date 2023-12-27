@@ -12,15 +12,33 @@ function login(){
 
     fetch('http://localhost:8080/login', {
         method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+
+		  },
         body: JSON.stringify(
             {
-                "username":userName, 
+                "username":username, 
                 "password":psw
             }
         )
     })
     .then(response => response.json())
-    .then(data => {createCards(data)})
+    .then(data => {
+		storeCookie(data)
+	})
+}
+
+function resetFormErrors(){
+    const errors = document.getElementsByClassName("errormsg");
+    for(var i = 0; i < errors.length; i++){
+        errors[i].innerHTML = "";
+    }
+}
+
+function storeCookie(cookie){
+	const d = new Date(cookie.expiry.toString());
+	document.cookie = "token=" + cookie.token + ";" +  "expires=" + d.toUTCString() + ";";
 }
 
 function sha256(ascii) {

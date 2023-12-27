@@ -33,7 +33,7 @@ public class RegisterController {
             return new ResponseEntity<>(userMapper.mapTo(savedUser), HttpStatus.CREATED);
         }
         catch (AlreadyInUseException e){
-            if(e.equals(UsernameAlreadyInUseException.class)){
+            if(e.getClass().equals(UsernameAlreadyInUseException.class)){
                 return new ResponseEntity<>(userDto, HttpStatus.BAD_REQUEST);
             }
             else {
