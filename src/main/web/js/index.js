@@ -10,19 +10,40 @@ let sticky = header.offsetTop;
 let searched = urlParams.get("search")
 let auth = false;
 
-
 searchGames(searched);
-
 fetchAuth();
 
+
 function fetchAuth(){
-    fetch('http://localhost:8080/auth/' + document.cookie)
-        .then(response => response.json())
-        .then(data => {checkAuth(data)})
+
+    const promise = 
+    fetch('http://localhost:8080/auth/' + document.cookie);
+
+    promise.then((response) => {
+        handleAuthResponse(response)
+    })
 }
 
 function checkAuth(data){
-    console.log(data)
+    if(auth){
+            showProfileDetails(data)
+    }
+}
+
+function showProfileDetails(data){
+    let btnHolder = document.getElementById("button-holder")
+    btnHolder.innerHTML = "<p>Welcome " + data.username + "!</p>"
+}
+
+function handleAuthResponse(response){
+    console.log(response)
+    if(response.status === 200){
+        auth = true;
+        response.json().then((data) => {
+        checkAuth(data)
+        });
+    }
+    else auth = false;
 }
 function searchGames(text){
     if(text == null){

@@ -1,5 +1,6 @@
 package com.devty.GamerGait.controllers;
 
+import com.devty.GamerGait.domain.dto.ProfileDto;
 import com.devty.GamerGait.domain.dto.UserDto;
 import com.devty.GamerGait.errors.SessionInvalidException;
 import com.devty.GamerGait.services.impl.AuthenticationServiceImpl;
@@ -22,15 +23,15 @@ public class AuthenticationController {
 
     @GetMapping(path = "/auth/{token}")
     @CrossOrigin(origins = "http://localhost:63342/")
-    public ResponseEntity<UserDto> getUserDetails(@PathVariable("token") String token){
+    public ResponseEntity<ProfileDto> getUserDetails(@PathVariable("token") String token){
         if(token == null){
-            return new ResponseEntity<>(new UserDto(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new ProfileDto(), HttpStatus.BAD_REQUEST);
         }
         String newToken = token.substring(token.indexOf("=") + 1);
         try {
             return new ResponseEntity<>(authenticationService.getUserDetailsFromSession(UUID.fromString(newToken)), HttpStatus.OK);
         } catch (SessionInvalidException e) {
-            return new ResponseEntity<>(new UserDto(), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(new ProfileDto(), HttpStatus.UNAUTHORIZED);
         }
     }
 }

@@ -11,6 +11,5 @@ public interface UserRepository extends ListCrudRepository<UserEntity, Long> {
 
     UserEntity findByEmail(String email);
     UserEntity findByUsername(String username);
-    UserEntity findById(UUID id);
 
 }

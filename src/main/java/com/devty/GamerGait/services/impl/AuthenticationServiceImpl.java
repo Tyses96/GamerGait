@@ -1,10 +1,12 @@
 package com.devty.GamerGait.services.impl;
 
+import com.devty.GamerGait.domain.dto.ProfileDto;
 import com.devty.GamerGait.domain.dto.UserDto;
+import com.devty.GamerGait.domain.entities.ProfileEntity;
 import com.devty.GamerGait.domain.entities.UserEntity;
 import com.devty.GamerGait.errors.SessionInvalidException;
-import com.devty.GamerGait.mappers.impl.UserMapperImpl;
-import com.devty.GamerGait.repositories.UserRepository;
+import com.devty.GamerGait.mappers.impl.ProfileMapperImpl;
+import com.devty.GamerGait.repositories.ProfileRepository;
 import com.devty.GamerGait.services.AuthenticationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,14 +17,14 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    UserRepository userRepository;
-    UserMapperImpl userMapper;
+    ProfileRepository profileRepository;
+    ProfileMapperImpl profileMapper;
 
     @Override
-    public UserDto getUserDetailsFromSession(UUID token) throws SessionInvalidException {
+    public ProfileDto getUserDetailsFromSession(UUID token) throws SessionInvalidException {
         SessionManager sessionManager = new SessionManager();
         var session = sessionManager.findSessionByToken(token);
-        UserEntity user = userRepository.findById(session.getId());
-        return userMapper.mapTo(user);
+        ProfileEntity profile = profileRepository.findById(session.getId());
+        return profileMapper.mapTo(profile);
     }
 }
