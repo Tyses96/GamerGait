@@ -27,6 +27,7 @@ function login(){
     .then(data => {
 		storeCookie(data)
 	})
+
 }
 
 function resetFormErrors(){
@@ -38,7 +39,8 @@ function resetFormErrors(){
 
 function storeCookie(cookie){
 	const d = new Date(cookie.expiry.toString());
-	document.cookie = "token=" + cookie.token + ";" +  "expires=" + d.toUTCString() + ";";
+	document.cookie = "token=" + cookie.token + ";" +  "expires=" + d.toUTCString() + ";" + "path=/;";
+	goBack();
 }
 
 function sha256(ascii) {

@@ -8,8 +8,22 @@ window.onscroll = function() {scrollStick()};
 let header = document.getElementById("header");
 let sticky = header.offsetTop;
 let searched = urlParams.get("search")
+let auth = false;
+
 
 searchGames(searched);
+
+fetchAuth();
+
+function fetchAuth(){
+    fetch('http://localhost:8080/auth/' + document.cookie)
+        .then(response => response.json())
+        .then(data => {checkAuth(data)})
+}
+
+function checkAuth(data){
+    console.log(data)
+}
 function searchGames(text){
     if(text == null){
         text = ""

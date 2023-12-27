@@ -31,8 +31,8 @@ public class LoginServiceImpl implements LoginService {
             if(Objects.equals(foundUser.get().getPassword(), userDto.getPassword())){
                 SessionManager sessionManager = new SessionManager(id);
                 sessionManager.run();
-                return new CookieDto(sessionManager.findSessionById(id).getToken(),
-                        sessionManager.findSessionById(id).getExpiry().atZone(ZoneId.systemDefault()));
+                return new CookieDto(sessionManager.findSessionByUserId(id).getToken(),
+                        sessionManager.findSessionByUserId(id).getExpiry().atZone(ZoneId.systemDefault()));
             } else {
                 throw new IncorrectPasswordException("Incorrect password");
             }

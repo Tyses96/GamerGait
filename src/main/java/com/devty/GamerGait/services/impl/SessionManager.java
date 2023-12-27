@@ -1,15 +1,18 @@
 package com.devty.GamerGait.services.impl;
 
 import com.devty.GamerGait.domain.dto.SessionDto;
-import com.devty.GamerGait.domain.dto.UserDto;
 import com.devty.GamerGait.errors.SessionInvalidException;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
 @Getter
+@NoArgsConstructor
+@Service
 public class SessionManager implements Runnable {
 
     private static ArrayList<SessionDto> activeSessionDtos = new ArrayList<>();
@@ -19,13 +22,22 @@ public class SessionManager implements Runnable {
         this.userId = userId;
     }
 
-    public SessionDto findSessionById(UUID userId) throws SessionInvalidException {
+    public SessionDto findSessionByUserId(UUID userId) throws SessionInvalidException {
             for (SessionDto sesh : activeSessionDtos) {
                 if (sesh.getId().equals(userId)) {
                     return sesh;
                 }
             }
             throw new SessionInvalidException();
+    }
+
+    public SessionDto findSessionByToken(UUID token) throws SessionInvalidException {
+        for (SessionDto sesh : activeSessionDtos) {
+            if (sesh.getToken().equals(token)) {
+                return sesh;
+            }
+        }
+        throw new SessionInvalidException();
     }
     private void deleteExpiredSessions(){
         LocalDateTime now = LocalDateTime.now();
@@ -46,8 +58,9 @@ public class SessionManager implements Runnable {
     private void authenticate(){
         deleteExpiredSessions();
         SessionDto sesh = issueSession();
-        System.out.println(sesh);
         addSession(sesh);
+        System.out.println(sesh);
+
     }
 
     @Override
