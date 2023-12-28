@@ -28,13 +28,30 @@ function checkAuth(data){
 }
 
 function showProfileDetails(data){
-  const profileButton = "<div class=\"profile-button-holder centre\"><img src=\"res/gamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
-  let btnHolder = document.getElementById("button-holder")
-  btnHolder.innerHTML = profileButton;
+  const profilehtml = "<img src=\"res/gamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
+  const logoutHtml = "<button class=\"logout-button\" onclick=\"logout()\">Logout</button>"
+
+  const authbuttons = document.createElement("div")
+
+  const profilebutton = document.createElement("div")
+  profilebutton.classList.add("profile-button-holder")
+  profilebutton.innerHTML = profilehtml;
+
+  const logoutbutton = document.createElement("div")
+  logoutbutton.innerHTML = logoutHtml;
+
+  authbuttons.classList.add("authbuttons")
+  let hdrComp = document.getElementById("header")
+  let loginReg = document.getElementById("button-holder")
+  loginReg.innerHTML = "";
+
+  authbuttons.append(profilebutton)
+  authbuttons.append(logoutbutton)
+
+  hdrComp.prepend(authbuttons)
 }
 
 function handleAuthResponse(response){
-  console.log(response)
   if(response.status === 200){
       auth = true;
       response.json().then((data) => {
@@ -88,3 +105,7 @@ function login(){
   window.location.href = "login.html"
 }
 
+function logout(){
+  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+  location.reload();
+}
