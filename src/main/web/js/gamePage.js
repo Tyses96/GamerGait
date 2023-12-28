@@ -6,9 +6,43 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 const gameName = urlParams.get('name')
 
+fetchAuth()
 fetch('http://localhost:8080/gameDetails/' + id)
 .then(response => response.json())
 .then(data => {createGameDetailsSection(data)})
+
+function fetchAuth(){
+
+  const promise = 
+  fetch('http://localhost:8080/auth/' + document.cookie);
+
+  promise.then((response) => {
+      handleAuthResponse(response)
+  })
+}
+
+function checkAuth(data){
+  if(auth){
+          showProfileDetails(data)
+  }
+}
+
+function showProfileDetails(data){
+  const profileButton = "<div class=\"profile-button-holder centre\"><img src=\"res/gamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
+  let btnHolder = document.getElementById("button-holder")
+  btnHolder.innerHTML = profileButton;
+}
+
+function handleAuthResponse(response){
+  console.log(response)
+  if(response.status === 200){
+      auth = true;
+      response.json().then((data) => {
+      checkAuth(data)
+      });
+  }
+  else auth = false;
+}
 
 function goHome(){
   x = document.getElementById("searchbar");
@@ -49,5 +83,8 @@ function scrollStick() {
   }
   function register(){
     window.location.href = "register.html"
+}
+function login(){
+  window.location.href = "login.html"
 }
 

@@ -9,7 +9,6 @@ let header = document.getElementById("header");
 let sticky = header.offsetTop;
 let searched = urlParams.get("search")
 let auth = false;
-
 searchGames(searched);
 fetchAuth();
 
@@ -31,8 +30,9 @@ function checkAuth(data){
 }
 
 function showProfileDetails(data){
+    const profileButton = "<div class=\"profile-button-holder centre\"><img src=\"res/gamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
     let btnHolder = document.getElementById("button-holder")
-    btnHolder.innerHTML = "<p>Welcome " + data.username + "!</p>"
+    btnHolder.innerHTML = profileButton;
 }
 
 function handleAuthResponse(response){
