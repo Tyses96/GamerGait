@@ -3,15 +3,72 @@ const gridContainer = document.querySelector("#grid-container");
 const steamGameDataUrl = "http://localhost:8080/gameDetails/"
 let pageNumber = 0;
 let maxPages = 0;
-
+const urlParams = new URLSearchParams(window.location.search);
 window.onscroll = function() {scrollStick()};
 let header = document.getElementById("header");
 let sticky = header.offsetTop;
+let searched = urlParams.get("search")
+let auth = false;
+searchGames(searched);
+fetchAuth();
 
-searchGames();
-function searchGames(){
+
+function fetchAuth(){
+
+    const promise = 
+    fetch('http://localhost:8080/auth/' + document.cookie);
+
+    promise.then((response) => {
+        handleAuthResponse(response)
+    })
+}
+
+function checkAuth(data){
+    if(auth){
+            showProfileDetails(data)
+    }
+}
+
+function showProfileDetails(data){
+    const profilehtml = "<img src=\"res/gamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
+    const logoutHtml = "<button class=\"logout-button\" onclick=\"logout()\">Logout</button>"
+
+    const authbuttons = document.createElement("div")
+
+    const profilebutton = document.createElement("div")
+    profilebutton.classList.add("profile-button-holder")
+    profilebutton.innerHTML = profilehtml;
+
+    const logoutbutton = document.createElement("div")
+    logoutbutton.innerHTML = logoutHtml;
+
+    authbuttons.classList.add("authbuttons")
+    let hdrComp = document.getElementById("header")
+    let loginReg = document.getElementById("button-holder")
+    loginReg.innerHTML = "";
+
+    authbuttons.append(profilebutton)
+    authbuttons.append(logoutbutton)
+
+    hdrComp.prepend(authbuttons)
+}
+
+function handleAuthResponse(response){
+    console.log(response)
+    if(response.status === 200){
+        auth = true;
+        response.json().then((data) => {
+        checkAuth(data)
+        });
+    }
+    else auth = false;
+}
+function searchGames(text){
+    if(text == null){
+        text = ""
+    }
 	x = document.getElementById("searchbar");
-        fetch('http://localhost:8080/games/search=' + x.value.toString() + "?page=" + pageNumber)
+        fetch('http://localhost:8080/games/search=' + x.value.toString() + text +  "?page=" + pageNumber)
         .then(response => response.json())
         .then(data => {createCards(data)})
 }
@@ -123,6 +180,9 @@ function goBack(){
 function register(){
     window.location.href = "register.html"
 }
+function login(){
+    window.location.href = "login.html"
+}
 
 function setButtonsToPages(pageNumber){
     let buttons = document.querySelector(".buttons");
@@ -145,4 +205,9 @@ function disableButton(buttonId){
 
 function enableButton(buttonId){
     document.getElementById(buttonId).disabled = false;
+}
+
+function logout(){
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    location.reload();
 }

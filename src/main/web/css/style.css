@@ -25,6 +25,9 @@
     margin-left: auto;
     margin-right: auto;
   }
+  h1{
+    text-align: center;
+  }
   h4{
     font-family: "Quantico";
     color: #1EBB39 ;
@@ -99,9 +102,14 @@
   padding-bottom: 5px;
   border-radius: 10px;
   box-shadow: 0 0 10px #9999cc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 #header-components{
   margin: auto;
+  display: inline-block;
+  
 }
 
 #gamepage-gamedetails-container{
@@ -115,7 +123,7 @@
 #gamepage-reviews-container{
   border: 2px solid #9999cc;
   float: right;
-  width: 70%;
+  max-width: 70%;
 }
 .main-image{
   padding: 5px;
@@ -132,21 +140,20 @@
   font-family: "Quantico";
   font-size: xx-large;
   margin: auto;
-  text-align: center;
-  width: 20%;
 }
 #header-components{
-  display: inline;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   width: 20%;
 }
 #button-holder{
-  margin-left: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   border-radius: 10px;
   width: 20%;
   margin-bottom: 10px;
-}
-.left-header{
-  size: 10%;
 }
 .header-button{
   border: solid 2px black;
@@ -154,11 +161,67 @@
   background-color:#1EBB39;
   color:white;
   border-radius:5px;
-  cursor:pointer
+  cursor:pointer;
+  width: 150px;
 }
 .header-button:hover{
   background-color: #9999cc;
 }
 .header-button:disabled{
   background-color: #789974;
+}
+
+#login{
+  float: right;
+}
+
+.profile-button-holder{
+  display: flex;
+  padding: 3px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #1EBB39;
+  width:fit-content;
+  float: left;
+}
+.profile-icon{
+  width: 2em;
+  height: 2em;
+  background-color: whitesmoke;
+  border: 3px solid #9999cc;
+  border-radius: 5px;
+}
+#profile-button{
+  background-color: #1EBB39;
+  color: white;
+  border: none;
+  padding: none;
+  cursor:pointer;
+}
+.profile-button-holder:hover{
+  background-color: #9999cc;
+}
+
+.profile-button-holder:hover #profile-button{
+  background-color: #9999cc;
+}
+.authbuttons{
+  padding-top: 3px;
+  padding-left: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 10px;
+}
+.logout-button{
+  border: solid 2px black;
+  padding:0.4rem 1.2rem;
+  background-color:#1EBB39;
+  color:white;
+  border-radius:5px;
+  cursor:pointer;
+  height: 100%;
+}
+.logout-button:hover{
+  background-color: #9999cc;
 }

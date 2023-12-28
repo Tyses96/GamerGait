@@ -25,19 +25,14 @@ public class UserEntity {
     @GeneratedValue
     private UUID id;
 
-    @NotNull
-    @Size(min=5, max=16)
     private String username;
 
     @Email(message = "Email should be valid")
     @NotNull
     private String email;
 
-    @NotNull
-    @Size(min=6, max=32)
+
     private String password;
 
-    private Long gaits;
-
-    private UserRole userRole;
+    private String userRole;
 }
