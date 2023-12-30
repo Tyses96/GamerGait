@@ -7,10 +7,10 @@
   src: url(https://fonts.gstatic.com/s/quantico/v17/rax-HiSdp9cPL3KIF7xrJD0.woff2) format('woff2');
 }
   #searchbar{
-     margin-left: 15%; 
+     margin-left: 15%;
      padding:10px;
      border-radius: 10px; 
-   } 
+   }
  
    input[type=search] {
       width: 75%;
@@ -112,23 +112,93 @@
   
 }
 
+#gamepage-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 5%;
+}
+
 #gamepage-gamedetails-container{
   border: 2px solid #1EBB39;
   border-radius: 5px;
   float: left;
+  padding: 3px;
   max-width: 470px;
+  height: fit-content;
   background-color: #F3FCF2;
 }
 
 #gamepage-reviews-container{
   border: 2px solid #9999cc;
-  float: right;
+  border-radius: 5px;
+  background-color: #F3FCF2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 10px;
   max-width: 70%;
+  width: 50%;
+  gap: 10px;
+}
+.reviewbox{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: solid 2px #9999cc;
+  background-color:#cdcdfa;
+  padding: 0.5rem;
+  height: fit-content;
+  border-radius: 5px;
+  max-width: fit-content;
+  box-shadow: 0 0 10px #9999cc;
+}
+.review-title{
+  border-bottom: solid 2px #9999cc;
+}
+.review-title-span{
+  font-size: xx-large;
+  font-family: "Quantico";
+  color: #789974;
+}
+.review-body-span{
+  font-family: "Quantico"; 
+}
+.review-scores-holder{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 10px;
+  padding: 0.5rem;
+}
+.score{
+  padding: 2px;
+  background-image: linear-gradient(to left,#1EBB39,#F3FCF2);
+  border-radius: 50%;
+  border: solid 3px #469954;
+  font-family: "Quantico";
+  font-size: x-large;
+  color: black;
+}
+.review-score{
+  padding: 0.2rem;
+  font-size: x-large;
+  font-family: "Quantico";
+  color: #1EBB39;
+  border-left: solid 2px #789974;
+}
+.login-review-text{
+  color: #789974;
+  font-family: "Quantico";
 }
 .main-image{
-  padding: 5px;
   width: 460px;
   height: 215px;
+  border: solid 4px #9999cc;
+  border-radius: 3px;
 }
 .description-class{
   color: #789974;
@@ -224,4 +294,87 @@
 }
 .logout-button:hover{
   background-color: #9999cc;
+}
+.title-text-area{
+  margin: auto;
+  width: fit-content;
+  border-bottom: solid 2px #789974;
+}
+#add-review-button{
+  background-color: #1EBB39;
+  color: white;
+  font-size: x-large;
+  box-shadow: 0 0 10px #9999cc;
+  width: 3rem;
+  height: 3rem;
+}
+#add-review-button:hover{
+  background-color: #9999cc;
+  cursor: pointer;
+}
+#create-review-graphics{
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #cdcdfa; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  border-radius: 5px;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+  box-shadow: 0 0 10px #9999cc;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #1EBB39; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 50%;
+}
+.slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #1EBB39; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+#create-review-scores{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: column;
+  font-family: "Quantico";
+  font-size: large;
+  color: #1EBB39;
+}
+#create-review-submit-button{
+  display: flex;
+  justify-content: center;
+}
+
+.valDesc{
+  display: inline;
+  width: fit-content;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+#add-review-holder{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
 }

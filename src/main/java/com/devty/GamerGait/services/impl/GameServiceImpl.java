@@ -1,5 +1,6 @@
 package com.devty.GamerGait.services.impl;
 
+import com.devty.GamerGait.domain.dto.ReviewDto;
 import com.devty.GamerGait.domain.entities.GameEntity;
 import com.devty.GamerGait.repositories.GameRepository;
 import com.devty.GamerGait.services.GameService;
@@ -58,5 +59,21 @@ public class GameServiceImpl implements GameService {
 
     public Page<GameEntity> findGameThroughNameSearch(String text, Pageable pageable) {
         return gameRepository.findGameThroughNameSearch(text, pageable);
+    }
+
+    @Override
+    public void updateFromReview(ReviewDto reviewDto) {
+        GameEntity gameEntity = gameRepository.findById(reviewDto.getGameId()).get();
+        Long reviews = gameEntity.getReviews() + 1;
+        gameEntity.setReviews(reviews);
+
+        gameEntity.setOverallGraphicsRating((gameEntity.getOverallGraphicsRating() + reviewDto.getGraphicsRating()) / reviews);
+        gameEntity.setOverallGamePlayRating((gameEntity.getOverallGamePlayRating() + reviewDto.getGamePlayRating()) / reviews);
+        gameEntity.setOverallStoryRating((gameEntity.getOverallStoryRating() + reviewDto.getStoryRating()) / reviews);
+        gameEntity.setOverallValueForMoneyRating((gameEntity.getOverallValueForMoneyRating() + reviewDto.getValueForMoneyRating()) / reviews);
+        gameEntity.setOverallRating((gameEntity.getOverallGraphicsRating() + gameEntity.getOverallGamePlayRating() +
+                gameEntity.getOverallStoryRating() + gameEntity.getOverallValueForMoneyRating()) / 4);
+        gameEntity.setWeight(gameEntity.getWeight() + 4);
+        gameRepository.save(gameEntity);
     }
 }

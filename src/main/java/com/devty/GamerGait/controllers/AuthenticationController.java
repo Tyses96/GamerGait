@@ -34,4 +34,10 @@ public class AuthenticationController {
             return new ResponseEntity<>(new ProfileDto(), HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @GetMapping(path = "/auth/")
+    @CrossOrigin(origins = "http://localhost:63342/")
+    public ResponseEntity<String> getNoDetails(){
+        return new ResponseEntity<>("Ok", HttpStatus.OK);
+    }
 }

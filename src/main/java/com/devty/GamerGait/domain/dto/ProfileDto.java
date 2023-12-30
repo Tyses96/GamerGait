@@ -14,4 +14,5 @@ public class ProfileDto {
     String username;
     Long gaits;
     Long totalReviews;
+    Long standing;
 }

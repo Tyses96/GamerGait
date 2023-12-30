@@ -1,5 +1,6 @@
 package com.devty.GamerGait.services;
 
+import com.devty.GamerGait.domain.dto.ReviewDto;
 import com.devty.GamerGait.domain.entities.GameEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,5 +23,7 @@ public interface GameService {
     void delete(Long appId);
 
     Page<GameEntity> findGameThroughNameSearch(String text, Pageable pageable);
+
+    void updateFromReview(ReviewDto reviewDto);
 
 }

@@ -31,7 +31,6 @@ public class UserEntity {
     @NotNull
     private String email;
 
-
     private String password;
 
     private String userRole;

@@ -1,13 +1,13 @@
 package com.devty.GamerGait.domain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -22,5 +22,6 @@ public class ProfileEntity {
     String username;
     Long gaits;
     Long totalReviews;
-
+    @OneToMany(mappedBy = "profileEntity")
+    Set<ReviewEntity> reviews;
 }

@@ -16,6 +16,8 @@ import com.devty.GamerGait.services.RegistrationService;
 import com.devty.GamerGait.util.Hash;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+
 @Service
 public class RegistrationServiceImpl implements RegistrationService {
 
@@ -42,7 +44,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
         if(dbEntityEmail == null && dbEntityUsername == null){
             var userEntity = userRepository.save(userMapper.mapFrom(userDto));
-            ProfileEntity profileEntity = new ProfileEntity(userEntity.getId(), userEntity.getUsername(), 0L, 0L);
+            ProfileEntity profileEntity = new ProfileEntity(userEntity.getId(), userEntity.getUsername(), 0L, 0L, new HashSet<>());
             profileRepository.save(profileEntity);
             return userEntity;
         }

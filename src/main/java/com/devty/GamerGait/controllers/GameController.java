@@ -70,15 +70,15 @@ public class GameController {
         return new ResponseEntity<>(gameDetailMapper.mapTo(savedGameDetailEntity), HttpStatus.OK);
     }
 
-
-    @CrossOrigin(origins = "http://localhost:63342/")
     @GetMapping(path = "/games/search={text}")
+    @CrossOrigin(origins = "http://localhost:63342/")
     public Page<GameDto> listGamesFilteredByName(@PathVariable("text") String text, Pageable pageable) {
         Page<GameEntity> games = gameService.findGameThroughNameSearch(text, pageable);
         return games.map(gameMapper::mapTo);
     }
 
     @GetMapping(path = "/games/{id}")
+    @CrossOrigin(origins = "http://localhost:63342/")
     public ResponseEntity<GameDto> getGame(@PathVariable("id") Long id) {
         Optional<GameEntity> foundGame = gameService.findOne(id);
         return foundGame.map(gameEntity -> {
