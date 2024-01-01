@@ -1,7 +1,7 @@
 
 
 function goBack(){
-    window.location.href = "index.html";
+    window.location.replace(document.referrer)
 }
 function register(){
     window.location.href = "register.html"
@@ -10,7 +10,7 @@ function login(){
     let username = document.getElementById("username").value
     let psw = sha256(document.getElementById("psw").value);
 
-    fetch('http://localhost:8080/login', {
+    fetch('https://localhost:8443/login', {
         method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -25,9 +25,18 @@ function login(){
     })
     .then(response => response.json())
     .then(data => {
-		storeCookie(data)
+		if(data.token == null){
+			incorrectUserOrPass()
+		}
+		else{
+			storeCookie(data)
+		}
 	})
+}
 
+function incorrectUserOrPass(){
+	let userMsg = document.getElementById("error-username")
+	userMsg.innerHTML = "Incorrect username or password"
 }
 
 function resetFormErrors(){

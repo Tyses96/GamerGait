@@ -34,4 +34,6 @@ public class UserEntity {
     private String password;
 
     private String userRole;
+
+    private String salt;
 }

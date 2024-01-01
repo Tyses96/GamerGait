@@ -8,9 +8,12 @@ const gameName = urlParams.get('name')
 let userId;
 let username;
 
+const minTitleLength = 5
+const minBodyLength = 24
+
 loadReviewBoxs();
 
-fetch('http://localhost:8080/gameDetails/' + gameId)
+fetch('https://localhost:8443/gameDetails/' + gameId)
 .then(response => response.json())
 .then(data => {createGameDetailsSection(data)})
 
@@ -84,8 +87,9 @@ function createReviewCard(title, body, graphicsScore, gameplayScore, storyScore,
 
   box.appendChild(scoresHolderDiv)
   if(reviewUsername == username){
+    //TODO remove "add review" button and remove backend capability
+    box.style.boxShadow = "0 0 20px #1EBB39"
     addReviewHolder.prepend(box)
-    
   }
   else{
     addReviewHolder.appendChild(box)
@@ -95,15 +99,33 @@ function createReviewCard(title, body, graphicsScore, gameplayScore, storyScore,
 function createScoreDiv(upperCase, score){
   const scoreDiv = document.createElement("div")
   scoreDiv.classList.add("review-score")
-  scoreDiv.innerHTML= upperCase + " "
-  const scoreSpan = document.createElement("span")
+
+  const scoreDivTitle = document.createElement("p")
+  scoreDivTitle.classList.add("score-div-title")
+
+  scoreDivTitle.innerHTML= upperCase + " "
+
+  const scoreSpan = document.createElement("p")
   scoreSpan.classList.add("score")
   scoreSpan.innerHTML = score
+  if(score < 10){
+    scoreSpan.style.width = "2.5rem";
+  }
+  if(score < 25){
+    scoreSpan.style.backgroundColor = "#ee4f44";
+  }
+  else if(score >25 && score <65){
+    scoreSpan.style.backgroundColor = "#dfcd81";
+  }
+  else {
+    scoreSpan.style.backgroundColor = "#1EBB39";
+  }
+  scoreDiv.appendChild(scoreDivTitle)
   scoreDiv.appendChild(scoreSpan)
   return scoreDiv
 }
 async function fetchAuth(){
-  const promise = await fetch('http://localhost:8080/auth/' + document.cookie);
+  const promise = await fetch('https://localhost:8443/auth/' + document.cookie);
   const response = await promise
   handleAuthResponse(response)
 }
@@ -117,7 +139,7 @@ function checkAuth(data){
 async function loadReviewBoxs(){
     await fetchAuth();
     //load reviews
-    fetch('http://localhost:8080/reviews/' + gameId)
+    fetch('https://localhost:8443/reviews/' + gameId)
     .then(response => response.json())
     .then(data => createReviewCards(data))
 }
@@ -181,7 +203,7 @@ function addReview(){
   //Submit button
 let createReviewSubmitButton = document.createElement("div")
 createReviewSubmitButton.id = "create-review-submit-button"
-createReviewSubmitButton.innerHTML = "<button class =\"header-button\" onclick=\"sumbitReview()\">Submit</button>"
+createReviewSubmitButton.innerHTML = "<button class =\"header-button\" onclick=\"submitReview()\">Submit</button>"
 
 addReviewHolder.prepend(createReviewSubmitButton)
 
@@ -194,7 +216,7 @@ addReviewHolder.prepend(createReviewSubmitButton)
  createReviewGraphicsSlider.classList.add("slider-holder")
  let graphicsValDesc = document.createElement("p")
  graphicsValDesc.classList.add("valDesc")
- graphicsValDesc.innerHTML = "Graphics "
+ graphicsValDesc.innerHTML = "Graphics: "
  let graphicsSpan = document.createElement("span")
  graphicsSpan.id = "graphicsValue"
  graphicsSpan.classList.add("sliderValue")
@@ -211,7 +233,7 @@ addReviewHolder.prepend(createReviewSubmitButton)
  createReviewGameplaySlider.classList.add("slider-holder")
  let gameplayValDesc = document.createElement("p")
  gameplayValDesc.classList.add("valDesc")
- gameplayValDesc.innerHTML = "Gameplay "
+ gameplayValDesc.innerHTML = "Gameplay: "
  let gameplaySpan = document.createElement("span")
  gameplaySpan.id = "gameplayValue"
  gameplaySpan.classList.add("sliderValue")
@@ -228,7 +250,7 @@ createReviewStorySlider.id = "create-review-story"
 createReviewStorySlider.classList.add("slider-holder")
 let storyValDesc = document.createElement("p")
 storyValDesc.classList.add("valDesc")
-storyValDesc.innerHTML = "Story "
+storyValDesc.innerHTML = "Story: "
 let storySpan = document.createElement("span")
 storySpan.id = "storyValue"
 storySpan.classList.add("sliderValue")
@@ -246,7 +268,7 @@ createReviewValueSlider.id = "create-review-value"
 createReviewValueSlider.classList.add("slider-holder")
 let valueValDesc = document.createElement("p")
 valueValDesc.classList.add("valDesc")
-valueValDesc.innerHTML = "Value for money "
+valueValDesc.innerHTML = "Value for money: "
 let valueSpan = document.createElement("span")
 valueSpan.id = "valueValue"
 valueSpan.classList.add("sliderValue")
@@ -272,27 +294,14 @@ addReviewHolder.prepend(createReviewScores)
  // Add body
  let createReviewBody = document.createElement("div")
  createReviewBody.id = "create-review-body"
- createReviewBody.innerHTML= "<textarea type=\"text\" id=\"Body\" name = \"Body\" placeholder=\"Body...\" rows=\"10\" cols = \"100\" minlength=\"32\" maxlength=\"2500\"></textarea>"
+ createReviewBody.innerHTML= "<textarea type=\"text\" class=\"textArea\" id=\"Body\" name = \"Body\" placeholder=\"Body...\" rows=\"10\" cols =\"100\" required minlength=\"24\" maxlength=\"2500\"></textarea>"
  addReviewHolder.prepend(createReviewBody)
 
   // Add title
   let createReviewTitle = document.createElement("div")
   createReviewTitle.id = "create-review-title"
-  createReviewTitle.innerHTML = "<textarea type=\"text\" id=\"Title\" name = \"Title\" placeholder=\"Title...\" rows=\"2\" cols = \"100\" minlength=\"5\" maxlength=\"64\"></textarea>"
+  createReviewTitle.innerHTML = "<textarea type=\"text\" class=\"textArea\" id=\"Title\" name = \"Title\" placeholder=\"Title...\" rows=\"2\" cols = \"100\" required minlength=\"5\" maxlength=\"64\"></textarea>"
   addReviewHolder.prepend(createReviewTitle);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   var graphicsslider = document.getElementById("graphicsRange");
@@ -328,15 +337,21 @@ addReviewHolder.prepend(createReviewScores)
   valueoutput.innerHTML = this.value;}
 }
 
-function sumbitReview(){
+async function submitReview(){
   let titleString = document.getElementById("Title").value
   let bodyString = document.getElementById("Body").value
   let graphicsRating = document.getElementById("graphicsValue").innerHTML
   let gameplayRating = document.getElementById("gameplayValue").innerHTML
   let storyRating = document.getElementById("storyValue").innerHTML
   let valueRating = document.getElementById("valueValue").innerHTML
-
-  fetch("http://localhost:8080/reviews", {
+  if(titleString.length < minTitleLength){
+    alert("Title needs to be atleast " + minTitleLength + " characters long")
+  }
+  else if(bodyString.length < minBodyLength){
+    alert("Body needs to be atleast " + minBodyLength + " characters long")
+  }
+  else{
+  await fetch("https://localhost:8443/reviews", {
     method: "POST",
 headers: {
   "Content-Type": "application/json",
@@ -354,8 +369,9 @@ headers: {
             "gameId":gameId
         }
     )
-      }).then((response) => console.log(response))
+      })
     location.reload();
+  }
 }
 
 
@@ -397,8 +413,6 @@ function createGameDetailsSection(gameDetails){
     mainPageDescTextArea.textContent = text;
     mainPageDescDiv.appendChild(mainPageDescTextArea);
 
-    //Reviews
-
 }
 
 function register(){
@@ -411,4 +425,16 @@ function login(){
 function logout(){
   document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
   location.reload();
+}
+
+function invalidTextArea(){
+  document.getElementById("create-review-submit-button").disabled = true;
+}
+
+function validTextArea(){
+  document.getElementById("create-review-submit-button").disabled = false;
+}
+
+function goBack(){
+  window.location.replace(document.referrer)
 }

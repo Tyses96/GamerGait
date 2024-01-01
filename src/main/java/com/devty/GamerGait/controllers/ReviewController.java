@@ -7,6 +7,7 @@ import com.devty.GamerGait.services.GameService;
 import com.devty.GamerGait.services.ProfileService;
 import com.devty.GamerGait.services.ReviewService;
 import com.devty.GamerGait.services.impl.ProfileServiceImpl;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,11 +36,15 @@ public class ReviewController {
     @PostMapping(path = "/reviews")
     @CrossOrigin(origins = "http://localhost:63342/")
     public ResponseEntity<ReviewDto> createReview(@RequestBody ReviewDto reviewDto){
-        ReviewEntity reviewEntity = reviewService.createReview(reviewMapper.mapFrom(reviewDto));
-        gameService.updateFromReview(reviewDto);
-        profileService.updateFromReview(reviewDto);
-
-        return new ResponseEntity<>(reviewMapper.mapTo(reviewEntity), HttpStatus.CREATED);
+        try {
+            ReviewEntity reviewEntity = reviewService.createReview(reviewMapper.mapFrom(reviewDto));
+            gameService.updateFromReview(reviewDto);
+            profileService.updateFromReview(reviewDto);
+            return new ResponseEntity<>(reviewMapper.mapTo(reviewEntity), HttpStatus.CREATED);
+        }
+        catch (ConstraintViolationException e){
+            return new ResponseEntity<>(new ReviewDto(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping(path = "/reviews/{id}")

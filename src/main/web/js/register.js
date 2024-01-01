@@ -9,7 +9,7 @@ function registerUser(){
     const usernameLength = 5;
 
     if(password === repassword && password.length >= passwordLength && userName.length >= usernameLength){
-        const promise = fetch("http://localhost:8080/register", {
+        const promise = fetch("https://localhost:8443/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

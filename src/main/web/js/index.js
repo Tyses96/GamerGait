@@ -1,6 +1,6 @@
 // JavaScript code
 const gridContainer = document.querySelector("#grid-container");
-const steamGameDataUrl = "http://localhost:8080/gameDetails/"
+const steamGameDataUrl = "https://localhost:8443/gameDetails/"
 let pageNumber = 0;
 let maxPages = 0;
 const urlParams = new URLSearchParams(window.location.search);
@@ -16,7 +16,7 @@ fetchAuth();
 function fetchAuth(){
 
     const promise = 
-    fetch('http://localhost:8080/auth/' + document.cookie);
+    fetch('https://localhost:8443/auth/' + document.cookie);
 
     promise.then((response) => {
         handleAuthResponse(response)
@@ -54,7 +54,6 @@ function showProfileDetails(data){
 }
 
 function handleAuthResponse(response){
-    console.log(response)
     if(response.status === 200){
         auth = true;
         response.json().then((data) => {
@@ -68,7 +67,7 @@ function searchGames(text){
         text = ""
     }
 	x = document.getElementById("searchbar");
-        fetch('http://localhost:8080/games/search=' + x.value.toString() + text +  "?page=" + pageNumber)
+        fetch('https://localhost:8443/games/search=' + x.value.toString() + text +  "?page=" + pageNumber)
         .then(response => response.json())
         .then(data => {createCards(data)})
 }
