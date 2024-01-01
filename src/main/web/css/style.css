@@ -139,6 +139,7 @@
   flex-wrap: wrap;
   padding: 10px;
   max-width: 70%;
+  min-width: 50%;
   width: 50%;
   gap: 10px;
 }
@@ -377,4 +378,8 @@
   justify-content: center;
   flex-direction: column;
   gap: 20px;
+}
+.username-span{
+  font-family: "Quantico";
+  color: #9999cc;
 }

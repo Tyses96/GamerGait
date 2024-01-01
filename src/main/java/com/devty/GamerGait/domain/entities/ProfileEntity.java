@@ -21,6 +21,7 @@ public class ProfileEntity {
     UUID id;
     String username;
     Long gaits;
+    Long standing;
     Long totalReviews;
     @OneToMany(mappedBy = "profileEntity")
     Set<ReviewEntity> reviews;

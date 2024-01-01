@@ -6,6 +6,7 @@ const gameId = urlParams.get('id');
 const gameName = urlParams.get('name')
 
 let userId;
+let username;
 
 loadReviewBoxs();
 
@@ -14,12 +15,16 @@ fetch('http://localhost:8080/gameDetails/' + gameId)
 .then(data => {createGameDetailsSection(data)})
 
 
+function searchGames(){
+  let text = document.getElementById("searchbar").value
+  window.location.href = "index.html?search=" + text
+}
 
 function createReviewCards(game){
     let length = game.length
     if(length > 0){
       game.forEach(async(review) => {
-        createReviewCard(review.title, review.body, review.graphicsRating, review.gamePlayRating, review.storyRating, review.valueForMoneyRating)
+        createReviewCard(review.title, review.body, review.graphicsRating, review.gamePlayRating, review.storyRating, review.valueForMoneyRating, review.profileEntity.username)
       })
     }
     else{
@@ -35,7 +40,7 @@ function createReviewCards(game){
     }
 }
 
-function createReviewCard(title, body, graphicsScore, gameplayScore, storyScore, valueScore){
+function createReviewCard(title, body, graphicsScore, gameplayScore, storyScore, valueScore, reviewUsername){
   const addReviewHolder = document.getElementById("add-review-holder")
   const box = document.createElement("div")
   box.classList.add("reviewbox")
@@ -53,8 +58,14 @@ function createReviewCard(title, body, graphicsScore, gameplayScore, storyScore,
   const bodySpan = document.createElement("span")
   bodySpan.classList.add("review-body-span")
   bodySpan.innerHTML = body
+  const usernameSpan = document.createElement("div")
+  usernameSpan.classList.add("username-span")
+  usernameSpan.innerHTML = "- " + reviewUsername
   bodyDiv.appendChild(bodySpan)
+  bodyDiv.appendChild(usernameSpan)
   box.appendChild(bodyDiv)
+
+
 
   const scoresHolderDiv = document.createElement("div")
   scoresHolderDiv.classList.add("review-scores-holder")
@@ -72,7 +83,13 @@ function createReviewCard(title, body, graphicsScore, gameplayScore, storyScore,
   scoresHolderDiv.appendChild(valueScoreDiv)
 
   box.appendChild(scoresHolderDiv)
-  addReviewHolder.appendChild(box)
+  if(reviewUsername == username){
+    addReviewHolder.prepend(box)
+    
+  }
+  else{
+    addReviewHolder.appendChild(box)
+  }
 }
 
 function createScoreDiv(upperCase, score){
@@ -108,6 +125,7 @@ async function loadReviewBoxs(){
 function showProfileDetails(data){
 
   userId = data.id;
+  username = data.username;
 
   const profilehtml = "<img src=\"res/gamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
   const logoutHtml = "<button class=\"logout-button\" onclick=\"logout()\">Logout</button>"
