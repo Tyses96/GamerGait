@@ -149,7 +149,7 @@ function showProfileDetails(data){
   userId = data.id;
   username = data.username;
 
-  const profilehtml = "<img src=\"res/gamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
+  const profilehtml = "<img src=\"res/GamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
   const logoutHtml = "<button class=\"logout-button\" onclick=\"logout()\">Logout</button>"
 
   const authbuttons = document.createElement("div")

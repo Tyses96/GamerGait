@@ -42,14 +42,35 @@
   width: 460px;
   border-bottom: solid 2px #9999cc;
 }
+.mainpage-img-score-holder{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-bottom: 1rem;
+}
 .item-card-none{
   font-size: x-large;
   width: 460px;
   border-bottom: solid 2px #9999cc;
 }
 .card-image{
+  display: inline-block;
   width: 230px;
   height: 112px;
+  border: 5px solid #1EBB39 ;
+  border-radius: 10px;
+}
+.score-title{
+  font-family: "Quantico";
+  color: #1EBB39;
+  margin: 0;
+}
+.score-holder{
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  padding: 5px;
+  background-color: #cdcdfa;
   border: 5px solid #1EBB39 ;
   border-radius: 10px;
 }

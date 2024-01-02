@@ -55,6 +55,15 @@ public class SessionManager implements Runnable {
         return new SessionDto(userId, UUID.randomUUID(), LocalDateTime.now().plusHours(2));
     }
 
+    public static void removeSession(UUID token){
+        for(SessionDto sesh : activeSessionDtos){
+            if (sesh.getToken().equals(token)){
+                activeSessionDtos.remove(sesh);
+                return;
+            }
+        }
+    }
+
     private void authenticate(){
         deleteExpiredSessions();
         SessionDto sesh = issueSession();

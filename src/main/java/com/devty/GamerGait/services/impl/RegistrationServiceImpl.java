@@ -37,17 +37,23 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public UserEntity registerUser(UserDto userDto) throws AlreadyInUseException {
         userDto.setUserRole(UserRole.USER.toString());
-        userDto.setPassword(Hash.sha256(userDto.getPassword()));
+        String salt = Hash.generateSalt();
+        userDto.setSalt(salt);
+        String saltedPassword = userDto.getPassword() + salt;
+        userDto.setPassword(Hash.sha256(saltedPassword));
+
+        // Does it exist already?
         UserEntity dbEntityEmail = userRepository.findByEmail(userDto.getEmail());
         UserEntity dbEntityUsername = userRepository.findByUsername(userDto.getUsername());
 
-
+        // No it doesn't
         if(dbEntityEmail == null && dbEntityUsername == null){
             var userEntity = userRepository.save(userMapper.mapFrom(userDto));
             ProfileEntity profileEntity = new ProfileEntity(userEntity.getId(), userEntity.getUsername(), 0L,0L, 0L, new HashSet<>());
             profileRepository.save(profileEntity);
             return userEntity;
         }
+        // Yes it does
         else if(dbEntityUsername != null){
             throw new UsernameAlreadyInUseException("username: " + userDto.getUsername() + " is already in use.");
         }

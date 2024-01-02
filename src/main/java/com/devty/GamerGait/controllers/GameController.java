@@ -57,7 +57,7 @@ public class GameController {
     }
 
     @GetMapping(path= "/gameDetails/{id}")
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin
     public ResponseEntity<GameDetailDto> passThroughMethodForSteamApiCall(@PathVariable("id") Long id) throws IOException {
         SteamHttpRequest req = new SteamHttpRequest();
         //Custom removing of data that is not used
@@ -71,14 +71,14 @@ public class GameController {
     }
 
     @GetMapping(path = "/games/search={text}")
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin
     public Page<GameDto> listGamesFilteredByName(@PathVariable("text") String text, Pageable pageable) {
         Page<GameEntity> games = gameService.findGameThroughNameSearch(text, pageable);
         return games.map(gameMapper::mapTo);
     }
 
     @GetMapping(path = "/games/{id}")
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin
     public ResponseEntity<GameDto> getGame(@PathVariable("id") Long id) {
         Optional<GameEntity> foundGame = gameService.findOne(id);
         return foundGame.map(gameEntity -> {

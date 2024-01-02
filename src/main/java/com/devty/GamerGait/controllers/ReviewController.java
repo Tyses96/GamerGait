@@ -34,7 +34,7 @@ public class ReviewController {
     }
 
     @PostMapping(path = "/reviews")
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin
     public ResponseEntity<ReviewDto> createReview(@RequestBody ReviewDto reviewDto){
         try {
             ReviewEntity reviewEntity = reviewService.createReview(reviewMapper.mapFrom(reviewDto));
@@ -48,7 +48,7 @@ public class ReviewController {
     }
 
     @GetMapping(path = "/reviews/{id}")
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin
     public ResponseEntity<Set<ReviewDto>> getReviewsByGameId(@PathVariable("id") Long id){
         Set<ReviewDto> reviewDtos = reviewService.findAllReviewsByGameId(id);
         return new ResponseEntity<>(reviewDtos, HttpStatus.OK);

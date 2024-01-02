@@ -30,7 +30,7 @@ function checkAuth(data){
 }
 
 function showProfileDetails(data){
-    const profilehtml = "<img src=\"res/gamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
+    const profilehtml = "<img src=\"res/GamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
     const logoutHtml = "<button class=\"logout-button\" onclick=\"logout()\">Logout</button>"
 
     const authbuttons = document.createElement("div")
@@ -84,16 +84,34 @@ function searchGames(text){
             setButtonsToPages(pageNumber);
         }
         page_of_games.content.forEach(async(item) => {
+        let score = item.overallRating;
         const itemCard = document.createElement("div");
         itemCard.classList.add("item-card");
         itemCard.classList.add("centre");
         const itemName = document.createElement("h4");
         const itemPicture = document.createElement("img");
         const itemId = document.createElement("p")
+        const itemScore = document.createElement("p")
         maxPages = page_of_games.totalPages;
         itemPicture.classList.add("card-image");
         itemName.classList.add("item-name");
         itemId.classList.add("item-id")
+        itemScore.classList.add("score")
+        itemScore.classList.add("mainscore")
+        if(score < 10){
+            itemScore.style.width = "2.5rem";
+          }
+          if(score < 25){
+            itemScore.style.backgroundColor = "#ee4f44";
+          }
+          else if(score >25 && score <65){
+            itemScore.style.backgroundColor = "#dfcd81";
+          }
+          else {
+            itemScore.style.backgroundColor = "#1EBB39";
+          }
+          itemScore.style.marginTop = "0";
+          itemScore.style.marginBottom = "0";
         fetch(steamGameDataUrl + item.appid)
         .then((response) => {
             return response.json()
@@ -102,11 +120,30 @@ function searchGames(text){
                 itemPicture.src = value.data.capsule_image;
             }
         )
+        const imgAndScoreHolder = document.createElement("div")
+        imgAndScoreHolder.classList.add("mainpage-img-score-holder")
+
+        const scoreHolder = document.createElement("div")
+
+        scoreHolder.classList.add("score-holder");
+
+        const scoreTitle = document.createElement("p")
+
+        scoreTitle.classList.add("score-title")
+
+        scoreTitle.textContent = "Overall Rating: "
+
+        scoreHolder.appendChild(scoreTitle)
+        scoreHolder.appendChild(itemScore)
+
+        imgAndScoreHolder.appendChild(itemPicture)
+        imgAndScoreHolder.appendChild(scoreHolder)
         itemPicture.alt = item.name
         itemName.textContent = item.name
         itemId.textContent = item.appid
+        itemScore.textContent = score;
         itemCard.appendChild(itemName)
-        itemCard.appendChild(itemPicture)
+        itemCard.appendChild(imgAndScoreHolder)
         itemCard.appendChild(itemId)
         itemCard.addEventListener('click', function(){itemCardClicked(item.name, item.appid)});
         gridContainer.appendChild(itemCard)
@@ -206,7 +243,26 @@ function enableButton(buttonId){
     document.getElementById(buttonId).disabled = false;
 }
 
-function logout(){
+async function logout(){
+    let token = getCookie("token")
+    await fetch('https://localhost:8443/logout', {
+        method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+
+		  },
+        body: JSON.stringify(
+            {
+                "token":token
+            }
+        )
+    })
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
     location.reload();
 }
+
+function getCookie(name) { 
+    var re = new RegExp(name + "=([^;]+)"); 
+    var value = re.exec(document.cookie); 
+    return (value != null) ? unescape(value[1]) : null; 
+   }

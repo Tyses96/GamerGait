@@ -22,7 +22,7 @@ public class LoginController {
 
 
     @PostMapping(path="/login")
-    @CrossOrigin(origins = "http://localhost:63342")
+    @CrossOrigin
     public ResponseEntity<CookieDto> login(@RequestBody UserDto userDto) {
         try{
             CookieDto cookie = loginService.findOneByUsername(userDto);
