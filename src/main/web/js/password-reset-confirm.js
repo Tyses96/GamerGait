@@ -7,7 +7,7 @@ function changePassword(){
     let repassword = document.getElementById("psw-repeat").value;
 
 
-    if(password === repassword && password.length >= passwordLength && userName.length >= usernameLength){
+    if(password === repassword && password.length >= passwordLength){
         const promise = fetch("https://gamergait.com:8443/password-reset/" + token, {
             method: "POST",
             headers: {

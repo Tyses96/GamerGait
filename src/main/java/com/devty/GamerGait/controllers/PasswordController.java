@@ -53,6 +53,6 @@ public class PasswordController {
     }
 
     private String generateEmailBody(String username, UUID token){
-        return "Hi " + username + "!\n\nIf you requested a password reset, please follow this link to reset it: https://www.gamergait.com/password-reset-confirm?t=" + token + "\n\n if you didn't request a password reset, please safely ignore this email.\n\nKind regards,\n\nGamerGait";
+        return "Hi " + username + "!\n\nIf you requested a password reset, please follow this link to reset it: https://www.gamergait.com/password-reset-confirm.html?t=" + token + "\n\n if you didn't request a password reset, please safely ignore this email.\n\nKind regards,\n\nGamerGait";
     }
 }

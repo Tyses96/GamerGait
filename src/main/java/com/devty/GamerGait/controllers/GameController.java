@@ -9,6 +9,7 @@ import com.devty.GamerGait.domain.entities.GameEntity;
 import com.devty.GamerGait.services.GameDetailService;
 import com.devty.GamerGait.util.JsonUtil;
 import com.devty.GamerGait.util.SteamHttpRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
