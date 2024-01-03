@@ -12,6 +12,7 @@ import java.util.UUID;
 public class ProfileDto {
     UUID id;
     String username;
+    String email;
     Long gaits;
     Long totalReviews;
     Long standing;

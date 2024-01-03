@@ -6,6 +6,7 @@ import com.devty.GamerGait.errors.SessionInvalidException;
 import com.devty.GamerGait.services.impl.AuthenticationServiceImpl;
 import com.devty.GamerGait.services.impl.SessionManager;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class AuthenticationController {
     }
 
     @GetMapping(path = "/auth/{token}")
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin
     public ResponseEntity<ProfileDto> getUserDetails(@PathVariable("token") String token){
         if(token == null){
             return new ResponseEntity<>(new ProfileDto(), HttpStatus.BAD_REQUEST);
@@ -36,7 +37,7 @@ public class AuthenticationController {
     }
 
     @GetMapping(path = "/auth/")
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin
     public ResponseEntity<String> getNoDetails(){
         return new ResponseEntity<>("Ok", HttpStatus.OK);
     }

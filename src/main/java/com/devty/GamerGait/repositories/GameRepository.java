@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface GameRepository extends ListCrudRepository<GameEntity, Long>,
         PagingAndSortingRepository<GameEntity, Long> {
 
-    @Query("SELECT g from GameEntity g where g.name ILIKE CONCAT('%', ?1, '%')")
+    @Query("SELECT g from GameEntity g where g.name ILIKE CONCAT('%', ?1, '%') ORDER BY g.weight DESC,  g.id ASC")
     Page<GameEntity> findGameThroughNameSearch(String searchText, Pageable pageable);
 }

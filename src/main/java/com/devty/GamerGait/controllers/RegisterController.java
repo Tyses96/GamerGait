@@ -26,7 +26,7 @@ public class RegisterController {
     Logger log;
 
     @PostMapping(path = "/register")
-    @CrossOrigin(origins = "http://localhost:63342/")
+    @CrossOrigin
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
         try {
             UserEntity savedUser = registrationService.registerUser(userDto);

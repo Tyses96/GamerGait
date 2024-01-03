@@ -82,6 +82,7 @@ body{
   .errormsg{
     background-color: rgba(255, 0, 0, 0.664);
     padding-left: 20px;
+    box-shadow: 0 0 10px #991313;
   }
   #success-msg{
     text-align: center;

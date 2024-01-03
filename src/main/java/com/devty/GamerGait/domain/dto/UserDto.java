@@ -25,4 +25,5 @@ public class UserDto {
     @Size(min=6, max=32)
     private String password;
     private String userRole;
+    private String salt;
 }

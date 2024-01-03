@@ -1,11 +1,13 @@
 package com.devty.GamerGait.services.impl;
 
+import com.devty.GamerGait.domain.dto.PasswordResetTokenDto;
 import com.devty.GamerGait.domain.dto.SessionDto;
 import com.devty.GamerGait.errors.SessionInvalidException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -28,7 +30,7 @@ public class SessionManager implements Runnable {
                     return sesh;
                 }
             }
-            throw new SessionInvalidException();
+            throw new SessionInvalidException("No sessions for user");
     }
 
     public SessionDto findSessionByToken(UUID token) throws SessionInvalidException {
@@ -37,7 +39,7 @@ public class SessionManager implements Runnable {
                 return sesh;
             }
         }
-        throw new SessionInvalidException();
+        throw new SessionInvalidException("No sessions for token");
     }
     private void deleteExpiredSessions(){
         LocalDateTime now = LocalDateTime.now();
@@ -53,6 +55,15 @@ public class SessionManager implements Runnable {
 
     private SessionDto issueSession(){
         return new SessionDto(userId, UUID.randomUUID(), LocalDateTime.now().plusHours(2));
+    }
+
+    public static void removeSession(UUID token){
+        for(SessionDto sesh : activeSessionDtos){
+            if (sesh.getToken().equals(token)){
+                activeSessionDtos.remove(sesh);
+                return;
+            }
+        }
     }
 
     private void authenticate(){

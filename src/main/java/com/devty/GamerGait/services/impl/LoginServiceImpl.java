@@ -7,6 +7,7 @@ import com.devty.GamerGait.errors.IncorrectUsernameException;
 import com.devty.GamerGait.errors.SessionInvalidException;
 import com.devty.GamerGait.repositories.UserRepository;
 import com.devty.GamerGait.services.LoginService;
+import com.devty.GamerGait.util.Hash;
 import org.springframework.stereotype.Service;
 
 import java.time.ZoneId;
@@ -28,9 +29,11 @@ public class LoginServiceImpl implements LoginService {
         var foundUser = Optional.of(userRepository.findByUsername(userDto.getUsername()));
         if (foundUser.isPresent()){
             UUID id = foundUser.get().getId();
-            if(Objects.equals(foundUser.get().getPassword(), userDto.getPassword())){
+            String enteredPsw = Hash.sha256(userDto.getPassword() + foundUser.get().getSalt());
+            if(Objects.equals(foundUser.get().getPassword(), enteredPsw)){
                 SessionManager sessionManager = new SessionManager(id);
                 sessionManager.run();
+                System.out.println(foundUser.get().getUsername() + " Logged in");
                 return new CookieDto(sessionManager.findSessionByUserId(id).getToken(),
                         sessionManager.findSessionByUserId(id).getExpiry().atZone(ZoneId.systemDefault()));
             } else {
