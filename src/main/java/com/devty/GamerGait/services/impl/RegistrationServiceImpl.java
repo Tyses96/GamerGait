@@ -49,7 +49,8 @@ public class RegistrationServiceImpl implements RegistrationService {
         // No it doesn't
         if(dbEntityEmail == null && dbEntityUsername == null){
             var userEntity = userRepository.save(userMapper.mapFrom(userDto));
-            ProfileEntity profileEntity = new ProfileEntity(userEntity.getId(), userEntity.getUsername(), 0L,0L, 0L, new HashSet<>());
+            ProfileEntity profileEntity = new ProfileEntity(userEntity.getId(), userEntity.getUsername(), userEntity.getEmail(),
+                    0L,0L, 0L, new HashSet<>());
             profileRepository.save(profileEntity);
             return userEntity;
         }

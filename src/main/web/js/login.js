@@ -10,7 +10,7 @@ function login(){
     let username = document.getElementById("username").value
     let psw = document.getElementById("psw").value;
 
-    fetch('https://localhost:8443/login', {
+    fetch('https://gamergait.com:8443/login', {
         method: "POST",
 		headers: {
 			"Content-Type": "application/json",

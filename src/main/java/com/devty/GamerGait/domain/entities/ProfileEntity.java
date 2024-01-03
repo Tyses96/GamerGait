@@ -20,6 +20,7 @@ public class ProfileEntity {
     @Id
     UUID id;
     String username;
+    String email;
     Long gaits;
     Long standing;
     Long totalReviews;

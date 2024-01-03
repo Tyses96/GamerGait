@@ -33,6 +33,7 @@ public class LoginServiceImpl implements LoginService {
             if(Objects.equals(foundUser.get().getPassword(), enteredPsw)){
                 SessionManager sessionManager = new SessionManager(id);
                 sessionManager.run();
+                System.out.println(foundUser.get().getUsername() + " Logged in");
                 return new CookieDto(sessionManager.findSessionByUserId(id).getToken(),
                         sessionManager.findSessionByUserId(id).getExpiry().atZone(ZoneId.systemDefault()));
             } else {

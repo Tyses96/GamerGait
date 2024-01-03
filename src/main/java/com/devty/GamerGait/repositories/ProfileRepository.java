@@ -10,5 +10,6 @@ import java.util.UUID;
 public interface ProfileRepository extends ListCrudRepository<ProfileEntity, Long> {
 
     ProfileEntity findById(UUID id);
+    ProfileEntity findByEmail(String email);
 
 }

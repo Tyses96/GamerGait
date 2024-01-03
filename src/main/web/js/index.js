@@ -1,6 +1,6 @@
 // JavaScript code
 const gridContainer = document.querySelector("#grid-container");
-const steamGameDataUrl = "https://localhost:8443/gameDetails/"
+const steamGameDataUrl = "https://gamergait.com:8443/gameDetails/"
 let pageNumber = 0;
 let maxPages = 0;
 const urlParams = new URLSearchParams(window.location.search);
@@ -16,7 +16,7 @@ fetchAuth();
 function fetchAuth(){
 
     const promise = 
-    fetch('https://localhost:8443/auth/' + document.cookie);
+    fetch('https://gamergait.com:8443/auth/' + document.cookie);
 
     promise.then((response) => {
         handleAuthResponse(response)
@@ -32,7 +32,7 @@ function checkAuth(data){
 function showProfileDetails(data){
     const profilehtml = "<img src=\"res/GamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
     const logoutHtml = "<button class=\"logout-button\" onclick=\"logout()\">Logout</button>"
-
+    const changePasswordHtml = "<button class=\"logout-button\" onclick=\"resetPassword()\">Reset Password</button>"
     const authbuttons = document.createElement("div")
 
     const profilebutton = document.createElement("div")
@@ -42,6 +42,9 @@ function showProfileDetails(data){
     const logoutbutton = document.createElement("div")
     logoutbutton.innerHTML = logoutHtml;
 
+    const changePass = document.createElement("div")
+    changePass.innerHTML = changePasswordHtml;
+
     authbuttons.classList.add("authbuttons")
     let hdrComp = document.getElementById("header")
     let loginReg = document.getElementById("button-holder")
@@ -49,6 +52,7 @@ function showProfileDetails(data){
 
     authbuttons.append(profilebutton)
     authbuttons.append(logoutbutton)
+    authbuttons.append(changePass)
 
     hdrComp.prepend(authbuttons)
 }
@@ -67,7 +71,7 @@ function searchGames(text){
         text = ""
     }
 	x = document.getElementById("searchbar");
-        fetch('https://localhost:8443/games/search=' + x.value.toString() + text +  "?page=" + pageNumber)
+        fetch('https://gamergait.com:8443/games/search=' + x.value.toString() + text +  "?page=" + pageNumber)
         .then(response => response.json())
         .then(data => {createCards(data)})
 }
@@ -97,11 +101,13 @@ function searchGames(text){
         itemName.classList.add("item-name");
         itemId.classList.add("item-id")
         itemScore.classList.add("score")
-        itemScore.classList.add("mainscore")
-        if(score < 10){
-            itemScore.style.width = "2.5rem";
-          }
-          if(score < 25){
+        if(score <1){
+            score = "No scores yet"
+            itemScore.classList.remove("score")
+            itemScore.backgroundColor = "#cdcdfa"
+            itemScore.classList.add("no-score")
+        }
+        else if(score < 25){
             itemScore.style.backgroundColor = "#ee4f44";
           }
           else if(score >25 && score <65){
@@ -112,6 +118,12 @@ function searchGames(text){
           }
           itemScore.style.marginTop = "0";
           itemScore.style.marginBottom = "0";
+        if(score < 10){
+            itemScore.style.width = "2.5rem";
+        }
+
+
+
         fetch(steamGameDataUrl + item.appid)
         .then((response) => {
             return response.json()
@@ -245,7 +257,7 @@ function enableButton(buttonId){
 
 async function logout(){
     let token = getCookie("token")
-    await fetch('https://localhost:8443/logout', {
+    await fetch('https://gamergait.com:8443/logout', {
         method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -265,4 +277,8 @@ function getCookie(name) {
     var re = new RegExp(name + "=([^;]+)"); 
     var value = re.exec(document.cookie); 
     return (value != null) ? unescape(value[1]) : null; 
+   }
+
+   function resetPassword(){
+    window.location.href = "password-reset.html"
    }

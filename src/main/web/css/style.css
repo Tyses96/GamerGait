@@ -65,6 +65,12 @@
   color: #1EBB39;
   margin: 0;
 }
+.no-score{
+  font-family: "Quantico";
+  text-align: center;
+  background-color: #cdcdfa;
+  border-bottom: solid 2px #9999cc;
+}
 .score-holder{
   display: flex;
   flex-direction: column;

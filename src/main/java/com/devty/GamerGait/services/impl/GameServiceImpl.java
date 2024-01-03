@@ -73,7 +73,7 @@ public class GameServiceImpl implements GameService {
         gameEntity.setOverallValueForMoneyRating((gameEntity.getOverallValueForMoneyRating() + reviewDto.getValueForMoneyRating()) / reviews);
         gameEntity.setOverallRating((gameEntity.getOverallGraphicsRating() + gameEntity.getOverallGamePlayRating() +
                 gameEntity.getOverallStoryRating() + gameEntity.getOverallValueForMoneyRating()) / 4);
-        gameEntity.setWeight(gameEntity.getWeight() + 4);
+        gameEntity.setWeight((gameEntity.getOverallRating()*100) + reviews);
         gameRepository.save(gameEntity);
     }
 }

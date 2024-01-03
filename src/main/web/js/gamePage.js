@@ -13,7 +13,7 @@ const minBodyLength = 24
 
 loadReviewBoxs();
 
-fetch('https://localhost:8443/gameDetails/' + gameId)
+fetch('https://gamergait.com:8443/gameDetails/' + gameId)
 .then(response => response.json())
 .then(data => {createGameDetailsSection(data)})
 
@@ -125,7 +125,7 @@ function createScoreDiv(upperCase, score){
   return scoreDiv
 }
 async function fetchAuth(){
-  const promise = await fetch('https://localhost:8443/auth/' + document.cookie);
+  const promise = await fetch('https://gamergait.com:8443/auth/' + document.cookie);
   const response = await promise
   handleAuthResponse(response)
 }
@@ -139,7 +139,7 @@ function checkAuth(data){
 async function loadReviewBoxs(){
     await fetchAuth();
     //load reviews
-    fetch('https://localhost:8443/reviews/' + gameId)
+    fetch('https://gamergait.com:8443/reviews/' + gameId)
     .then(response => response.json())
     .then(data => createReviewCards(data))
 }
@@ -351,7 +351,7 @@ async function submitReview(){
     alert("Body needs to be atleast " + minBodyLength + " characters long")
   }
   else{
-  await fetch("https://localhost:8443/reviews", {
+  await fetch("https://gamergait.com:8443/reviews", {
     method: "POST",
 headers: {
   "Content-Type": "application/json",
@@ -422,7 +422,20 @@ function login(){
   window.location.href = "login.html"
 }
 
-function logout(){
+async function logout(){
+  let token = getCookie("token")
+  await fetch('https://gamergait.com:8443/logout', {
+      method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+
+    },
+      body: JSON.stringify(
+          {
+              "token":token
+          }
+      )
+  })
   document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
   location.reload();
 }
@@ -438,3 +451,9 @@ function validTextArea(){
 function goBack(){
   window.location.replace(document.referrer)
 }
+
+function getCookie(name) { 
+  var re = new RegExp(name + "=([^;]+)"); 
+  var value = re.exec(document.cookie); 
+  return (value != null) ? unescape(value[1]) : null; 
+ }
