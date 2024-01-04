@@ -128,4 +128,10 @@ public class GameController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping(path= "/random-game")
+    @CrossOrigin
+    public ResponseEntity<GameDto> getRandomGame(){
+        return new ResponseEntity<>(gameMapper.mapTo(gameService.findRandomGame()), HttpStatus.OK);
+    }
+
 }

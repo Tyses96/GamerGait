@@ -23,15 +23,19 @@ function login(){
             }
         )
     })
-    .then(response => response.json())
-    .then(data => {
-		if(data.token == null){
-			incorrectUserOrPass()
-		}
-		else{
-			storeCookie(data)
-		}
-	})
+    .then(response => handleResponse(response))
+}
+
+function handleResponse(response){
+    if (response.status == 200){
+        response.json().then(data => storeCookie(data))
+    }
+    else if (response.status == 423){
+        accountLocked()
+    }
+    else{
+        incorrectUserOrPass()
+    }
 }
 
 function incorrectUserOrPass(){
@@ -50,4 +54,9 @@ function storeCookie(cookie){
 	const d = new Date(cookie.expiry.toString());
 	document.cookie = "token=" + cookie.token + ";" +  "expires=" + d.toUTCString() + ";" + "path=/;";
 	goBack();
+}
+
+function accountLocked(){
+    let userMsg = document.getElementById("error-username")
+	userMsg.innerHTML = "Maximum tries reached. Account on cooldown for 10 minutes, resetting your password will unlock the account."
 }

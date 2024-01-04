@@ -30,10 +30,11 @@ function checkAuth(data){
 }
 
 function showProfileDetails(data){
-    const profilehtml = "<img src=\"res/GamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
+    const profilehtml = "<img src=\"res/GamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\" onclick=\"viewProfile()\">" + data.username + "</button>"
     const logoutHtml = "<button class=\"logout-button\" onclick=\"logout()\">Logout</button>"
-    const changePasswordHtml = "<button class=\"logout-button\" onclick=\"resetPassword()\">Reset Password</button>"
     const authbuttons = document.createElement("div")
+
+    const hotbar = document.getElementById("hotbar")
 
     const profilebutton = document.createElement("div")
     profilebutton.classList.add("profile-button-holder")
@@ -42,9 +43,6 @@ function showProfileDetails(data){
     const logoutbutton = document.createElement("div")
     logoutbutton.innerHTML = logoutHtml;
 
-    const changePass = document.createElement("div")
-    changePass.innerHTML = changePasswordHtml;
-
     authbuttons.classList.add("authbuttons")
     let hdrComp = document.getElementById("header")
     let loginReg = document.getElementById("button-holder")
@@ -52,9 +50,9 @@ function showProfileDetails(data){
 
     authbuttons.append(profilebutton)
     authbuttons.append(logoutbutton)
-    authbuttons.append(changePass)
+    hotbar.prepend(authbuttons)
 
-    hdrComp.prepend(authbuttons)
+    hdrComp.prepend(hotbar)
 }
 
 function handleAuthResponse(response){
@@ -279,6 +277,21 @@ function getCookie(name) {
     return (value != null) ? unescape(value[1]) : null; 
    }
 
-   function resetPassword(){
-    window.location.href = "password-reset.html"
-   }
+function viewProfile(){
+    window.location.href = "profile.html"
+}
+
+function selectRandomGame(){
+    fetch('https://gamergait.com:8443/random-game')
+    .then(response => response.json())
+    .then(data => {
+        window.location.href = "gamePage.html?name=" + data.name + "&id=" + data.appid
+    })
+}
+
+function privacyPolicy(){
+    window.location.href = "privacy.html"
+}
+function about(){
+    window.location.href = "about.html"
+}

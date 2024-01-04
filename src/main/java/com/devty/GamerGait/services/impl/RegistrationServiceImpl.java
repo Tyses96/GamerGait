@@ -16,6 +16,7 @@ import com.devty.GamerGait.services.RegistrationService;
 import com.devty.GamerGait.util.Hash;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 
 @Service
@@ -37,6 +38,9 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public UserEntity registerUser(UserDto userDto) throws AlreadyInUseException {
         userDto.setUserRole(UserRole.USER.toString());
+        userDto.setLocked(false);
+        userDto.setUnlockDate(ZonedDateTime.now().minusYears(100));
+        userDto.setTries(0);
         String salt = Hash.generateSalt();
         userDto.setSalt(salt);
         String saltedPassword = userDto.getPassword() + salt;

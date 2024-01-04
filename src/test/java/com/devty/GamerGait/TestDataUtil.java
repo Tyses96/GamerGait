@@ -52,7 +52,6 @@ public class TestDataUtil {
                 .gamePlayRating(84)
                 .storyRating(36)
                 .graphicsRating(30)
-                .valueForMoneyRating(35)
-                .gameDto(gameDto).build();
+                .valueForMoneyRating(35).build();
     }
 }

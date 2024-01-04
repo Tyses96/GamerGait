@@ -4,6 +4,7 @@ let header = document.getElementById("header");
 const urlParams = new URLSearchParams(window.location.search);
 const gameId = urlParams.get('id');
 const gameName = urlParams.get('name')
+const pagetitle = document.getElementById("main-title")
 
 let userId;
 let username;
@@ -24,6 +25,7 @@ function searchGames(){
 }
 
 function createReviewCards(game){
+
     let length = game.length
     if(length > 0){
       game.forEach(async(review) => {
@@ -88,6 +90,7 @@ function createReviewCard(title, body, graphicsScore, gameplayScore, storyScore,
   box.appendChild(scoresHolderDiv)
   if(reviewUsername == username){
     //TODO remove "add review" button and remove backend capability
+    document.getElementById("add-review-button").remove();
     box.style.boxShadow = "0 0 20px #1EBB39"
     addReviewHolder.prepend(box)
   }
@@ -149,10 +152,12 @@ function showProfileDetails(data){
   userId = data.id;
   username = data.username;
 
-  const profilehtml = "<img src=\"res/GamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\">" + data.username + "</button>"
+  const profilehtml = "<img src=\"res/GamerGait.png\" class=\"profile-icon\"><button id=\"profile-button\"onclick=\"viewProfile()\">" + data.username + "</button>"
   const logoutHtml = "<button class=\"logout-button\" onclick=\"logout()\">Logout</button>"
 
   const authbuttons = document.createElement("div")
+
+  const hotbar = document.getElementById("hotbar")
 
   const profilebutton = document.createElement("div")
   profilebutton.classList.add("profile-button-holder")
@@ -161,6 +166,8 @@ function showProfileDetails(data){
   const logoutbutton = document.createElement("div")
   logoutbutton.innerHTML = logoutHtml;
 
+
+
   authbuttons.classList.add("authbuttons")
   let hdrComp = document.getElementById("header")
   let loginReg = document.getElementById("button-holder")
@@ -168,8 +175,9 @@ function showProfileDetails(data){
 
   authbuttons.append(profilebutton)
   authbuttons.append(logoutbutton)
+  hotbar.prepend(authbuttons)
 
-  hdrComp.prepend(authbuttons)
+  hdrComp.prepend(hotbar)
 
 
   //Review profile data
@@ -404,6 +412,7 @@ function createGameDetailsSection(gameDetails){
     mainPageTitleTextArea.classList.add("title-text-area")
     mainPageTitleTextArea.textContent = gameName;
     mainPageTitleDiv.appendChild(mainPageTitleTextArea);
+    pagetitle.innerHTML = gameName + " reviews"
 
     //Description
     let mainPageDescDiv = document.getElementById("description")
@@ -457,3 +466,19 @@ function getCookie(name) {
   var value = re.exec(document.cookie); 
   return (value != null) ? unescape(value[1]) : null; 
  }
+ function viewProfile(){
+  window.location.href = "profile.html"
+}
+function selectRandomGame(){
+  fetch('https://gamergait.com:8443/random-game')
+  .then(response => response.json())
+  .then(data => {
+      window.location.href = "gamePage.html?name=" + data.name + "&id=" + data.appid
+  })
+}
+function privacyPolicy(){
+  window.location.href = "privacy.html"
+}
+function about(){
+  window.location.href = "about.html"
+}

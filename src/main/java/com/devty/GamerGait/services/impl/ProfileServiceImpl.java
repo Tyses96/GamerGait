@@ -13,6 +13,7 @@ import com.devty.GamerGait.services.ProfileService;
 import com.devty.GamerGait.util.Hash;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Service
@@ -59,7 +60,9 @@ public class ProfileServiceImpl implements ProfileService {
 
        userEntity.setPassword(hashedPassword);
        userEntity.setSalt(salt);
-
+       userEntity.setUnlockDate(ZonedDateTime.now().minusMinutes(10));
+       userEntity.setTries(0);
+       userEntity.setLocked(false);
        userRepository.save(userEntity);
 
        return userMapper.mapTo(userEntity);

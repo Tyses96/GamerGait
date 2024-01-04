@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
   </head>
   <body>
-
     <div id="header">
       <div id="hotbar">
         <div class="authbuttons">
@@ -37,32 +36,30 @@
              name="search" placeholder="Find a game..">
     </div>
     <h4>It's the way you game.</h4>
-    <div id="grid-container">
-    </div>
-    
-    <div class="buttons">
-      </div>
 
-    <div id="gamepage-container">
-
-        <div id="gamepage-gamedetails-container">
-          <div>
-            <div id="imgdiv"></div>
-            <div id="gamedetail-text">
-                <div id="gametitle"></div>
-                <div id="description"></div>
+    <div id = "profile-page-holder">
+        <div id ="profile-detail-holder">
+            <div id="profile-image-holder"><img src="res/GamerGait.png" id="profile-image"></div>
+            <div id="changeables-holder">
+                <div id="profile-email-holder"></div>
             </div>
-            <div id="overall rating"></div>
-          </div>
+                <button class = "header-button  profile-change-button" onclick="resetPassword()">Reset Password</button>
+    </div>
+        <div id="profile-stats-holder">
+            <div id="profile-username-holder">tyranhands</div>
+            <div id="profile-stats">
+                <div class = "profile-stats"><p id="profile-gaits"></p></div>
+                <div class = "profile-stats"><p id="total-profile-reviews"></p></div>
+                <div class = "profile-stats"><p  id="profile-standing"></p></div>
+            </div>
         </div>
-        
-    <div id="gamepage-reviews-container">
-      <div class="reviewbox" id="initial-login"><a href="login.html" class="login-review-text">Login to leave a review</a></div>
-      <div id="add-review-holder"></div>
     </div>
 
+    
 
-  <script src="../js/gamePage.js"></script>
+
+
+  <script src="../js/profile.js"></script>
 
   </body>
 </html>
