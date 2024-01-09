@@ -15,8 +15,7 @@ import java.net.URL;
 @Component
 public class SteamHttpRequest {
 
-    @Value("${gamerGait.icon-url}")
-    String ggIconUrl;
+    String ggIconUrl = "res/GamerGait.png";
     String dummyJsonWithNestedUrl =
             "    \"{\"2389880\": {\n" +
             "        \"success\": true,\n" +

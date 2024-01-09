@@ -16,6 +16,7 @@ import com.devty.GamerGait.services.RegistrationService;
 import com.devty.GamerGait.util.Hash;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 
 @Service
@@ -37,14 +38,17 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public UserEntity registerUser(UserDto userDto) throws AlreadyInUseException {
         userDto.setUserRole(UserRole.USER.toString());
+        userDto.setLocked(false);
+        userDto.setUnlockDate(ZonedDateTime.now().minusYears(100));
+        userDto.setTries(0);
         String salt = Hash.generateSalt();
         userDto.setSalt(salt);
         String saltedPassword = userDto.getPassword() + salt;
         userDto.setPassword(Hash.sha256(saltedPassword));
 
         // Does it exist already?
-        UserEntity dbEntityEmail = userRepository.findByEmail(userDto.getEmail());
-        UserEntity dbEntityUsername = userRepository.findByUsername(userDto.getUsername());
+        UserEntity dbEntityEmail = userRepository.findByEmail(userDto.getEmail().toLowerCase());
+        UserEntity dbEntityUsername = userRepository.findByUsername(userDto.getUsername().toLowerCase());
 
         // No it doesn't
         if(dbEntityEmail == null && dbEntityUsername == null){

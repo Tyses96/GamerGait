@@ -39,6 +39,6 @@ public class AuthenticationController {
     @GetMapping(path = "/auth/")
     @CrossOrigin
     public ResponseEntity<String> getNoDetails(){
-        return new ResponseEntity<>("Ok", HttpStatus.OK);
+        return new ResponseEntity<>("Ok", HttpStatus.UNAUTHORIZED);
     }
 }

@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Data
@@ -26,4 +27,7 @@ public class UserDto {
     private String password;
     private String userRole;
     private String salt;
+    private Integer tries;
+    private Boolean locked;
+    private ZonedDateTime unlockDate;
 }

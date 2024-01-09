@@ -1,60 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
+
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gamer Gait</title>
-    <link rel="icon" href="res/GamerGait.png">
-    <!-- linking the stylesheet(CSS) -->
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-  </head>
-  <body>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title id="main-title">Gamer Gait</title>
+    <link rel="icon" href="css/res/favicon.ico">
+</head>
+<body>
     <div id="header">
-      <div id="header-components">
-      <div id="logo-slogan">
-        <a href="index.html"><img src="res/GamerGait.png" alt="GamerGaitLogo" class="centre"></a>
-        <h1 class="title-word">Gamer Gait</h1>
+        <div id="logo-slogan">
+          <a href="index.html"><img src="css/res/GamerGait.png" alt="GamerGaitLogo" class="ggimg"></a>
+        </div>
+        <div class="menu-icon"><img src="css/res/menu-icon.png" alt="menu-icon" class="menu-icon-img dropbtn" onclick="dropdown()">
+        </div>
+      <div class="authbuttons">
+   
+        <ul id="navbar">
+          <li class = "navbar-item"><a href="#" onclick="selectRandomGame()">Suggest random game</a></li>
+          <li class = "navbar-item"><a href="privacy.html">Privacy</a></li>
+          <li class = "navbar-item"><a href="about.html">About</a></li>
+          <li class = "navbar-item" id="login-button"><a href="login.html">Login</a></li>
+          <li class = "navbar-item" id="register-button"><a href="register.html">Sign up</a></li>
+        </ul>
       </div>
-    
+        <!-- input tag -->
+        <input id="searchbar" onsearch="searchGames();" type="search"
+        name="search" placeholder="Find a game..">
       </div>
-      <div id="button-holder" class="left-header centre">
-        <button id="register" class="header-button" onclick="register()">Sign Up</button>
-        <button id="login" class="header-button" onclick="login()">Login</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#" onclick="selectRandomGame()">Suggest random game</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="about.html">About</a>
+        <a href="login.html" id="login-button-sml">Login</a>
+        <a href="register.html" id="register-button-sml">Sign up</a>
       </div>
-    
-    
-      <!-- input tag -->
-      <input id="searchbar" onsearch="searchGames()" type="search"
-             name="search" placeholder="Find a game..">
-    </div>
-    <h4>It's the way you game.</h4>
-    <div id="grid-container">
+      <h4>It's the way you game.</h4>
+      <div id="grid-container">
     </div>
     
     <div class="buttons">
       </div>
 
-    <div id="gamepage-container">
+    <section id="gamepage-container">
 
         <div id="gamepage-gamedetails-container">
-          <div>
             <div id="imgdiv"></div>
             <div id="gamedetail-text">
                 <div id="gametitle"></div>
                 <div id="description"></div>
             </div>
-            <div id="overall rating"></div>
-          </div>
         </div>
-        
-    <div id="gamepage-reviews-container">
-      <div class="reviewbox" id="initial-login"><a href="login.html" class="login-review-text">Login to leave a review</a></div>
-      <div id="add-review-holder"></div>
-    </div>
-
-
-  <script src="../js/gamePage.js"></script>
-
-  </body>
+        <div id="overall-rating-holder">
+        </div>
+</section>
+<div id="gamepage-reviews-container">
+  <div class="reviewbox" id="initial-login" style="margin-bottom: 1rem;"><a href="login.html" class="login-review-text">Login to leave a review</a></div>
+  <div id="add-review-holder"></div>
+</div>
+    <script src="js/gamePage.js"></script>
+</body>
 </html>

@@ -1,0 +1,762 @@
+@font-face {
+    font-family: 'Quantico';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/quantico/v17/rax-HiSdp9cPL3KIF7xrJD0.woff2) format('woff2');
+  }
+body{
+    display: flex;
+    flex-direction: column;
+}
+  h4 {
+    font-family: "Quantico";
+    color: #1EBB39 ;
+    text-align: center;
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+  }
+
+
+#header{
+    background-color: #9999cc;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+#searchbar{
+    padding:10px;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+input[type=search] {
+    width: 50%;
+ }
+
+.menu-icon{
+    width: 4rem;
+    height: 4rem;
+}
+section {
+    max-width: 100vw;
+    min-height: 40vh;
+}
+.content-section{
+    min-height: 100vh;
+}
+.ggimg{
+    width: 4rem;
+    height: 4rem;
+}
+.navbar-item a{
+    font-family: "Quantico";
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+@media only screen and (max-width: 850px){
+    .authbuttons{
+        display: none;
+    }
+}
+@media only screen and (min-width: 850px){
+    .menu-icon-img{
+        display: none;
+    }
+}
+@media only screen and (min-width: 850px){
+    .menu-icon{
+        display: none;
+    }
+}
+#navbar{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.item-id{
+    display: none;
+}
+
+/*TOP PICKS*/
+
+@media only screen and (min-width: 850px){
+    #top-picks{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 3rem;
+    }
+}
+@media only screen and (min-width: 850px){
+    .score-title-top-picks{
+        background-color: #27274e8e;
+        margin-top: 0;
+        font-family: "Quantico";
+        font-size: xx-large;
+    }
+}
+
+@media only screen and (min-width:850px){
+    .gamelist-title-top-picks{
+        display: block;
+        width: 100%;
+        height: fit-content;
+    }
+}
+@media only screen and (max-width: 1075px){
+    #top-picks-msg{
+        display: none;
+    }
+}
+@media only screen and (max-width:850px){
+    .mainpage-img-score-holder-top-picks{
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.msg{
+    color: #cdcdfa;
+    opacity: 0.5;
+    font-style: italic;
+}
+.mainpage-img-score-holder-top-picks{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 5px;
+        color: #1EBB39;
+        border-bottom: solid 5px #9999cc;
+        border-radius: 10px;
+}
+.score-title-top-picks{
+    background-color: #27274e8e;
+    margin-top: 0;
+    font-family: "Quantico";
+}
+.score-holder-top-picks{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    padding:0.5rem;
+}
+.item-card-top-picks{
+    padding: 0.5rem;
+    cursor: pointer;
+    width: fit-content;
+}
+.item-name-top-picks{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #27274e8e;
+    width: fit-content;
+}
+.score-top-picks{
+    font-size: x-large;
+    font-family: "Quantico";
+    width: fit-content;
+
+    border-radius: 50%;
+    padding: 0.5rem;
+    box-shadow: 0 0 10px 5px #F3FCF2;
+    color: black;
+}
+
+.card-image-top-picks{
+    border: solid 5px #1EBB39;
+    width: 231px;
+    height: 87px;
+}
+#top-picks-section{
+    background-image: url("res/spbg/spbg1.png");
+    background-color: rgba(255,255,255,0.2);
+    background-blend-mode: lighten;
+}
+.no-score-top-picks{
+    background-color: #27274e8e;
+    font-family: "Quantico";
+}
+.gamelist-title-top-picks{
+    font-family: "Quantico";
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    border-radius: 5px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.4rem;
+    color: #1EBB39;
+    background-color: #27274e8e;
+}
+#top-pick-section{
+    background-image: url("res/spbg/spbg1.png");
+    background-color: rgba(255,255,255,0.2);
+    background-blend-mode: lighten;
+}
+.no-score-top-picks{
+    color: #9999cc;
+    background-color: #27274e8e;
+    font-family: "Quantico";
+}
+
+
+#sign-up-section{
+    background-color: #27274e8e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 75vh;
+    box-shadow: 0 0 10px 10px #27274e8e inset;
+}
+h3{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: "Quantico";
+    color: #cdcdfa;
+    text-align: center;
+    text-wrap: wrap;
+    padding: 3rem;
+}
+h1 {
+    font-family: "Quantico";
+    text-align: center;
+}
+h1 a {
+    font-size: xx-large;
+    text-decoration: none;
+    background-color: #1EBB39;
+    border-radius: 5px;
+    color: #F3FCF2;
+    padding: 1rem;
+    box-shadow: 0 0 10px black;
+}
+@keyframes blacksmith {
+    0% {background-image: url("res/blacksmith-anim/00.png")}
+    14.28% {background-image: url("res/blacksmith-anim/10.png")}
+    28.57% {background-image: url("res/blacksmith-anim/20.png")}
+    42.85% {background-image: url("res/blacksmith-anim/30.png")}
+    57.14% {background-image: url("res/blacksmith-anim/40.png")}
+    71.42% {background-image: url("res/blacksmith-anim/50.png")}
+    85.71%  {background-image: url("res/blacksmith-anim/60.png")}
+}
+
+#blacksmith{
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("res/blacksmith-anim/00.png");
+    width: 96px;
+    height: 96px;
+    animation: blacksmith 0.8s infinite;
+}
+.ggimgMain{
+    width: 10rem;
+    height: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.scratch{
+    padding: 1rem;
+    color: #27274e8e;
+}
+
+/*TOP RATED*/
+@media only screen and (min-width: 850px){
+    #top-rated{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 3rem;
+    }
+}
+@media only screen and (min-width: 850px){
+    .score-title-top-rated{
+        background-color: #27274e8e;
+        margin-top: 0;
+        font-family: "Quantico";
+        font-size: xx-large;
+    }
+}
+
+@media only screen and (min-width:850px){
+    .gamelist-title-top-rated{
+        display: block;
+        width: 100%;
+        height: fit-content;
+    }
+}
+@media only screen and (max-width: 1075px){
+    #top-rated-msg{
+        display: none;
+    }
+}
+@media only screen and (max-width:850px){
+    .mainpage-img-score-holder-top-rated{
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.mainpage-img-score-holder-top-rated{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 5px;
+        color: #9999cc;
+        border-bottom: solid 5px #9999cc;
+        border-radius: 10px;
+}
+.score-title-top-rated{
+    background-color: #27274e8e;
+    margin-top: 0;
+    font-family: "Quantico";
+}
+.score-holder-top-rated{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    padding:0.5rem;
+}
+.item-card-top-rated{
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.item-name-top-rated{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #27274e8e;
+    color: #9999cc;
+    width: fit-content;
+}
+.score-top-rated{
+    font-size: x-large;
+    font-family: "Quantico";
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    padding: 0.5rem;
+    box-shadow: 0 0 10px 5px #F3FCF2;
+    color: black;
+}
+
+.card-image-top-rated{
+    border: solid 5px #9999cc;
+    width: 231px;
+    height: 87px;
+}
+#top-rated-section{
+    background-image: url("res/spbg/spbg1.png");
+    background-color: rgba(255,255,255,0.2);
+    background-blend-mode: lighten;
+}
+.no-score-top-rated{
+    background-color: #27274e8e;
+    font-family: "Quantico";
+}
+.gamelist-title-top-rated{
+    font-family: "Quantico";
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    border-radius: 5px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.4rem;
+    color: #9999cc;
+    background-color: #27274e8e;
+}
+#top-rated-section{
+    background-image: url("res/spbg/spbg2.png");
+    background-color: rgba(255,255,255,0.2);
+    background-blend-mode: lighten;
+}
+.no-score-top-rated{
+    color: #9999cc;
+    background-color: #27274e8e;
+    font-family: "Quantico";
+}
+
+#info{
+    background-color: #789974;
+    box-shadow: 0 0 10px 10px #586e55 inset;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ggimgInfo{
+    width: fit-content;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media only screen and(max-width: 850px) {
+    .menu-icon{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+.icon-bar{
+    width: 3rem;
+    height: 0.4rem;
+    background-color: black;
+    margin: 6px 0;
+    background-color: #27274e8e;
+}
+.dropdown-content{
+    display: none;
+    text-align: center;
+    background-color: #cdcdfa;
+    font-family: "Quantico";
+    padding: 0.5rem;
+    min-width: 160px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .dropdown-content a{
+    text-decoration: double;
+    color: #27274e;
+  }
+.show {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+.menu-icon-img{
+    width: 4rem;
+    height: 3rem;
+    padding-top: 0.5rem;
+}
+
+
+
+#gamepage-container{
+    max-width: 100vw;
+    box-shadow: 0 0 10px 10px #27274e8e inset;
+}
+.description-class{
+    background-color: #27274e8e;
+    margin: 1rem;
+}
+.title-text-area{
+    width: fit-content;
+    padding: 1rem;
+    background-color: #27274e8e;
+}
+#gamedetail-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#gamepage-reviews-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: #9999cc;
+    border-radius: 5px;
+    padding: 1rem;
+}
+@media only screen and (max-width: 850px){
+    #gamepage-gamedetails-container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 5px;
+        padding: 3px;
+        height: fit-content;
+        background-color: #27274e8e;
+        font-family: "Quantico";
+        color: #789974;
+      }
+}
+
+@media only screen and (min-width: 850px){
+    #gamepage-gamedetails-container{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 3px;
+        height: fit-content;
+        background-color: #27274e8e;
+        font-family: "Quantico";
+        color: #789974;
+      }
+}
+  #imgdiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px;
+  }
+@media only screen and (max-width: 850px){
+    .main-image{
+        width: 340px;
+        height: 168px;
+        border: solid 4px #9999cc;
+        border-radius: 3px;
+    }
+}
+@media only screen and (min-width: 850px){
+.main-image{
+    margin-top: 1rem;
+        max-width: 100%;
+        height: 215px;
+        border: solid 4px #9999cc;
+        border-radius: 3px;
+    }
+}
+.description-class{
+    padding: 5px
+}
+
+#overall-rating-holder{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    background-color: #27274e8e;
+    color: #27274e;
+    font-size: x-large;
+    font-family: "Quantico";
+    padding: 1rem;
+    min-width: 50%
+}
+@media only screen and (min-width: 850px){
+    #overall-rating-holder{
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 1rem;
+        text-align: center;
+        background-color: #27274e8e;
+        color: #27274e;
+        font-size: x-large;
+        font-family: "Quantico";
+        padding: 1rem;
+    }
+}
+.ovl-rating{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    gap:1rem;
+    padding: 10px;
+}
+.rating-title{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 1rem;
+    color: #1EBB39;
+    background-color: #27274e8e;
+    border-radius: 5px;
+}
+.review-score{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+.review-scores-holder{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 1rem;
+        padding:2rem;
+}
+.review-title{
+    font-size: xx-large;
+    color: #F3FCF2;
+    border-radius: 12px;
+    padding: 0.5rem;
+}
+.review-body{
+    color: #F3FCF2;
+    font-size: large;
+    padding: 1rem;
+}
+.username-span{
+    padding: 0.5rem;
+    color: #9999cc;
+}
+.login-review-text{
+    font-family: "Quantico";
+    font-size: large;
+    color: #F3FCF2;
+    padding: 0.5rem;
+    background-color: #1EBB39;
+    border-radius: 5px;
+    box-shadow: 0 0 10px black;
+}
+#add-review-button{
+    font-family: "Quantico";
+    padding: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: #27274e8e;
+    color: white;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #27274e;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 850px){
+    .textArea{
+        width: 100%;
+    }
+}
+
+.textArea:invalid{
+    box-shadow: 0 0 10px red;
+  }
+
+.score-div-title{
+    font-size: x-large;
+    padding: 0.5rem;
+    color: #1EBB39;
+    margin: 0;
+    background-color: #27274e8e;
+}
+
+@media only screen and(min-width: 850px) {
+    .gamepage-container{
+        display: flex;
+        width: 100%;
+    }
+}
+#add-review-holder{
+    font-family: "Quantico";
+}
+
+.header-button{
+    margin-top: 2rem;
+    font-family: "Quantico";
+    padding: 1rem;
+    background-color: #27274e8e;
+    border-radius: 5px;
+    color: #F3FCF2;
+    cursor: pointer;
+}
+.header-button:disabled{
+    background-color: #3c3c8b2c;
+  }
+.slider{
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #cdcdfa; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    border-radius: 5px;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+    box-shadow: 0 0 10px #9999cc;
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #1EBB39; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 50%;
+  }
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #1EBB39; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+  #profile-detail-holder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: "Quantico";
+    width: fit-content;
+    padding: 4rem;
+    background-color: #9999cc;
+    box-shadow: 0 0 10px #27274e inset;
+    border-radius: 5px;
+    color: #27274e;
+  }
+  #profile-page-holder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.privacy-div{
+    padding: 0.5rem;
+    font-size: larger;
+    font-family: "Quantico";
+    background-color: #cdcdfa;
+    box-shadow: 0 0 20px #27274e inset;
+    border-radius: 5px;
+}
+.privacy-header{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    border-bottom: solid 2px black;
+    text-align: center;
+}
+.privacy-para{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+#grid-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5rem;
+}

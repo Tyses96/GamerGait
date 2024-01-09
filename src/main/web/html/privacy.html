@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title id="main-title">Gamer Gait</title>
+    <link rel="icon" href="css/res/favicon.ico">
+  <!-- linking the stylesheet(CSS) -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <div id="header">
+    <div id="logo-slogan">
+      <a href="index.html"><img src="css/res/GamerGait.png" alt="GamerGaitLogo" class="ggimg"></a>
+    </div>
+    <div class="menu-icon"><img src="css/res/menu-icon.png" alt="menu-icon" class="menu-icon-img dropbtn" onclick="dropdown()">
+    </div>
+  <div class="authbuttons">
+
+    <ul id="navbar">
+      <li class = "navbar-item"><a href="#" onclick="selectRandomGame()">Suggest random game</a></li>
+      <li class = "navbar-item"><a href="privacy.html">Privacy</a></li>
+      <li class = "navbar-item"><a href="about.html">About</a></li>
+      <li class = "navbar-item" id="login-button"><a href="login.html">Login</a></li>
+      <li class = "navbar-item" id="register-button"><a href="register.html">Sign up</a></li>
+    </ul>
+  </div>
+    <!-- input tag -->
+    <input id="searchbar" onsearch="searchGames();" type="search"
+    name="search" placeholder="Find a game..">
+  </div>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#" onclick="selectRandomGame()">Suggest random game</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="about.html">About</a>
+    <a href="login.html" id="login-button-sml">Login</a>
+    <a href="register.html" id="register-button-sml">Sign up</a>
+  </div>
+  <h4>It's the way you game.</h4>
+
+<h1 class ="title-word">Privacy Policy Statement for GamerGait.com</h1>
+<div class = "privacy-div">
+<p class="privacy-para">At GamerGait.com and its subsidiaries, we are committed to safeguarding the privacy of our users. This Privacy Policy outlines our practices regarding the collection, use, and protection of personal information. By accessing or using our website, <a href="http://www.gamergait.com">www.gamergait.com</a>, and its associated services, you agree to the terms outlined in this policy.</p>
+
+<h2 class="privacy-header">1. Information Collected:</h2>
+<ul>
+    <li class="privacy-para">Email addresses</li>
+    <li class="privacy-para">Account information (excluding passwords)</li>
+    <li class="privacy-para">Usage data, such as browsing history, preferences, and interactions with our platform</li>
+</ul>
+
+<h2 class="privacy-header">2. Use of Information:</h2>
+<ul>
+    <li class="privacy-para">Providing and improving our services</li>
+    <li class="privacy-para">Personalizing user experience</li>
+    <li class="privacy-para">Sending relevant updates, notifications, and marketing communications</li>
+    <li class="privacy-para">Analyzing website performance and user behavior</li>
+</ul>
+
+<h2 class="privacy-header">3. Storage and Access:</h2>
+<p><strong>Email Addresses:</strong> We store email addresses to facilitate communication with users, deliver requested services, and send important notifications. Users can manage their communication preferences through their account settings.</p>
+<p><strong>Account Information:</strong> We store non-password account information to maintain user profiles, enhance user experience, and ensure the security of our platform. Passwords are not stored on our servers.</p>
+
+<h2 class="privacy-header">4. Protection of Information:</h2>
+<ul>
+    <li class="privacy-para">We implement industry-standard security measures to protect against unauthorized access, alteration, disclosure, or destruction of personal information.</li>
+    <li class="privacy-para">While we take reasonable steps to safeguard your information, no method of transmission over the internet or electronic storage is completely secure. Therefore, we cannot guarantee absolute security.</li>
+</ul>
+
+<h2 class="privacy-header">5. Third-Party Services:</h2>
+<p class="privacy-para">Our website may contain links to third-party websites or services. We are not responsible for the privacy practices or content of these third parties. We encourage users to review the privacy policies of these external sites.</p>
+
+<h2 class="privacy-header">6. Cookies:</h2>
+<p class="privacy-para">We may use cookies to enhance user experience and gather information about site usage. Users can manage cookie preferences through their browser settings.</p>
+
+<h2 class="privacy-header">7. Children's Privacy:</h2>
+<p class="privacy-para">Our services are not intended for users under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal information, please contact us, and we will take appropriate action.</p>
+
+<h2 class="privacy-header">8. Updates to Privacy Policy:</h2>
+<p class="privacy-para">We reserve the right to update this Privacy Policy at any time. Any changes will be effective upon posting the revised policy on our website. Users are encouraged to review this policy periodically.</p>
+
+<h2 class="privacy-header">9. Contact Information:</h2>
+<p class="privacy-para">For any questions, concerns, or requests related to privacy, please contact us at <a href="mailto: admin@gamergait.com">admin@gamergait.com</a>.</p>
+
+<p class="privacy-para">By using <a href="https://www.gamergait.com">www.gamergait.com</a> and its subsidiaries, you acknowledge that you have read and understood this Privacy Policy.</p>
+</div>
+<script src="js/privacy.js"></script>
+</body>
+</html>

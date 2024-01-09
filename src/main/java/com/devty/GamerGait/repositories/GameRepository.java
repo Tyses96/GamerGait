@@ -8,6 +8,8 @@ import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 @Repository
 public interface GameRepository extends ListCrudRepository<GameEntity, Long>,
@@ -15,4 +17,11 @@ public interface GameRepository extends ListCrudRepository<GameEntity, Long>,
 
     @Query("SELECT g from GameEntity g where g.name ILIKE CONCAT('%', ?1, '%') ORDER BY g.weight DESC,  g.id ASC")
     Page<GameEntity> findGameThroughNameSearch(String searchText, Pageable pageable);
+
+    @Query("SELECT g FROM GameEntity g order by random()")
+    List<GameEntity> findRandomGame();
+
+
+    @Query("Select g From GameEntity g order by g.weight DESC LIMIT 5")
+    List<GameEntity> findTop5ByWeight();
 }

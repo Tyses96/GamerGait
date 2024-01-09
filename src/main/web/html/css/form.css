@@ -1,0 +1,167 @@
+
+@font-face {
+    font-family: 'Quantico';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/quantico/v17/rax-HiSdp9cPL3KIF7xrJD0.woff2) format('woff2');
+  }
+body{  
+    font-family: "Quantico";  
+    background-color: white;
+    height: fit-content;
+  }
+  .container { 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;  
+      background-color: #F3FCF2;
+      border: 2px solid #1EBB39;
+      width: 100%;
+      height: fit-content;
+  }
+  p {
+    width: 50%;
+    font-size: 3vw;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  input[type=text], input[type=password], textarea {  
+    width: 100%;  
+    padding: 1rem;  
+    margin: 5px 0 22px 0;  
+    display: inline-block;  
+    border: none;  
+    background: #f1f1f1;  
+  }  
+  input[type=text]:focus, input[type=password]:focus {  
+    background-color: #789974 ;  
+    outline: none;  
+  } 
+   div {  
+              padding: 10px 0;  
+           }  
+  hr {  
+    border: 1px solid #f1f1f1;  
+    margin-bottom: 25px;  
+  }  
+  .registerbtn {  
+    background-color: #1EBB39;  
+    color: white;  
+    padding: 16px 20px;  
+    margin: 8px 0;  
+    border: none;  
+    cursor: pointer;  
+    width: 100%;  
+    opacity: 0.9;
+    height: 7vh;
+    width: 95%;
+    font-size: 2vh;  
+  }  
+  .registerbtn:hover {  
+    opacity: 1;  
+  }
+  .backbtn {  
+    background-color: #9999CC;  
+    color: white;  
+    padding: 16px 20px;  
+    margin: 8px 0;  
+    border: none;  
+    cursor: pointer;  
+    width: 100%;  
+    opacity: 0.9;
+    height: 7vh;
+    width: 95%;
+    font-size: 2vh;    
+  }  
+  .backbtn:hover {  
+    opacity: 1;  
+  }
+  .midbtn {  
+    background-color: #789974;  
+    color: white;  
+    padding: 16px 20px;  
+    margin: 8px 0;  
+    border: none;  
+    cursor: pointer;  
+    width: 100%;  
+    opacity: 0.9;
+    height: 7vh;
+    width: 95%;
+    font-size: 2vh;  
+  }  
+  .midbtn:hover {  
+    opacity: 1;  
+  }
+  .errormsg{
+    background-color: rgba(255, 0, 0, 0.664);
+    padding-left: 20px;
+    box-shadow: 0 0 10px #991313;
+  }
+  #success-msg{
+    text-align: center;
+    color: #1EBB39;
+  }
+  #form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .buttonsDiv{
+    height: 100%;
+  }
+
+  #psw{
+    height: 7vh;
+    width: 98%;
+  }
+  #username {
+    height: 7vh;
+    width: 98%;
+  }
+  #psw-repeat{
+    height: 7vh;
+    width: 98%;
+  }
+  #email{
+    height: 7vh;
+    width: 98%;
+  }
+  @media only screen and (min-width: 850px){
+    h1 {
+      padding: 1rem;
+      text-wrap: wrap;
+      font-size: 4vw;
+      text-align: center;
+      height: 10rem;
+    }
+  }
+  @media only screen and (max-width: 850px){
+    h1 {
+      padding: 1rem;
+      text-wrap: wrap;
+      font-size: 10vw;
+      text-align: center;
+      height: 10rem;
+    }
+  }
+  .label-title{
+      text-align: center;
+      width: 95%;
+      font-size: 2vh;
+    }
+  @media only screen and (min-width: 850px){
+    .container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+      height: fit-content;
+      width: fit-content;
+    }
+  }
+  
+

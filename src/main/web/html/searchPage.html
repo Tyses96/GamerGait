@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="icon" href="css/res/favicon.ico">
+</head>
+<body>
+  <div id="header">
+      <div id="logo-slogan">
+        <a href="index.html"><img src="css/res/GamerGait.png" alt="GamerGaitLogo" class="ggimg"></a>
+      </div>
+      <div class="menu-icon"><img src="css/res/menu-icon.png" alt="menu-icon" class="menu-icon-img dropbtn" onclick="dropdown()">
+      </div>
+    <div class="authbuttons">
+ 
+      <ul id="navbar">
+        <li class = "navbar-item"><a href="#" onclick="selectRandomGame()">Suggest random game</a></li>
+        <li class = "navbar-item"><a href="privacy.html">Privacy</a></li>
+        <li class = "navbar-item"><a href="about.html">About</a></li>
+        <li class = "navbar-item" id="login-button"><a href="login.html">Login</a></li>
+        <li class = "navbar-item" id="register-button"><a href="register.html">Sign up</a></li>
+      </ul>
+    </div>
+      <!-- input tag -->
+      <input id="searchbar" onsearch="resetPageNumber(); searchGames();" type="search"
+      name="search" placeholder="Find a game..">
+    </div>
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#" onclick="selectRandomGame()">Suggest random game</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="about.html">About</a>
+      <a href="login.html" id="login-button-sml">Login</a>
+      <a href="register.html" id="register-button-sml">Sign up</a>
+    </div>
+    <h4>It's the way you game.</h4>
+<section id="grid-container" class="content-section">
+</section>
+<div id="buttons">
+</div>
+
+
+<!-- linking javascript -->
+<script src="js/searchPage.js"></script>
+</body>
+</html>

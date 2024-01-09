@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.auth.login.AccountLockedException;
 import java.util.UUID;
 
 @RestController
@@ -24,11 +25,16 @@ public class LoginController {
     @PostMapping(path="/login")
     @CrossOrigin
     public ResponseEntity<CookieDto> login(@RequestBody UserDto userDto) {
-        try{
+        //check locked and expiry date
+        try {
+            loginService.verifyAccountUnlocked(userDto.getUsername());
             CookieDto cookie = loginService.findOneByUsername(userDto);
             return new ResponseEntity<>(cookie, HttpStatus.OK);
 
-        }catch (Exception e) {
+        }catch (AccountLockedException e){
+            return new ResponseEntity<>(new CookieDto(), HttpStatus.LOCKED);
+        }
+        catch (Exception e) {
             return new ResponseEntity<>(new CookieDto(), HttpStatus.UNAUTHORIZED);
         }
     }

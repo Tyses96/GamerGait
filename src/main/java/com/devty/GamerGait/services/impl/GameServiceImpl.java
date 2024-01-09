@@ -1,5 +1,6 @@
 package com.devty.GamerGait.services.impl;
 
+import com.devty.GamerGait.domain.dto.GameDto;
 import com.devty.GamerGait.domain.dto.ReviewDto;
 import com.devty.GamerGait.domain.entities.GameEntity;
 import com.devty.GamerGait.repositories.GameRepository;
@@ -7,8 +8,11 @@ import com.devty.GamerGait.services.GameService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -76,4 +80,15 @@ public class GameServiceImpl implements GameService {
         gameEntity.setWeight((gameEntity.getOverallRating()*100) + reviews);
         gameRepository.save(gameEntity);
     }
+
+    @Override
+    public GameEntity findRandomGame() {
+        return gameRepository.findRandomGame().get(0);
+    }
+
+    @Override
+    public List<GameEntity> findTopRated() {
+        return gameRepository.findTop5ByWeight();
+    }
+
 }

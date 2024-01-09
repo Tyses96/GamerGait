@@ -3,28 +3,29 @@
   <title>
   Login
   </title>
-  <link rel="stylesheet" type="text/css" href="../css/form.css">
-  <link rel="icon" href="res/GamerGait.png">
+  <link rel="stylesheet" type="text/css" href="css/form.css">
+      <link rel="icon" href="css/res/favicon.ico">
   </head>
   <body>
-      <div class="container center">  
-          <center>  <h1> Gamer Gait Login</h1> </center>
+      <div class="container">  
+          <div><h1> Gamer Gait Login</h1></div>
           <p id="error-server" class="errormsg"></p>
       <hr>
         <div id = "form-container">  
-
-        <label><b>Username</b></label>
+        <div class="inputs"><label class="label-title" for="username"><b>Username</b></label>
         <p id="error-username" class="errormsg"></p>
-        <input type="text" id="username" placeholder= "Username" onkeydown="resetFormErrors()" size="15" required />    
-            <label for="psw"><b>Password</b></label>
-            <p id="error-password" class="errormsg"></p>  
-            <input type="password" placeholder="Enter Password" id="psw" onkeydown="resetFormErrors()" required>  
-
+        <input type="text" id="username" class="inputarea" placeholder= "Username" onkeydown="resetFormErrors()" size="15" required />    
+            <label for="psw" class="label-title"><b>Password</b></label>
+            <p id="error-password" class="errormsg"></p>
+            <input type="password" placeholder="Enter Password" id="psw" class="inputarea" onkeydown="resetFormErrors()" required>
+          </div>
+          <div class="buttonsdiv">
+            <a href="password-reset.html" id="forgot" >Forgotten password</a>
             <button type="submit" class="registerbtn" onclick="login()">Login</button>
             <button type="submit" class="midbtn" onclick="register()">Register</button>
-            <button type="submit" class="backbtn" onclick="goBack()">Back</button>        
-        </form> 
+            <button type="submit" class="backbtn" onclick="goBack()">Back</button>
+          </div>      
       </div> 
-        <script src="../js/login.js"></script>
+        <script src="js/login.js"></script>
   </body>  
   </html>  

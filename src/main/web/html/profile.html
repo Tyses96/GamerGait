@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title id="main-title">Gamer Gait</title>
+    <link rel="icon" href="css/res/favicon.ico">
+    <!-- linking the stylesheet(CSS) -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+    <div id="header">
+      <div id="logo-slogan">
+        <a href="index.html"><img src="css/res/GamerGait.png" alt="GamerGaitLogo" class="ggimg"></a>
+      </div>
+      <div class="menu-icon"><img src="css/res/menu-icon.png" alt="menu-icon" class="menu-icon-img dropbtn" onclick="dropdown()">
+      </div>
+    <div class="authbuttons">
+ 
+      <ul id="navbar">
+        <li class = "navbar-item"><a href="#" onclick="selectRandomGame()">Suggest random game</a></li>
+        <li class = "navbar-item"><a href="privacy.html">Privacy</a></li>
+        <li class = "navbar-item"><a href="about.html">About</a></li>
+        <li class = "navbar-item" id="login-button"><a href="login.html">Login</a></li>
+        <li class = "navbar-item" id="register-button"><a href="register.html">Sign up</a></li>
+      </ul>
+    </div>
+      <!-- input tag -->
+      <input id="searchbar" onsearch="searchGames();" type="search"
+      name="search" placeholder="Find a game..">
+    </div>
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#" onclick="selectRandomGame()">Suggest random game</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="about.html">About</a>
+      <a href="login.html" id="login-button-sml">Login</a>
+      <a href="register.html" id="register-button-sml">Sign up</a>
+    </div>
+    <h4>It's the way you game.</h4>
+    <section id = "profile-page-holder" class="content-section">
+        <div id ="profile-detail-holder">
+                <div id="profile-email-holder"></div>
+                <div id="profile-username-holder"></div>
+                <div id="profile-stats">
+                    <div class = "profile-stats"><p id="profile-gaits"></p></div>
+                    <div class = "profile-stats"><p id="total-profile-reviews"></p></div>
+                    <div class = "profile-stats"><p  id="profile-standing"></p></div>
+                </div>
+                <button class = "header-button  profile-change-button" onclick="resetPassword()">Reset Password</button>
+    </div>
+    </section>
+
+    
+
+
+
+  <script src="js/profile.js"></script>
+
+  </body>
+</html>
