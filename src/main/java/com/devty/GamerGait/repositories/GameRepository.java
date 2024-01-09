@@ -20,4 +20,8 @@ public interface GameRepository extends ListCrudRepository<GameEntity, Long>,
 
     @Query("SELECT g FROM GameEntity g order by random()")
     List<GameEntity> findRandomGame();
+
+
+    @Query("Select g From GameEntity g order by g.weight DESC LIMIT 5")
+    List<GameEntity> findTop5ByWeight();
 }

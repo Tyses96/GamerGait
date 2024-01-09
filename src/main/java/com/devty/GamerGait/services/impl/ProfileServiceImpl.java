@@ -48,13 +48,13 @@ public class ProfileServiceImpl implements ProfileService {
     }
     @Override
     public ProfileDto findProfileByEmail(String email) {
-        ProfileEntity profileEntity = profileRepository.findByEmail(email);
+        ProfileEntity profileEntity = profileRepository.findByEmail(email.toLowerCase());
         return profileMapper.mapTo(profileEntity);
     }
 
     @Override
     public UserDto resetPasswordOfUser(String password, ProfileDto profileDto) {
-       UserEntity userEntity = userRepository.findByEmail(profileDto.getEmail());
+       UserEntity userEntity = userRepository.findByEmail(profileDto.getEmail().toLowerCase());
        String salt = Hash.generateSalt();
        String hashedPassword = Hash.sha256(password + salt);
 

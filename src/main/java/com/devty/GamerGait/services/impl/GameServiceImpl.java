@@ -8,6 +8,8 @@ import com.devty.GamerGait.services.GameService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -83,4 +85,10 @@ public class GameServiceImpl implements GameService {
     public GameEntity findRandomGame() {
         return gameRepository.findRandomGame().get(0);
     }
+
+    @Override
+    public List<GameEntity> findTopRated() {
+        return gameRepository.findTop5ByWeight();
+    }
+
 }

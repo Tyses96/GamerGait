@@ -29,4 +29,6 @@ public interface GameService {
 
     GameEntity findRandomGame();
 
+    List<GameEntity> findTopRated();
+
 }

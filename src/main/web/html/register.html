@@ -3,33 +3,36 @@
     <title>
     Sign up
     </title>
-    <link rel="stylesheet" type="text/css" href="../css/form.css">
-    <link rel="icon" href="res/GamerGait.png">
+    <link rel="stylesheet" type="text/css" href="css/form.css">
+        <link rel="icon" href="css/res/favicon.ico">
     </head>
     <body>
         <div class="container center">  
-            <center>  <h1> Gamer Gait Registration</h1> </center>
+            <div><h1> Gamer Gait Registration</h1></div>
             <p id="error-server" class="errormsg"></p>
         <hr>
           <div id = "form-container">  
  
-          <label><b>Username</b></label>
+          <div class="inputs"><label class="label-title"><b>Username</b></label>
           <p id="error-username" class="errormsg"></p>
-          <input type="text" id="username" placeholder= "Username" onkeydown="resetFormErrors()" size="15" required />    
-           <label for="email"><b>Email</b></label>  
+          <input type="text" id="username" class="inputarea" placeholder= "Username" onkeydown="resetFormErrors()" size="15" required />    
+           <label for="email" class="label-title"><b>Email</b></label>  
            <p id="error-email" class="errormsg"></p>
-           <input type="text" placeholder="Enter Email" id="email" onkeydown="resetFormErrors()" required>  
+           <input type="text" placeholder="Enter Email" id="email" class="inputarea" onkeydown="resetFormErrors()" required>  
             
-              <label for="psw"><b>Password</b></label>
+              <label for="psw" class="label-title"><b>Password</b></label>
               <p id="error-password" class="errormsg"></p>  
-              <input type="password" placeholder="Enter Password" id="psw" onkeydown="resetFormErrors()" required>  
+              <input type="password" placeholder="Enter Password" id="psw" class="inputarea" onkeydown="resetFormErrors()" required>  
             
-              <label for="psw-repeat"><b>Re-type Password</b></label>  
-              <input type="password" placeholder="Retype Password" id="psw-repeat" onkeypress="resetFormErrors()" required>  
+              <label for="psw-repeat" class="label-title"><b>Re-type Password</b></label>  
+              <input type="password" placeholder="Retype Password" id="psw-repeat" class="inputarea" onkeypress="resetFormErrors()" required>  
+              </div>
+              <div class="buttonsdiv">
               <button type="submit" class="registerbtn" onclick="registerUser()">Register</button>
-              <button type="submit" class="backbtn" onclick="goBack()">Back</button>        
+              <button type="submit" class="backbtn" onclick="goBack()">Back</button>
+            </div>        
           </form> 
         </div> 
-          <script src="../js/register.js"></script>
+          <script src="js/register.js"></script>
     </body>  
     </html>  

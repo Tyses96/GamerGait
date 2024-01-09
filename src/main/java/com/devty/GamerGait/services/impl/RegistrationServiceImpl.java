@@ -47,8 +47,8 @@ public class RegistrationServiceImpl implements RegistrationService {
         userDto.setPassword(Hash.sha256(saltedPassword));
 
         // Does it exist already?
-        UserEntity dbEntityEmail = userRepository.findByEmail(userDto.getEmail());
-        UserEntity dbEntityUsername = userRepository.findByUsername(userDto.getUsername());
+        UserEntity dbEntityEmail = userRepository.findByEmail(userDto.getEmail().toLowerCase());
+        UserEntity dbEntityUsername = userRepository.findByUsername(userDto.getUsername().toLowerCase());
 
         // No it doesn't
         if(dbEntityEmail == null && dbEntityUsername == null){

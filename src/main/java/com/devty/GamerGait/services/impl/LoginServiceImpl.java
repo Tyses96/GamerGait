@@ -31,7 +31,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public CookieDto findOneByUsername(UserDto userDto) throws IncorrectPasswordException, IncorrectUsernameException,
             SessionInvalidException {
-        var foundUser = Optional.of(userRepository.findByUsername(userDto.getUsername()));
+        var foundUser = Optional.of(userRepository.findByUsername(userDto.getUsername().toLowerCase()));
         if (foundUser.isPresent()){
             UUID id = foundUser.get().getId();
             String enteredPsw = Hash.sha256(userDto.getPassword() + foundUser.get().getSalt());
@@ -41,6 +41,7 @@ public class LoginServiceImpl implements LoginService {
                 foundUser.get().setTries(0);
                 foundUser.get().setLocked(false);
                 foundUser.get().setUnlockDate(ZonedDateTime.now().minusYears(100));
+                userRepository.save(foundUser.get());
                 System.out.println(foundUser.get().getUsername() + " Logged in");
                 return new CookieDto(sessionManager.findSessionByUserId(id).getToken(),
                         sessionManager.findSessionByUserId(id).getExpiry().atZone(ZoneId.systemDefault()));
@@ -52,7 +53,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     public void verifyAccountUnlocked(String username) throws AccountLockedException {
-        UserEntity ue = userRepository.findByUsername(username);
+        UserEntity ue = userRepository.findByUsername(username.toLowerCase());
         if(ue.getUnlockDate().isBefore(ZonedDateTime.now())){
             ue.setLocked(false);
         }

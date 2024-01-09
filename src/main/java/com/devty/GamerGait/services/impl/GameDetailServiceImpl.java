@@ -24,8 +24,7 @@ public class GameDetailServiceImpl implements GameDetailService {
     GameDetailMapperImpl gameDetailMapper;
     SteamHttpRequest steamHttpRequest;
 
-    @Value("${gamerGait.icon-url}")
-    String ggIconUrl;
+    String ggIconUrl = "res/GamerGait.png";
 
     public GameDetailServiceImpl(GameDetailRepository gameDetailRepository, SteamHttpRequest steamHttpRequest,
                                  GameDetailMapperImpl gameDetailMapper){

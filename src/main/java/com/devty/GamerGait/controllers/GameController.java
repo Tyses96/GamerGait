@@ -2,11 +2,13 @@ package com.devty.GamerGait.controllers;
 
 import com.devty.GamerGait.GamerGaitApplication;
 import com.devty.GamerGait.domain.dto.GameDto;
+import com.devty.GamerGait.domain.dto.ReviewDto;
 import com.devty.GamerGait.domain.dto.gamedetails.DataDto;
 import com.devty.GamerGait.domain.dto.gamedetails.GameDetailDto;
 import com.devty.GamerGait.domain.entities.GameDetailEntity;
 import com.devty.GamerGait.domain.entities.GameEntity;
 import com.devty.GamerGait.services.GameDetailService;
+import com.devty.GamerGait.services.impl.GameServiceImpl;
 import com.devty.GamerGait.util.JsonUtil;
 import com.devty.GamerGait.util.SteamHttpRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,15 +22,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
 public class GameController {
-    private GameService gameService;
+    private GameServiceImpl gameService;
     private GameDetailService gameDetailService;
     private Mapper<GameEntity, GameDto> gameMapper;
     private Mapper<GameDetailEntity, GameDetailDto> gameDetailMapper;
@@ -36,7 +39,7 @@ public class GameController {
 
 
 
-    public GameController(GameService gameService, Mapper<GameEntity, GameDto> gameMapper,
+    public GameController(GameServiceImpl gameService, Mapper<GameEntity, GameDto> gameMapper,
     Mapper<GameDetailEntity, GameDetailDto> gameDetailMapper, GameDetailService gameDetailService) {
         this.gameService = gameService;
         this.gameMapper = gameMapper;
@@ -45,17 +48,17 @@ public class GameController {
     }
     @PostMapping(path = "/games")
     public ResponseEntity<GameDto> createGame(@RequestBody GameDto game) {
+        game.setOverallRating(0L);
+        game.setReviews(0L);
+        game.setWeight(0L);
+        game.setOverallGamePlayRating(0L);
+        game.setOverallStoryRating(0L);
+        game.setOverallGraphicsRating(0L);
+        game.setOverallValueForMoneyRating(0L);
+        game.setReviewEntities(new HashSet<>());
         GameEntity gameEntity = gameMapper.mapFrom(game);
         GameEntity savedGameEntity = gameService.save(gameEntity);
         return new ResponseEntity<>(gameMapper.mapTo(savedGameEntity), HttpStatus.CREATED);
-    }
-
-    @GetMapping(path = "/games")
-    public List<GameDto> listGames() {
-        List<GameEntity> games = gameService.findAll();
-        return games.stream()
-                .map(gameMapper::mapTo)
-                .collect(Collectors.toList());
     }
 
     @GetMapping(path= "/gameDetails/{id}")
@@ -89,49 +92,47 @@ public class GameController {
         }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping(path = "/games/{id}")
-    public ResponseEntity<GameDto> fullUpdateGame(
-            @PathVariable("id") Long id,
-            @RequestBody GameDto gameDto) {
-
-        if(!gameService.isExists(id)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        gameDto.setId(id);
-        GameEntity gameEntity = gameMapper.mapFrom(gameDto);
-        GameEntity savedGameEntity = gameService.save(gameEntity);
-        return new ResponseEntity<>(
-                gameMapper.mapTo(savedGameEntity),
-                HttpStatus.OK);
-    }
-
-    @PatchMapping(path = "/games/{id}")
-    public ResponseEntity<GameDto> partialUpdate(
-            @PathVariable("id") Long id,
-            @RequestBody GameDto gameDto
-    ) {
-        if(!gameService.isExists(id)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        GameEntity gameEntity = gameMapper.mapFrom(gameDto);
-        GameEntity updatedGame = gameService.partialUpdate(id, gameEntity);
-        return new ResponseEntity<>(
-                gameMapper.mapTo(updatedGame),
-                HttpStatus.OK);
-    }
-
-    @DeleteMapping(path = "/games/{id}")
-    public ResponseEntity deleteGame(@PathVariable("id") Long id) {
-        gameService.delete(id);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
-    }
-
     @GetMapping(path= "/random-game")
     @CrossOrigin
     public ResponseEntity<GameDto> getRandomGame(){
         return new ResponseEntity<>(gameMapper.mapTo(gameService.findRandomGame()), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/picksofthemonth")
+    @CrossOrigin
+    public ResponseEntity<List<GameDto>> getMontlyPicks(){
+        ArrayList<GameDto> games = new ArrayList<>();
+        Set<Long> ids = getTopPickIds();
+        for(Long id : ids){
+            games.add(gameMapper.mapTo(gameService.findOne(id).get()));
+        }
+        return new ResponseEntity<>(games, HttpStatus.FOUND);
+    }
+
+    @GetMapping(path = "/toprated")
+    @CrossOrigin
+    public ResponseEntity<List<GameDto>> getTopRated(){
+        List<GameEntity> ges = gameService.findTopRated();
+        return new ResponseEntity<>(ges.stream().map(gameMapper::mapTo).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    public Set<Long> getTopPickIds(){
+        BufferedReader reader;
+        Set<Long> ids = new HashSet<>();
+
+        try {
+            reader = new BufferedReader(new FileReader("res/monthly-picks.txt"));
+            String line;
+
+            for(int i = 0; i <5; i++){
+                line = reader.readLine();
+                ids.add(Long.parseLong(line));
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ids;
+    }
 }
