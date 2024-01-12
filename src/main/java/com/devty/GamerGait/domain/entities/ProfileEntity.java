@@ -21,6 +21,7 @@ public class ProfileEntity {
     UUID id;
     String username;
     String email;
+    Boolean verified;
     Long gaits;
     Long standing;
     Long totalReviews;

@@ -1,38 +1,87 @@
-<Html>  
-    <head>
-    <title>
-    Sign up
-    </title>
-    <link rel="stylesheet" type="text/css" href="css/form.css">
-        <link rel="icon" href="css/res/favicon.ico">
-    </head>
-    <body>
-        <div class="container center">  
-            <div><h1> Gamer Gait Registration</h1></div>
-            <p id="error-server" class="errormsg"></p>
-        <hr>
-          <div id = "form-container">  
- 
-          <div class="inputs"><label class="label-title"><b>Username</b></label>
-          <p id="error-username" class="errormsg"></p>
-          <input type="text" id="username" class="inputarea" placeholder= "Username" onkeydown="resetFormErrors()" size="15" required />    
-           <label for="email" class="label-title"><b>Email</b></label>  
-           <p id="error-email" class="errormsg"></p>
-           <input type="text" placeholder="Enter Email" id="email" class="inputarea" onkeydown="resetFormErrors()" required>  
-            
-              <label for="psw" class="label-title"><b>Password</b></label>
-              <p id="error-password" class="errormsg"></p>  
-              <input type="password" placeholder="Enter Password" id="psw" class="inputarea" onkeydown="resetFormErrors()" required>  
-            
-              <label for="psw-repeat" class="label-title"><b>Re-type Password</b></label>  
-              <input type="password" placeholder="Retype Password" id="psw-repeat" class="inputarea" onkeypress="resetFormErrors()" required>  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title id="page-title">Gamer Gait</title>
+    <link rel="icon" href="res/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <div class="row" >
+    <nav class="deep-purple">
+        <div class="col s6 nav-wrapper deep-purple">
+        <a href="index.html" class="brand-logo right"><img src="res/favicon.ico" alt="GamerGait" class="responsive-img"></img></a>
+          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down" >
+            <li><a href="#" onclick="selectRandomGame()" class="green lighten-1">Suggest a game</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+          </ul>
+          </div>
+          <div class="col s6 nav-wrapper deep-purple">
+            <form>
+              <div class="input-field right">
+                <input id="search" type="search" placeholder="Find a game..." onsearch="searchGames()"  required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
               </div>
-              <div class="buttonsdiv">
-              <button type="submit" class="registerbtn" onclick="registerUser()">Register</button>
-              <button type="submit" class="backbtn" onclick="goBack()">Back</button>
-            </div>        
-          </form> 
-        </div> 
-          <script src="js/register.js"></script>
-    </body>  
-    </html>  
+            </form>
+          </div>
+      </nav>
+    </div>
+      <ul class="sidenav" id="mobile">
+        <li><a href="#" onclick="selectRandomGame()">Suggest a game</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+    </ul>
+
+    <div class="section">
+        <div class="container"><h1 class="center">Gamer Gait Registration</h1> <div class="divider-2"></div></div>
+    </div>
+
+    <div id="registration-form" class="container">
+        <div class="row">
+            <form class="col s12">
+                <div class="input-field col s12">
+                  <input placeholder="Username" id="username" type="text" class="validate" onblur="checkUsername()" onfocus="checkUsername()" onchange="checkUsername()">
+                  <label for="username">Username</label>
+                  <span id="username-span1" class="helper-text" data-error="Username must be between 6 and 12 characters and not contain any special characters" data-success="Looks good!"></span>
+                  <span id="username-span2" class="helper-text hide" data-error="Username already in use" data-success="Looks good!"></span>
+                  </div>
+                <div class="input-field col s12">
+                    <input placeholder="Email" id="email" type="text" class="validate" onblur="checkEmail()" onfocus="checkEmail()" onchange="checkEmail()">
+                    <label for="email">Email</label><span id="email-span1" class="helper-text" data-error="Please check you entered the correct email" data-success="Looks good!"></span>
+                    <label for="email">Email</label><span id="email-span2" class="helper-text hide" data-error="Email already in use" data-success="Looks good!"></span>
+                </div>
+                <div class="input-field col s12">
+                  <input id="password" type="password" class="validate" onblur="checkPassword()" onfocus="checkPassword()" onchange="checkPassword()">
+                  <label for="password">Password</label><span class="helper-text" data-error="Password must be minimum eight characters, at least one upper case letter, one lower case letter, one number and one special character" data-success="Looks good!"></span>
+              </div>
+              <div class="input-field col s12">
+                <input id="repeat-password" type="password" class="validate" onblur="checkRepeatPassword()" onfocus="checkRepeatPassword()" onchange="checkRepeatPassword()">
+                <label for="repeat-password">Repeat password</label><span class="helper-text" data-error="Passwords don't match" data-success="Looks good!"></span>
+            </div>
+            <div class="center">
+            <label>
+                <p>
+                <input type="checkbox" checked="checked" disabled="disabled"/>
+                <span>I agree to the privacy policy set out in the <a href="privacy.html">privacy</a> section</span>
+                </p>
+              </label>
+                <a id="submit-button" class="waves-effect waves-light btn-large green" onclick="registerUser()">Sign Up<i class="material-icons right">send</i></a>
+            </div>
+            </form>
+          </div>
+    </div>
+
+
+	<script src="js/materialize.js"></script>
+    <script src="js/generics.js"></script>
+    <script src="js/register.js"></script>
+  </body>
+</html>

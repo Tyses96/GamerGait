@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.el.parser.BooleanNode;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -26,6 +27,7 @@ public class UserDto {
     @Size(min=6, max=32)
     private String password;
     private String userRole;
+    private Boolean verified;
     private String salt;
     private Integer tries;
     private Boolean locked;

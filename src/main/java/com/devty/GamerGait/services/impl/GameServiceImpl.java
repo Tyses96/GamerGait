@@ -1,18 +1,16 @@
 package com.devty.GamerGait.services.impl;
 
-import com.devty.GamerGait.domain.dto.GameDto;
 import com.devty.GamerGait.domain.dto.ReviewDto;
 import com.devty.GamerGait.domain.entities.GameEntity;
 import com.devty.GamerGait.repositories.GameRepository;
 import com.devty.GamerGait.services.GameService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -87,8 +85,12 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public List<GameEntity> findTopRated() {
-        return gameRepository.findTop5ByWeight();
+    public Page<GameEntity> findTopRated(Pageable pageable) {
+        return gameRepository.findAllOrderByWeight(pageable);
+    }
+    @Override
+    public Page<GameEntity> findTopValue(Pageable pageable) {
+        return gameRepository.findTop8ByOverallValueForMoney(pageable);
     }
 
 }

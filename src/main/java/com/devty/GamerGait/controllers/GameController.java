@@ -111,12 +111,19 @@ public class GameController {
 
     @GetMapping(path = "/toprated")
     @CrossOrigin
-    public ResponseEntity<List<GameDto>> getTopRated(){
-        List<GameEntity> ges = gameService.findTopRated();
-        return new ResponseEntity<>(ges.stream().map(gameMapper::mapTo).collect(Collectors.toList()), HttpStatus.OK);
+    public ResponseEntity<Page<GameDto>> getTopRated(Pageable pageable){
+        Page<GameEntity> ges = gameService.findTopRated(pageable);
+        return new ResponseEntity<>(ges.map(gameMapper::mapTo), HttpStatus.OK);
+    }
+    @GetMapping(path = "/topvalue")
+    @CrossOrigin
+    public ResponseEntity<Page<GameDto>> getTopValue(Pageable pageable){
+        Page<GameEntity> ges = gameService.findTopValue(pageable);
+        return new ResponseEntity<>(ges.map(gameMapper::mapTo), HttpStatus.OK);
     }
 
     public Set<Long> getTopPickIds(){
+        final int TOTAL_TOP_PICKS = 8;
         BufferedReader reader;
         Set<Long> ids = new HashSet<>();
 
@@ -124,7 +131,7 @@ public class GameController {
             reader = new BufferedReader(new FileReader("res/monthly-picks.txt"));
             String line;
 
-            for(int i = 0; i <5; i++){
+            for(int i = 0; i <TOTAL_TOP_PICKS; i++){
                 line = reader.readLine();
                 ids.add(Long.parseLong(line));
             }

@@ -1,12 +1,14 @@
-
+fetchAuth();
 
 function registerUser(){
     let userName = document.getElementById("username").value;
     let email = document.getElementById("email").value;
-    let password = document.getElementById("psw").value;
-    let repassword = document.getElementById("psw-repeat").value;
-    const passwordLength = 6;
-    const usernameLength = 5;
+    let password = document.getElementById("password").value;
+    let repassword = document.getElementById("repeat-password").value;
+    const passwordLength = 8;
+    const usernameLength = 6;
+
+
 
     if(password === repassword && password.length >= passwordLength && userName.length >= usernameLength){
         const promise = fetch("https://gamergait.com:8443/register", {
@@ -27,15 +29,18 @@ function registerUser(){
           promise.then((response) => {
             handleRegisterResponse(response)
           }).then((json) => console.log(json));
-    }
-    else if(password != password){
-        passwordsDontMatch();
-    }
-    else if(userName.length < usernameLength){
-        usernameTooShort()
-    }
-    else if (password.length < passwordLength){
-        passwordTooShort()
+
+          fetch("https://gamergait.com:8443/send-verification-email", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+              },
+            body: JSON.stringify(
+                {
+                    "email":email, 
+                }
+            ),
+          });
     }
 
     function handleRegisterResponse(response){
@@ -54,48 +59,99 @@ function registerUser(){
                 break;
         }
     }
-
-
-    function invalidInputSentToServer(){
-        let errmsg = document.getElementById("error-server");
-        errmsg.innerHTML = "Invalid data. Ensure a valid email is entered and your username is between 5 and 16 characters."
-    }
     function usernameAlreadyTaken(){
-        let errmsg = document.getElementById("error-username");
-        errmsg.innerHTML = "Username already in use";
-    }
-    function usernameTooShort(){
-        let errmsg = document.getElementById("error-username");
-        errmsg.innerHTML = "Username too short. Minimum 5 characters";
+        let span1 = document.getElementById("username-span1");
+        span1.classList.add("hide")
+        let span2 = document.getElementById("username-span2");
+        span2.classList.remove("hide")
+
+        errfield = document.getElementById("username")
+        errfield.classList.remove("valid")
+        errfield.classList.add("invalid")
     }
     function emailAlreadyTaken(){
-        let errmsg = document.getElementById("error-email");
-        errmsg.innerHTML = "Email already in use"
-    }
-    function passwordsDontMatch(){
-        let errmsg = document.getElementById("error-password");
-        errmsg.innerHTML = "Passwords did not match "
-    }
-    function passwordTooShort(){
-        let errmsg = document.getElementById("error-password");
-        errmsg.innerHTML = "Password is not complex enough - must be at least 6 characters"
+        let span1 = document.getElementById("email-span1");
+        span1.classList.add("hide")
+        let span2 = document.getElementById("email-span2");
+        span2.classList.remove("hide")
+
+        errfield = document.getElementById("email")
+        errfield.classList.remove("valid")
+        errfield.classList.add("invalid")
     }
     function successfulCreation(){
-        const formContainer = document.getElementById("form-container");
-        formContainer.innerHTML="<centre><h1 id=success-msg>Registration Complete</h1></centre>"
-
-        setTimeout(function(){
-            goBack()}, 3000)
-    }
-}
-
-function resetFormErrors(){
-    const errors = document.getElementsByClassName("errormsg");
-    for(var i = 0; i < errors.length; i++){
-        errors[i].innerHTML = "";
+        const formContainer = document.getElementById("registration-form");
+        formContainer.innerHTML="<div class=\"center\"><h2>Registration Complete</h2><p>A verification email has been sent to your email address. Please follow it to verify your account.</p><p>Go <a href=\"index.html\">home</a></p></div>"
     }
 }
 
 function goBack(){
     window.location.href = "index.html";
 }
+
+
+document.getElementById("username").addEventListener("keyup", checkUsername);
+function checkUsername() {
+    var val = document.getElementById("username").value;
+    if(!val || !val.length) {
+      return;
+    }
+    
+    var regex = /^[a-zA-Z0-9]{6,12}$/gi;
+    if(!regex.test(val)) {
+      document.getElementById("username").classList.remove("valid");
+      document.getElementById("username").classList.add("invalid");
+    } else {
+      document.getElementById("username").classList.remove("invalid");
+      document.getElementById("username").classList.add("valid");
+    }
+}
+
+document.getElementById("email").addEventListener("keyup", checkEmail);
+function checkEmail() {
+    var val = document.getElementById("email").value;
+    if(!val || !val.length) {
+      return;
+    }
+    
+    var regex = new RegExp("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
+    if(!regex.test(val)) {
+        document.getElementById("email").classList.remove("valid");
+        document.getElementById("email").classList.add("invalid");
+      } else {
+        document.getElementById("email").classList.remove("invalid");
+        document.getElementById("email").classList.add("valid");
+      }
+  }
+  document.getElementById("password").addEventListener("keyup", checkPassword);
+  function checkPassword() {
+    var val = document.getElementById("password").value;
+    if(!val || !val.length) {
+      return;
+    }
+    
+    var regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+    if(!regex.test(val)) {
+        document.getElementById("password").classList.remove("valid");
+        document.getElementById("password").classList.add("invalid");
+      } else {
+        document.getElementById("password").classList.remove("invalid");
+        document.getElementById("password").classList.add("valid");
+      }
+  }
+  document.getElementById("repeat-password").addEventListener("keyup", checkRepeatPassword);
+  function checkRepeatPassword(){
+    checkPassword()
+    let psw1 = document.getElementById("password").value;
+    let psw2 = document.getElementById("repeat-password").value;
+
+    if(psw1 === psw2 && document.getElementById("password").classList.contains("valid")) {
+        document.getElementById("repeat-password").classList.remove("invalid");
+        document.getElementById("repeat-password").classList.add("valid");
+
+      } else {
+        document.getElementById("repeat-password").classList.remove("valid");
+        document.getElementById("repeat-password").classList.add("invalid");
+      }
+  }
+

@@ -14,4 +14,7 @@ public interface ProfileRepository extends ListCrudRepository<ProfileEntity, Lon
     @Query("Select u from ProfileEntity u where lower(u.email) like ?1")
     ProfileEntity findByEmail(String email);
 
+    @Query("Select u from ProfileEntity u where lower(u.username) like ?1")
+    ProfileEntity findByUsername(String username);
+
 }

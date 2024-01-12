@@ -22,6 +22,9 @@ public interface GameRepository extends ListCrudRepository<GameEntity, Long>,
     List<GameEntity> findRandomGame();
 
 
-    @Query("Select g From GameEntity g order by g.weight DESC LIMIT 5")
-    List<GameEntity> findTop5ByWeight();
+    @Query("Select g From GameEntity g order by g.weight DESC")
+    Page<GameEntity> findAllOrderByWeight(Pageable pageable);
+
+    @Query("Select g From GameEntity g order by g.overallValueForMoneyRating DESC")
+    Page<GameEntity> findTop8ByOverallValueForMoney(Pageable pageable);
 }

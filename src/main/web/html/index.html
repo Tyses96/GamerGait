@@ -1,65 +1,135 @@
 <!DOCTYPE html>
-
-<head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="icon" href="css/res/favicon.ico">
-</head>
-<body>
-    <div id="header">
-        <div id="logo-slogan">
-          <a href="index.html"><img src="css/res/GamerGait.png" alt="GamerGaitLogo" class="ggimg"></a>
-        </div>
-        <div class="menu-icon"><img src="css/res/menu-icon.png" alt="menu-icon" class="menu-icon-img dropbtn" onclick="dropdown()">
-        </div>
-      <div class="authbuttons">
-   
-        <ul id="navbar">
-          <li class = "navbar-item"><a href="#" onclick="selectRandomGame()">Suggest random game</a></li>
-          <li class = "navbar-item"><a href="privacy.html">Privacy</a></li>
-          <li class = "navbar-item"><a href="about.html">About</a></li>
-          <li class = "navbar-item" id="login-button"><a href="login.html">Login</a></li>
-          <li class = "navbar-item" id="register-button"><a href="register.html">Sign up</a></li>
-        </ul>
-      </div>
-        <!-- input tag -->
-        <input id="searchbar" onsearch="searchGames();" type="search"
-        name="search" placeholder="Find a game..">
-      </div>
-      <div id="myDropdown" class="dropdown-content">
-        <a href="#" onclick="selectRandomGame()">Suggest random game</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="about.html">About</a>
-        <a href="login.html" id="login-button-sml">Login</a>
-        <a href="register.html" id="register-button-sml">Sign up</a>
-      </div>
-      <h4>It's the way you game.</h4>
-    <section id="top-pick-section" class="content-section">
-        <div id="top-picks"></div>
-        <div id="top-picks-msg"><h1 class="msg">Lesser known, chosen by us</h1></div>
-    </section>
-    <section id="sign-up-section">
-      <h1 class="scratch">Scratch that gaming itch. Find your next obsession.</h1>
-      <div id="blacksmith"></div>
-      <div id="sign-up-main-text">
-        <h1><a href="register.html">Sign up</a></h1>
-        <h3>Find games. Leave reviews. Earn rewards.</h3>
-      </div>
-    </section>
-    <section id="top-rated-section" class="content-section">
-      <div id="top-rated"></div>
-      <div id="top-picks-msg"><h1 class="msg">Top rated, by you</h1></div>
-    </section>
-    <section id="info-section">
-      <div id="info">
-        <h3 class="info-text">Gamer Gait aims to unite bored gamers with the best small indie games.</h3>
-        <h3 class="info-text">Discover games you didn't know existed that perfectly meet your needs. </h3>
-        <h3 class="info-text">Create an account to get a more personalised and targeted experience.</h3>
-        <img src="css/res/GamerGait.png" alt="GamerGaitLogo" class="ggimgInfo">
-      </div>
-    </section>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title id="page-title">Gamer Gait</title>
+    <link rel="icon" href="res/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
 
+    <div class="row" >
+    <nav class="deep-purple">
+        <div class="col s6 nav-wrapper deep-purple">
+        <a href="index.html" class="brand-logo right"><img src="res/favicon.ico" alt="GamerGait" class="responsive-img"></img></a>
+          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down" >
+            <li><a href="#" onclick="selectRandomGame()" class="green lighten-1">Suggest a game</a></li>
+          </ul>
+          </div>
+          <div class="col s6 nav-wrapper deep-purple">
+            <form>
+              <div class="input-field right">
+                <input id="search" type="search" placeholder="Find a game..." onsearch="searchGames()"  required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+      </nav>
+    </div>
+      <ul class="sidenav" id="mobile">
+        <li><a href="#" onclick="selectRandomGame()">Suggest a game</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+    </ul>
+
+
+        <div class="container">
+            <div><h5 class = "center-align">Monthly Top Picks</h5></div>
+            <div class="divider"></div>
+            <blockquote>Explore lesser known games chosen by us</blockquote>
+                <div id="top-picks" class="row"></div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="container">
+        <div class="row ">
+            <div class="col s12 m6">
+                <div class= "center promo attach_money"><i class= "large material-icons">attach_money</i></div>
+                <p class="promo-caption center">Earn free Steam Keys</p>
+                <p class="light center">Create an account, verify your email and leave 5 reviews. Use your rewards to enter the Gait Pool for a chance to win one of the games listed as monthly top picks!</p>
+                <p class="light center">Find out more <a href="about.html#free-steam-keys">here</a></p>
+            </div>
+            <div class="col s12 m6">
+                <div class= "center promo search"><i class= "large material-icons">search</i></div>
+                <p class="promo-caption center">Find Indie games</p>
+                <p class="light center">Get started by suggesting a random game, checking out the top rated or
+                     the monthly top picks or leaving reviews on games. We aim to match you with 
+                     a game you have never heard of but fits directly into your gaming library.</p>
+                <p class="light center"><a class="empty-href" onclick="selectRandomGame()">Suggest a random game</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="divider"></div>
+    <div class="container">
+        <div><h5 class = "center-align">Top Rated Overall</h5></div>
+        <div class="divider"></div>
+        <blockquote>Check out the community favourites</blockquote>
+            <div id="top-rated" class="row"></div>
+            <div  class="center"><a id="rate-see-more" onclick="getMoreTopRated()" class="center deep-purple-text empty-href">See more</a></div>
+</div>
+    <div> <br> <br> </div>
+    <div class="divider"></div>
+
+    <div class="section">
+    <div class="container">
+      <div class="row ">
+          <div class="col s12">
+              <div class= "center promo comment"><i class= "large material-icons">comment</i></div>
+              <p class="promo-caption center">Community driven game ratings</p>
+              <p class="light center">Ever completely disagreed with a critics view on a game? Sick of games being overhyped? <br>All game ratings are determined by the community's input. Every single review that has been left on a game will impact its ratings. This allows the community to decide whats good and what isn't, rather than a select few chosen to leave reviews.</p>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="divider"></div>
+
+    
+    <div class="container">
+        <div><h5 class = "center-align">Best Value for Money</h5></div>
+        <div class="divider"></div>
+        <blockquote>Get some bang for your buck</blockquote>
+            <div id="top-value" class="row"></div>
+            <div class="center"><a id="val-see-more" onclick="getMoreTopValue()" class="center deep-purple-text empty-href">See more</a></div>
+    </div>
+
+    <div> <br> <br> </div>
+
+
+
+
+    <script src="js/materialize.js"></script>
     <script src="js/index.js"></script>
-</body>
-
+    <script src="js/generics.js"></script>
+  </body>
+  <footer class="page-footer green lighten-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Socials</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/profile.php?id=61555268443136">Facebook</a></li>
+          </ul>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Overview</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="about.html">About</a></li>
+            <li><a class="grey-text text-lighten-3" href="privacy.html">Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      GamerGait.com
+      </div>
+    </div>
+  </footer>
 </html>

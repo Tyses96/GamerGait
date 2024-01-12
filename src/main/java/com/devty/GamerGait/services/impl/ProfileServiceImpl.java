@@ -1,5 +1,6 @@
 package com.devty.GamerGait.services.impl;
 
+import com.devty.GamerGait.domain.dto.EmailChangeDto;
 import com.devty.GamerGait.domain.dto.ProfileDto;
 import com.devty.GamerGait.domain.dto.ReviewDto;
 import com.devty.GamerGait.domain.dto.UserDto;
@@ -14,6 +15,8 @@ import com.devty.GamerGait.util.Hash;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -66,5 +69,48 @@ public class ProfileServiceImpl implements ProfileService {
        userRepository.save(userEntity);
 
        return userMapper.mapTo(userEntity);
+    }
+
+    @Override
+    public ProfileDto verifyEmailOfUser(ProfileDto profileDto) {
+
+        ProfileEntity profileEntity = profileRepository.findByEmail(profileDto.getEmail().toLowerCase());
+        profileEntity.setVerified(true);
+        profileRepository.save(profileEntity);
+
+        return profileDto;
+    }
+
+    @Override
+    public ProfileDto changeEmail(EmailChangeDto emailChangeDto) {
+        var foundUser = Optional.of(userRepository.findByUsername(emailChangeDto.getUsername().toLowerCase()));
+        if (foundUser.isPresent()) {
+            String enteredPsw = Hash.sha256(emailChangeDto.getPassword() + foundUser.get().getSalt());
+            if (Objects.equals(foundUser.get().getPassword(), enteredPsw)) {
+                foundUser.get().setTries(0);
+                foundUser.get().setLocked(false);
+                foundUser.get().setUnlockDate(ZonedDateTime.now().minusYears(100));
+                foundUser.get().setEmail(emailChangeDto.getEmail());
+                userRepository.save(foundUser.get());
+
+                ProfileEntity profileEntity = profileRepository.findByUsername(emailChangeDto.getUsername().toLowerCase());
+                profileEntity.setEmail(emailChangeDto.getEmail());
+                profileRepository.save(profileEntity);
+                return profileMapper.mapTo(profileEntity);
+            }
+        }
+        return new ProfileDto();
+    }
+
+    public Boolean takeAwayGaits(UUID id, Integer cost){
+        ProfileEntity profileEntity = profileRepository.findById(id);
+
+        if(profileEntity.getGaits() < cost){
+            return false;
+        }else{
+            profileEntity.setGaits(profileEntity.getGaits() - cost);
+            profileRepository.save(profileEntity);
+        }
+        return true;
     }
 }

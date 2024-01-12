@@ -6,6 +6,7 @@ import com.devty.GamerGait.domain.dto.PasswordResetTokenDto;
 import com.devty.GamerGait.domain.dto.ProfileDto;
 import com.devty.GamerGait.domain.dto.UserDto;
 import com.devty.GamerGait.services.ProfileService;
+import com.devty.GamerGait.services.impl.GamerGaitMailService;
 import com.devty.GamerGait.services.impl.MailSenderService;
 import com.devty.GamerGait.services.impl.PasswordResetTokenManager;
 import com.devty.GamerGait.services.impl.ProfileServiceImpl;
@@ -20,9 +21,9 @@ import java.util.UUID;
 @RestController
 public class PasswordController {
 
-    private MailSenderService mailSenderService;
+    private GamerGaitMailService mailSenderService;
     private ProfileServiceImpl profileService;
-    public PasswordController(MailSenderService mailSenderService, ProfileServiceImpl profileService){
+    public PasswordController(GamerGaitMailService mailSenderService, ProfileServiceImpl profileService){
         this.mailSenderService = mailSenderService;
         this.profileService = profileService;
     }
@@ -33,7 +34,7 @@ public class PasswordController {
         try {
             PasswordResetTokenDto passwordResetTokenDto = PasswordResetTokenManager.generatePasswordResetToken(email.getEmail());
             mailSenderService.sendNewMail(profileDto.getEmail(), "admin@gamergait.com", "Gamer Gait Password Reset",
-                  generateEmailBody(profileService.findProfileByEmail(email.getEmail()).getUsername(), passwordResetTokenDto.getToken()));
+                  mailSenderService.generatePasswordResetEmailBody(profileService.findProfileByEmail(email.getEmail()).getUsername(), passwordResetTokenDto.getToken()));
         }
         catch (Exception e){
             System.out.println(profileDto.getEmail() + " does not exist in db for password change");
@@ -50,9 +51,5 @@ public class PasswordController {
         else {
             return new ResponseEntity<>(new ProfileDto(), HttpStatus.BAD_REQUEST);
         }
-    }
-
-    private String generateEmailBody(String username, UUID token){
-        return "Hi " + username + "!\n\nIf you requested a password reset, please follow this link to reset it: https://www.gamergait.com/password-reset-confirm.html?t=" + token + "\n\n if you didn't request a password reset, please safely ignore this email.\n\nKind regards,\n\nGamerGait";
     }
 }
