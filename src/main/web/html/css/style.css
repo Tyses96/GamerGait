@@ -92,3 +92,9 @@ blockquote {
   input[type=range] + .thumb.active {
     background: #673ab7;
   }
+  .article-body{
+    font-size: medium;
+  }
+  .bold{
+    font-weight: bold;
+  }

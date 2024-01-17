@@ -322,7 +322,6 @@ function createArticleCards(data, box){
         box.innerHTML = "<h5 class=\"center\">No results</h5>"
     }
     data.forEach(async(item) => {
-        console.log(item)
         let section = document.createElement("div")
         section.classList.add("section")
         box.appendChild(section)
@@ -352,7 +351,7 @@ function createArticleCards(data, box){
 
         let body = document.createElement("p")
         body.classList.add("truncate")
-        body.innerHTML = item.body;
+        body.innerHTML = item.body.substring(0,128);
         cardContent.appendChild(body)
     
         section.addEventListener('click', function(){articleItemCardClicked(item.id)});
@@ -361,11 +360,27 @@ function createArticleCards(data, box){
 
 function createArticle(data, section){
 
+    let divider = document.createElement("div")
+    divider.classList.add("divider")
+
+    let divider2 = document.createElement("div")
+    divider2.classList.add("divider")
+
+    let br = document.createElement("br")
+
     let dateHolder = document.getElementById("date");
     dateHolder.innerHTML = formatDateTimeToDate(data.date)
 
+    let title = document.createElement("h2")
+    title.classList.add("center")
+    title.innerHTML = data.title + "<br>"
+    title.appendChild(divider)
+    section.appendChild(title)
+
     let imgDiv = document.createElement("div")
     imgDiv.classList.add("center")
+    imgDiv.appendChild(divider2)
+    imgDiv.innerHTML = "<br>"
     section.appendChild(imgDiv)
 
     let mainImage = document.createElement("img")
@@ -373,10 +388,7 @@ function createArticle(data, section){
     mainImage.classList.add("responsive-img")
     imgDiv.appendChild(mainImage)
 
-    let title = document.createElement("h2")
-    title.classList.add("center")
-    title.innerHTML = data.title
-    section.appendChild(title)
+
 
     let body = document.createElement("div")
     body.classList.add("flow-text")
