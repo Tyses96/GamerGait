@@ -159,10 +159,10 @@ function createCards(page_of_games, section){
         }
     )
     cardimage.classList.add("responsive-img")
-    let cardTitle = document.createElement("span")
-    cardTitle.classList.add("center-align")
+    let cardTitle = document.createElement("h6")
+    cardTitle.classList.add("center")
     cardTitle.classList.add("deep-purple")
-    cardTitle.classList.add("lighten-4")
+    cardTitle.classList.add("white-text")
     cardTitle.innerHTML = item.name;
     cardImageHolder.appendChild(cardimage)
     cardImageHolder.appendChild(cardTitle)
@@ -221,10 +221,10 @@ function createCardsPageable(page_of_games, section, remove){
         }
     )
     cardimage.classList.add("responsive-img")
-    let cardTitle = document.createElement("span")
-    cardTitle.classList.add("center-align")
+    let cardTitle = document.createElement("h6")
+    cardTitle.classList.add("center")
     cardTitle.classList.add("deep-purple")
-    cardTitle.classList.add("lighten-4")
+    cardTitle.classList.add("white-text")
     cardTitle.innerHTML = item.name;
     cardImageHolder.appendChild(cardimage)
     cardImageHolder.appendChild(cardTitle)
@@ -298,6 +298,9 @@ function generateColourForScore(score){
 }
 function generateAccent(score){
     accent = "lighten-2"
+    if(score == 0){
+        accent = "white-text"
+    }
     if((score >= 1 && score < 10 ) || (score >= 25 && score < 35) || (score >= 90 && score < 101)){
         accent = "no-accent"
     }
@@ -313,3 +316,83 @@ function generateAccent(score){
     return accent;
 }
 
+
+function createArticleCards(data, box){
+    if(data.length < 1){
+        box.innerHTML = "<h5 class=\"center\">No results</h5>"
+    }
+    data.forEach(async(item) => {
+        console.log(item)
+        let section = document.createElement("div")
+        section.classList.add("section")
+        box.appendChild(section)
+
+        let card = document.createElement("div")
+        card.classList.add("card")
+        card.classList.add("hoverable")
+        section.appendChild(card)
+    
+        let cardImageHolder = document.createElement("div")
+        cardImageHolder.classList.add("card-image")
+        card.appendChild(cardImageHolder)
+    
+        let cardimage = document.createElement("img")
+        cardimage.src = item.mainImgSrc;
+        cardimage.classList.add("responsive-img")
+        let cardTitle = document.createElement("h5")
+        cardTitle.classList.add("center-align")
+
+        cardTitle.innerHTML = item.title;
+        cardImageHolder.appendChild(cardimage)
+        cardImageHolder.appendChild(cardTitle)
+    
+        let cardContent = document.createElement("div")
+        cardContent.classList.add("card-content")
+        card.appendChild(cardContent)
+
+        let body = document.createElement("p")
+        body.classList.add("truncate")
+        body.innerHTML = item.body;
+        cardContent.appendChild(body)
+    
+        section.addEventListener('click', function(){articleItemCardClicked(item.id)});
+    })
+}
+
+function createArticle(data, section){
+
+    let dateHolder = document.getElementById("date");
+    dateHolder.innerHTML = formatDateTimeToDate(data.date)
+
+    let imgDiv = document.createElement("div")
+    imgDiv.classList.add("center")
+    section.appendChild(imgDiv)
+
+    let mainImage = document.createElement("img")
+    mainImage.src = data.mainImgSrc;
+    mainImage.classList.add("responsive-img")
+    imgDiv.appendChild(mainImage)
+
+    let title = document.createElement("h2")
+    title.classList.add("center")
+    title.innerHTML = data.title
+    section.appendChild(title)
+
+    let body = document.createElement("div")
+    body.classList.add("flow-text")
+    body.innerHTML = data.body
+    section.appendChild(body)
+}
+
+
+//2024-01-17 14:24:51.239 +0000
+
+function formatDateTimeToDate(date){
+    let year = date.substring(0,4)
+    let month = date.substring(5,7)
+    let day = date.substring(8,10)
+
+    let actualDate = day + "/" + month + "/" + year
+
+    return actualDate
+}
