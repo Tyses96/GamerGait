@@ -21,6 +21,7 @@ public class ArticleEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "article_id_seq")
     Long id;
     String mainImgSrc;
+    String listImgSrc;
     String title;
     String body;
     ZonedDateTime date;

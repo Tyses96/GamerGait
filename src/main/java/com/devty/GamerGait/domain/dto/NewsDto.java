@@ -14,6 +14,7 @@ public class NewsDto {
 
     Long id;
     String mainImgSrc;
+    String listImgSrc;
     String title;
     String body;
     ZonedDateTime date;

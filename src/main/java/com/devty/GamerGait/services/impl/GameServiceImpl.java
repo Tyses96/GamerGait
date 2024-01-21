@@ -24,7 +24,8 @@ public class GameServiceImpl implements GameService {
     }
     @Override
     public GameEntity save(GameEntity gameEntity) {
-        return gameRepository.save(gameEntity);
+        GameEntity ge = gameEntity;
+        return gameRepository.save(ge);
     }
 
     @Override

@@ -65,7 +65,14 @@ function setNavbarItems(idList, authed){
         loginButton.href="login.html"
         lil.appendChild(loginButton)
         bar.appendChild(lil)
+
     }
+    let lih = document.createElement("li")
+    let home = document.createElement("a")
+    home.href="index.html"
+    home.innerHTML="Home"
+    lih.appendChild(home)
+    bar.appendChild(lih)
         authChecked +=1;
     }
 }
@@ -336,7 +343,7 @@ function createArticleCards(data, box){
         card.appendChild(cardImageHolder)
     
         let cardimage = document.createElement("img")
-        cardimage.src = item.mainImgSrc;
+        cardimage.src = item.listImgSrc;
         cardimage.classList.add("responsive-img")
         let cardTitle = document.createElement("h5")
         cardTitle.classList.add("center-align")
@@ -351,7 +358,9 @@ function createArticleCards(data, box){
 
         let body = document.createElement("p")
         body.classList.add("truncate")
-        body.innerHTML = item.body.substring(0,128);
+        body.classList.add("grey-text")
+        body.classList.add("text-darken-1")
+        body.innerHTML = item.body.substring(0,125) + "...";
         cardContent.appendChild(body)
     
         section.addEventListener('click', function(){articleItemCardClicked(item.id)});
@@ -360,13 +369,12 @@ function createArticleCards(data, box){
 
 function createArticle(data, section){
 
+    setPageTitle(data.title);
     let divider = document.createElement("div")
     divider.classList.add("divider")
 
     let divider2 = document.createElement("div")
     divider2.classList.add("divider")
-
-    let br = document.createElement("br")
 
     let dateHolder = document.getElementById("date");
     dateHolder.innerHTML = formatDateTimeToDate(data.date)
@@ -407,4 +415,9 @@ function formatDateTimeToDate(date){
     let actualDate = day + "/" + month + "/" + year
 
     return actualDate
+}
+
+function setPageTitle(title){
+    let pageTitle = document.getElementById("page-title")
+    pageTitle.innerHTML = title
 }
