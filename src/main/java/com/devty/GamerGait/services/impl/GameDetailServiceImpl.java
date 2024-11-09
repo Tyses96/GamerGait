@@ -24,7 +24,7 @@ public class GameDetailServiceImpl implements GameDetailService {
     GameDetailMapperImpl gameDetailMapper;
     SteamHttpRequest steamHttpRequest;
 
-    String ggIconUrl = "res/GamerGait.png";
+    String ggIconUrl = "res/placeholderImg.png";
 
     public GameDetailServiceImpl(GameDetailRepository gameDetailRepository, SteamHttpRequest steamHttpRequest,
                                  GameDetailMapperImpl gameDetailMapper){
@@ -42,7 +42,6 @@ public class GameDetailServiceImpl implements GameDetailService {
         }
         else if(gameDetail.isEmpty() && !gameDetailDto.getSuccess() ||
                 gameDetail.isEmpty() && !shouldSaveGameDetail(gameDetailDto)){
-            String test = ggIconUrl;
             gameDetailDto.setDataDto(new DataDto(ggIconUrl , ggIconUrl, "No description available"));
             GameDetailEntity gameDetailEntity = gameDetailMapper.mapFrom(gameDetailDto);
             return gameDetailEntity;

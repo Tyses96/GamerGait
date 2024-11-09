@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="google-adsense-account" content="ca-pub-4222909868114172">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title id="page-title">Gamer Gait</title>
+    <link rel="icon" href="res/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <div class="row" >
+    <nav class="deep-purple">
+        <div class="col s6 nav-wrapper deep-purple">
+        <a href="index.html" class="brand-logo right"><img src="res/favicon.ico" alt="GamerGait" class="responsive-img"></img></a>
+          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down" >
+            <li><a href="#" onclick="selectRandomGame()" class="green lighten-1">Suggest a game</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+          </ul>
+          </div>
+          <div class="col s6 nav-wrapper deep-purple">
+            <form>
+              <div class="input-field right">
+                <input id="search" type="search" placeholder="Find a game..." onsearch="searchGames()"  required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+      </nav>
+    </div>
+      <ul class="sidenav" id="mobile">
+        <li><a href="#" onclick="selectRandomGame()">Suggest a game</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+    </ul>
+
+
+
+    <div class="container">
+        <div class="row">
+            <form class="col s12">
+                <div class="input-field col s12">
+                  <input placeholder="Title" id="add-review-title" type="text" class="validate" onblur="checkUsername()" onfocus="checkUsername()" onchange="checkUsername()">
+                  <label for="add-review-title">Title</label>
+                  <span id="username-span1" class="helper-text" data-error="Title must be atleast 5 characters long" data-success="Looks good!"></span>
+                  </div>
+                <div class="input-field col s12">
+                    <textarea placeholder="Body" id="add-review-body" type="text" class="materialize-textarea validate" onblur="checkEmail()" onfocus="checkEmail()" onchange="checkEmail()"></textarea>
+                    <label for="add-review-body">Body</label><span id="email-span1" class="helper-text" data-error="Please include a review of atleast 32 characters" data-success="Looks good!"></span>
+                </div>
+            </form>
+          </div>
+          <h6>Graphics</h6>
+          <p class="range-field">
+            <input type="range" id="graphics-slider" min="0" max="100" />
+          </p>
+          <h6>Gameplay</h6>
+          <p class="range-field">
+            <input type="range" id="gameplay-slider" min="0" max="100" />
+          </p>
+          <h6>Story</h6>
+          <p class="range-field">
+            <input type="range" id="story-slider" min="0" max="100" />
+          </p>
+          <h6>Value for money</h6>
+          <p class="range-field">
+            <input type="range" id="value-slider" min="0" max="100" />
+          </p>
+    </div>
+
+
+	<script src="js/materialize.js"></script>
+    <script src="js/generics.js"></script>
+    <script src="js/register.js"></script>
+  </body>
+</html>

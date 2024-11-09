@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="google-adsense-account" content="ca-pub-4222909868114172">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title id="page-title">Gamer Gait</title>
+    <link rel="icon" href="res/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <div class="row" >
+    <nav class="deep-purple">
+        <div class="col s6 nav-wrapper deep-purple">
+        <a href="index.html" class="brand-logo right"><img src="res/favicon.ico" alt="GamerGait" class="responsive-img"></img></a>
+          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down" >
+            <li><a href="#" onclick="selectRandomGame()" class="green lighten-1">Suggest a game</a></li>
+            <li><a href="articles.html">Indie insights</a></li>
+            <li><a href="news.html">News</a></li>
+          </ul>
+          </div>
+          <div class="col s6 nav-wrapper deep-purple">
+            <form>
+              <div class="input-field right">
+                <input id="search" type="search" placeholder="Find a game..." onsearch="searchGames()"  required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+      </nav>
+    </div>
+      <ul class="sidenav" id="mobile">
+        <li><a href="#" onclick="selectRandomGame()">Suggest a game</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="articles.html">Indie insights</a></li>
+    </ul>
+
+
+    <div class="section">
+        <div class="container">
+            <h3 class="center">Indie Insights</h3>
+            <div class="divider"></div>
+            <br>
+            <div class="row">
+                <div class="col s8 offset-s2">
+                    <div id="articles-holder"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="js/materialize.js"></script>
+    <script src="js/articles.js"></script>
+    <script src="js/generics.js"></script>
+  </body>
+  <footer class="page-footer green lighten-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Socials</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/profile.php?id=61555268443136">Facebook</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://www.youtube.com/@GamerGaitOfficial">Youtube</a></li>
+          </ul>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Overview</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="about.html">About</a></li>
+            <li><a class="grey-text text-lighten-3" href="privacy.html">Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      GamerGait.com
+      </div>
+    </div>
+  </footer>
+</html>

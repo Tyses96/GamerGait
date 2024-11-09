@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="google-adsense-account" content="ca-pub-4222909868114172">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title id="page-title">Gamer Gait</title>
+    <link rel="icon" href="res/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <div class="row" >
+    <nav class="deep-purple">
+        <div class="col s6 nav-wrapper deep-purple">
+        <a href="index.html" class="brand-logo right"><img src="res/favicon.ico" alt="GamerGait" class="responsive-img"></img></a>
+          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down" >
+            <li><a href="#" onclick="selectRandomGame()" class="green lighten-1">Suggest a game</a></li>
+            <li><a href="articles.html">Indie insights</a></li>
+            <li><a href="news.html">News</a></li>
+          </ul>
+          </div>
+          <div class="col s6 nav-wrapper deep-purple">
+            <form>
+              <div class="input-field right">
+                <input id="search" type="search" placeholder="Find a game..." onsearch="searchGames()"  required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+      </nav>
+    </div>
+      <ul class="sidenav" id="mobile">
+        <li><a href="#" onclick="selectRandomGame()">Suggest a game</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="articles.html">Indie insights</a></li>
+        <li><a href="news.html">News</a></li>
+    </ul>
+
+    <div class="section">
+        <div class="container"><h1 class="center">Gamer Gait Verify email</h1> <div class="divider-2"></div></div>
+    </div>
+
+    <div id="registration-form" class="container">
+        <div class="row">
+            <form id="unveri-form" class="col s12">
+                <div class="input-field col s12">
+                  <input placeholder="Email" id="email" type="text" class="validate">
+                  <label for="email">Email</label>
+                  </div>
+            <div class="center">
+                <a id="submit-button" class="waves-effect waves-light btn-large green" onclick="sendEmail()">Send Email<i class="material-icons right">send</i></a><br><br>
+            </div>
+            </form>
+            <div id="veri-form" class="center hide"><h5>Email already verfied!</h5><br><p>Go <a href="index.html">home</a>.</p></div>
+          </div>
+    </div>
+
+
+	<script src="js/materialize.js"></script>
+    <script src="js/generics.js"></script>
+    <script src="js/verify-email.js"></script>
+  </body>
+</html>

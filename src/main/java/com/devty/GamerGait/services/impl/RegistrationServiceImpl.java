@@ -41,6 +41,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         userDto.setLocked(false);
         userDto.setUnlockDate(ZonedDateTime.now().minusYears(100));
         userDto.setTries(0);
+        userDto.setVerified(false);
         String salt = Hash.generateSalt();
         userDto.setSalt(salt);
         String saltedPassword = userDto.getPassword() + salt;
@@ -53,7 +54,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         // No it doesn't
         if(dbEntityEmail == null && dbEntityUsername == null){
             var userEntity = userRepository.save(userMapper.mapFrom(userDto));
-            ProfileEntity profileEntity = new ProfileEntity(userEntity.getId(), userEntity.getUsername(), userEntity.getEmail(),
+            ProfileEntity profileEntity = new ProfileEntity(userEntity.getId(), userEntity.getUsername(), userEntity.getEmail(), false,
                     0L,0L, 0L, new HashSet<>());
             profileRepository.save(profileEntity);
             return userEntity;

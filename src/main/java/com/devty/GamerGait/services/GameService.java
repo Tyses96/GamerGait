@@ -29,6 +29,8 @@ public interface GameService {
 
     GameEntity findRandomGame();
 
-    List<GameEntity> findTopRated();
+    Page<GameEntity> findTopRated(Pageable page);
+
+    Page<GameEntity> findTopValue(Pageable pageable);
 
 }

@@ -1,77 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <meta name="google-adsense-account" content="ca-pub-4222909868114172">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - GamerGait.com</title>
-    <link rel="icon" href="css/res/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
-  <div id="header">
-    <div id="logo-slogan">
-      <a href="index.html"><img src="css/res/GamerGait.png" alt="GamerGaitLogo" class="ggimg"></a>
-    </div>
-    <div class="menu-icon"><img src="css/res/menu-icon.png" alt="menu-icon" class="menu-icon-img dropbtn" onclick="dropdown()">
-    </div>
-  <div class="authbuttons">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title id="page-title">Gamer Gait</title>
+    <link rel="icon" href="res/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
 
-    <ul id="navbar">
-      <li class = "navbar-item"><a href="#" onclick="selectRandomGame()">Suggest random game</a></li>
-      <li class = "navbar-item"><a href="privacy.html">Privacy</a></li>
-      <li class = "navbar-item"><a href="about.html">About</a></li>
-      <li class = "navbar-item" id="login-button"><a href="login.html">Login</a></li>
-      <li class = "navbar-item" id="register-button"><a href="register.html">Sign up</a></li>
+    <div class="row" >
+    <nav class="deep-purple">
+        <div class="col s6 nav-wrapper deep-purple">
+        <a href="index.html" class="brand-logo right"><img src="res/favicon.ico" alt="GamerGait" class="responsive-img"></img></a>
+          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down" >
+            <li><a href="#" onclick="selectRandomGame()" class="green lighten-1">Suggest a game</a></li>
+            <li><a href="articles.html">Indie insights</a></li>
+            <li><a href="news.html">News</a></li>
+          </ul>
+          </div>
+          <div class="col s6 nav-wrapper deep-purple">
+            <form>
+              <div class="input-field right">
+                <input id="search" type="search" placeholder="Find a game..." onsearch="searchGames()"  required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+      </nav>
+    </div>
+      <ul class="sidenav" id="mobile">
+        <li><a href="#" onclick="selectRandomGame()">Suggest a game</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="articles.html">Indie insights</a></li>
+        <li><a href="news.html">News</a></li>
     </ul>
+
+    <div class="section">
+      <div class="container">
+        <div class="row ">
+            <div class="col s12">
+                <div class= "center promo comment"><i class= "large material-icons">format_quote</i></div>
+                  <h2 class="promo-caption center">Profiles</h2>
+                  <p class="light center">Create your Gamer Gait account and verify your email to be able to leave reviews for games. Each profile will have the following statistics assosiated:</p>
+                  <ul>
+                      <li class="light center">Gaits - These are the currency of the website. Each review earns 10. Use them to make upgrades to your account, purchase account based items or enter the Gait Pool for a chance to earn free game keys.</li><br>
+                      <li class="light center">Total reviews - The total amount of reviews you have left in your accounts lifetime.</li><br>
+                      <li class="light center">Standing - This is a scoring system to see how good your reviews are. The higher your standing, the more reputible your reviews. Posting reviews earns standing. Downvotes decreases standing and upvotes increase standing [Still a work in progress]</li><br>
+                  </ul>
+
+                  <br>
+                  <div class="divider"></div>
+                  <br>
+
+                  <h2 class="promo-caption center">Games</h2>
+                  <p class = "light center">All games have ratings. You can leave your own rating up to a score of 100 for each category defined: </p>
+                  <ul>
+                      <li class="light center">Graphics</li><br>
+                      <li class="light center">Gameplay</li><br>
+                      <li class="light center">Story</li><br>
+                      <li class="light center">Value for money</li><br>
+                  </ul>
+                  <p class = "light center">The game overall rating of these categories will then change to reflect the average of all the reviews. This allows for a community driven rating. The overall rating is the average of all the individual ratings.</p>
+                  
+                  <br>
+                  <div class="divider"></div>
+                  <br>
+
+                  <h2 id="free-steam-keys" class="promo-caption center">Free Steam Keys</h2>
+                  <p class="light center">On a monthly basis, free steam keys will be given out at random to people who have entered the Gait Pool. The games given out are the ones on the "Monthly top picks" section. 
+                    To enter the Gait pool, you first need a verified email. Then purchase a ticket by going to your profile, and clicking "Purchase Gait Pool ticket". A ticket costs 50 gaits which is equivalent to 5 reviews. 
+                    Multiple tickets can be purchased for higher odds at winning. The amount of keys distributed will be proportionate to the amount of users that have entered the Gait pool.</p>
+                  
+                  <br>
+                  <div class="divider"></div>
+                  <br>
+
+                  <h2 class="promo-caption center">Reviews</h2>
+                  <p class = "light center">Please ensure reviews are accurate and true. If found to be leaving false reviews to alter game ratings in either direction, your account and possibly your ip address, will be banned to prevent further abuse. One review per user per game!</p>
+                  
+                  <br>
+                  <div class="divider"></div>
+                  <br>
+
+                  <h2 class="promo-caption center">Contact</h2>
+                  <p class="light center">If you wish to contact me, please do so on <a href="mailto: admin@gamergait.com">admin@gamergait.com</a>. Genuine enquires include sponsorships or requests to add games for review.</p>
+            </div>
+        </div>
+    </div>
   </div>
-    <!-- input tag -->
-    <input id="searchbar" onsearch="searchGames();" type="search"
-    name="search" placeholder="Find a game..">
-  </div>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="#" onclick="selectRandomGame()">Suggest random game</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="about.html">About</a>
-    <a href="login.html" id="login-button-sml">Login</a>
-    <a href="register.html" id="register-button-sml">Sign up</a>
-  </div>
-  <h4>It's the way you game.</h4>
+  <div class="divider"></div>
 
-<h1 class ="title-word">About GamerGait.com</h1>
-<div class = "privacy-div">
 
-<h2 class="privacy-header">Profiles</h2>
-<p class="privacy-para">Create your Gamer Gait account to be able to leave reviews for games. Each profile will have the following statistics assosiated</p>
-<ul>
-    <li class="privacy-para">Gaits - These are the currency of the website. Each review earns 10. Use them to make upgrades to your account.</li>
-    <li class="privacy-para">Total reviews - The total amount of reviews you have left in your accounts lifetime.</li>
-    <li class="privacy-para">Standing - This is a scoring system to see how good your reviews are. The higher your standing, the more reputible your reviews. Posting reviews earns standing. Downvotes decreases standing and upvotes increase standing [Still a work in progress]</li>
-</ul>
 
-<h2 class="privacy-header">Games</h2>
-<p class = "privacy-para">All games have ratings. You can leave your own rating up to a score of 100 for each category defined: </p>
-<ul>
-    <li class="privacy-para">Graphics</li>
-    <li class="privacy-para">Gameplay</li>
-    <li class="privacy-para">Story</li>
-    <li class="privacy-para">Value for money</li>
-</ul>
-<p class = "privacy-para">The game overall rating of these categories will then change to reflect the average of all the reviews. This allows for a community driven rating. The overall rating is the average of all the individual ratings.</p>
-
-<h2 class="privacy-header">Free Steam Keys</h2>
-<p class="privacy-para">On a monthly basis, free steam keys will be given out at random to people who have entered the Gait Pool. The games given out are the ones on the "Monthly top picks" section. 
-  To enter the Gait pool, you first need a verified email. Then purchase a ticket by going to your profile, and clicking "Purchase Gait Pool ticket". A ticket costs 50 gaits which is equivalent to 5 reviews. 
-  Multiple tickets can be purchased for higher odds at winning. The amount of keys distributed will be proportionate to the amount of users that have entered the Gait pool.</p>
-
-<h2 class="privacy-header">Reviews</h2>
-<p class = "privacy-para">Please ensure reviews are accurate and true. If found to be leaving false reviews to alter game ratings in either direction, your account and possibly your ip address, will be banned to prevent further abuse. One review per user per game!</p>
-
-<h2 class="privacy-header">Development of the site</h2>
-<p class="privacy-para">This site is developed and maintained by a single developer. This site will continually be updated. The rate of which will be determined by me.</p>
-
-<h2 class="privacy-header">Contact</h2>
-<p class="privacy-para">If you wish to contact me, please do so on <a href="mailto: admin@gamergait.com">admin@gamergait.com</a>. Genuine enquires include sponsorships or requests to add games for review.</p>
-</div>
-<script src="js/about.js"></script>
-</body>
+    <script src="/js/materialize.js"></script>
+    <script src="js/about.js"></script>
+    <script src="js/generics.js"></script>
+  </body>
 </html>

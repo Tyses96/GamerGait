@@ -13,6 +13,7 @@ public class ProfileDto {
     UUID id;
     String username;
     String email;
+    Boolean verified;
     Long gaits;
     Long totalReviews;
     Long standing;

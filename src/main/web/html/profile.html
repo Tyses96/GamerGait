@@ -1,61 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="google-adsense-account" content="ca-pub-4222909868114172">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title id="main-title">Gamer Gait</title>
-    <link rel="icon" href="css/res/favicon.ico">
-    <!-- linking the stylesheet(CSS) -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title id="page-title">Gamer Gait</title>
+    <link rel="icon" href="res/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <div id="header">
-      <div id="logo-slogan">
-        <a href="index.html"><img src="css/res/GamerGait.png" alt="GamerGaitLogo" class="ggimg"></a>
+
+    <div class="row" >
+    <nav class="deep-purple">
+        <div class="col s6 nav-wrapper deep-purple">
+        <a href="index.html" class="brand-logo right"><img src="res/favicon.ico" alt="GamerGait" class="responsive-img"></img></a>
+          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down" >
+            <li><a href="#" onclick="selectRandomGame()" class="green lighten-1">Suggest a game</a></li>
+            <li><a href="articles.html">Indie insights</a></li>
+            <li><a href="news.html">News</a></li>
+          </ul>
+          </div>
+          <div class="col s6 nav-wrapper deep-purple">
+            <form>
+              <div class="input-field right">
+                <input id="search" type="search" placeholder="Find a game..." onsearch="searchGames()"  required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+      </nav>
+    </div>
+      <ul class="sidenav" id="mobile">
+        <li><a href="#" onclick="selectRandomGame()">Suggest a game</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="articles.html">Indie insights</a></li>
+        <li><a href="news.html">News</a></li>
+
+    </ul>
+
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m8">
+        <h2 id ="profile-title" class="center"></h2>
+        <table>
+          <thead>
+            <tr>
+                <th>Item</th>
+                <th>Value</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+              <td>User Id</td>
+              <td id="user-id"></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td id="email"></td>
+            </tr>
+            <tr>
+              <td>Verified Email</td>
+              <td id="verified-email"></td>
+            </tr>
+            <tr>
+              <td>Username</td>
+              <td id="username"></td>
+            </tr>
+            <tr>
+              <td>Gaits</td>
+              <td id="gaits"></td>
+            </tr>
+            <tr>
+              <td>Total reviews</td>
+              <td id="total-reviews"></td>
+            </tr>
+            <tr>
+              <td>Standing</td>
+              <td id="standing"></td>
+            </tr>
+            <tr>
+              <td>Gait Pool tickets for current Pool</td>
+              <td id="gait-pool-tickets"></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="menu-icon"><img src="css/res/menu-icon.png" alt="menu-icon" class="menu-icon-img dropbtn" onclick="dropdown()">
+      <div class="col s12 m4">
+        <h5 class="center">Tools</h5>
+        <br><br>
+        <div class="center"><a href="password-reset.html">Reset password</a></div>
+        <br><br>
+        <div class="center"><a href="verify-email.html">Send verify Email link</a></div>
+        <br><br>
+        <div class="center"><a href="change-email.html">Change Email</a></div>
+        <br><br>
+        <div class="center"><a class="modal-trigger" href="#buygaitmodal">Buy Gait Pool ticket</a></div>
       </div>
-    <div class="authbuttons">
- 
-      <ul id="navbar">
-        <li class = "navbar-item"><a href="#" onclick="selectRandomGame()">Suggest random game</a></li>
-        <li class = "navbar-item"><a href="privacy.html">Privacy</a></li>
-        <li class = "navbar-item"><a href="about.html">About</a></li>
-        <li class = "navbar-item" id="login-button"><a href="login.html">Login</a></li>
-        <li class = "navbar-item" id="register-button"><a href="register.html">Sign up</a></li>
-      </ul>
     </div>
-      <!-- input tag -->
-      <input id="searchbar" onsearch="searchGames();" type="search"
-      name="search" placeholder="Find a game..">
     </div>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#" onclick="selectRandomGame()">Suggest random game</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="about.html">About</a>
-      <a href="login.html" id="login-button-sml">Login</a>
-      <a href="register.html" id="register-button-sml">Sign up</a>
+  </div>
+
+  <div id="buygaitmodal" class="modal">
+    <div class="modal-content">
+      <h4>Buying Gait Pool ticket</h4>
+      <p>This action will cost 50 Gaits. Your account will be credited 1 Gait Pool ticket. If you have insufficient gaits, this action will not process. Leave more reviews to earn more Gaits.</p>
     </div>
-    <h4>It's the way you game.</h4>
-    <section id = "profile-page-holder" class="content-section">
-        <div id ="profile-detail-holder">
-                <div id="profile-email-holder"></div>
-                <div id="profile-username-holder"></div>
-                <div id="profile-stats">
-                    <div class = "profile-stats"><p id="profile-gaits"></p></div>
-                    <div class = "profile-stats"><p id="total-profile-reviews"></p></div>
-                    <div class = "profile-stats"><p  id="profile-standing"></p></div>
-                </div>
-                <button class = "header-button  profile-change-button" onclick="resetPassword()">Reset Password</button>
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn-flat empty-href" onclick="buyGaitPoolTicket()">Agree</a>
     </div>
-    </section>
-
-    
+  </div>
 
 
 
-  <script src="js/profile.js"></script>
-
+    <script src="js/materialize.js"></script>
+    <script src="js/generics.js"></script>
+    <script src="js/profile.js"></script>
   </body>
 </html>
